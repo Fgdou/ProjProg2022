@@ -4,6 +4,7 @@
 
 #include "EquippableItem.h"
 #include "../Renderer.h"
+#include "../Entities/DynamicEntity.h"
 
 EquippableItem::EquippableItem(Image sprite, double damage) : isEquipped(false), size(Vec2(1.0, 1.0)), sprite(sprite), angle(0.0), damage(damage) {
 
