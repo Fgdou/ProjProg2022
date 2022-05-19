@@ -9,6 +9,8 @@
 #include <SDL2/SDL.h>
 #include <memory>
 
+#define TARGET_TPS 60;
+
 class Timer
 {
 private:
@@ -26,7 +28,7 @@ public:
     // returns the number of milliseconds since the last update
     static inline double getDeltaTime()
     {
-        return 1.0 / 60;
+        return 1.0 / TARGET_TPS;
     }
 
     // returns the number of milliseconds since the timer was started
