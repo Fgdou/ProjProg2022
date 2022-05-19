@@ -5,37 +5,42 @@
 #include <cstdio>
 #include "Room.h"
 #include "../Entities/DynamicEntity.h"
-#include "Door.h"
 
-std::vector<std::shared_ptr<DynamicEntity>> entities;
-std::vector<std::shared_ptr<Wall>> walls;
-
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls): entities(entities), walls(walls) {
-
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls) : _entities(entities), _walls(walls)
+{
 }
 
-void update()
+void Room::update()
 {
-    if(entities.size()==1){
-        for (std::shared_ptr<Wall> w: walls) {
+    if (_entities.size() == 1)
+    {
+        for (std::shared_ptr<Wall> w : _walls)
+        {
             w->open();
         }
     }
-    else{
-        for(std::shared_ptr<DynamicEntity>e : entities){
-            //e->update(this);
+    else
+    {
+        for (std::shared_ptr<DynamicEntity> e : _entities)
+        {
+            // e->update(this);
         }
     }
 }
-void draw(){
-    for (std::shared_ptr<Wall> w: walls) {
+
+void Room::draw()
+{
+    for (std::shared_ptr<Wall> w : _walls)
+    {
         w->draw();
     }
-    for(std::shared_ptr<DynamicEntity>e : entities){
+    for (std::shared_ptr<DynamicEntity> e : _entities)
+    {
         e->draw();
     }
 }
 
-Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov){
+Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
+{
     return Collision(false, {}, {});
 }
