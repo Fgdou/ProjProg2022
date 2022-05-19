@@ -163,3 +163,21 @@ double Vec2::dot(const Vec2 &other) const {
 double Vec2::angle() const {
     return atan2(y, x);
 }
+
+Vec2 Vec2::screenToWorldScale() const {
+    auto scale = Renderer::getInstance().getCamera().getScale();
+
+    Vec2 res = *this;
+    res *= scale;
+
+    return res;
+}
+
+Vec2 Vec2::worldToScreenScale() const {
+    auto scale = Renderer::getInstance().getCamera().getScale();
+
+    Vec2 res = *this;
+    res /= scale;
+
+    return res;
+}
