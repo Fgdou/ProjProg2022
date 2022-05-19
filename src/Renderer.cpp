@@ -118,3 +118,11 @@ void Renderer::render()
 {
     SDL_RenderPresent(_renderer);
 }
+
+void Renderer::drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c)
+{
+    auto startScreen = start.worldToScreen();
+    auto endScreen = end.worldToScreen();
+    SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
+    SDL_RenderDrawLine(_renderer, startScreen.x, startScreen.y, endScreen.x, endScreen.y);
+}
