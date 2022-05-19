@@ -7,7 +7,8 @@
 
 
 #include "Entity.h"
-#include "../Rooms/Room.h"
+
+class Room;
 
 class DynamicEntity : public Entity {
 

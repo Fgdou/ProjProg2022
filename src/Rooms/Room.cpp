@@ -3,8 +3,10 @@
 //
 
 #include "Room.h"
+#include "../Entities/DynamicEntity.h"
+#include "../World.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, std::shared_ptr<World> world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World & world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
 {
 }
 
@@ -42,10 +44,10 @@ void Room::draw()
 
 std::shared_ptr<Player> Room::getPlayer() const
 {
-    return _world->getPlayer();
+    return _world.getPlayer();
 }
 
-std::shared_ptr<World> Room::getWorld() const
+World & Room::getWorld() const
 {
     return _world;
 }
