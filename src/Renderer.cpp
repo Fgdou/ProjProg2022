@@ -6,6 +6,7 @@
 #include "Image.h"
 #include <stdexcept>
 #include <iostream>
+#include "Theme.h"
 
 std::unique_ptr<Renderer> Renderer::_instance;
 
@@ -50,7 +51,7 @@ SDL_Renderer &Renderer::getSLDRenderer()
 
 void Renderer::clear()
 {
-    SDL_SetRenderDrawColor(_renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(_renderer,Theme::background.r,Theme::background.g,Theme::background.b,Theme::background.a);
     SDL_RenderClear(_renderer);
 }
 

@@ -3,8 +3,9 @@
 //
 
 #include "Wall.h"
+#include "../Theme.h"
 
-Wall::Wall(Vec2 &pos, Vec2 &size) : Entity(pos), _size(size), _isEnabled(true), _color({150, 150, 150, 255}), _texture(nullptr)
+Wall::Wall(Vec2 &pos, Vec2 &size) : Entity(pos), _size(size), _isEnabled(true), _color(Theme::wall), _texture(nullptr)
 {
 }
 Vec2 Wall::getSize() const
