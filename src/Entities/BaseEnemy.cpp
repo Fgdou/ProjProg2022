@@ -16,9 +16,9 @@ void BaseEnemy::update(Room & room) {
         this->movement_vector = position.lookAt(player->getPos()).normalize();
         Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime() ;
         auto c = room.getCollisionAfterMove(this->position, vec_move);
-        if(c.isCollide()){
-            this->setPos(c.getImpact());
-            this->movement_vector = c.getRebound().normalize();
+        if(c.isColliding){
+            this->setPos(c.newPos);
+            this->movement_vector = c.newDir.normalize();
         } else {
             this->setPos(this->getPos() + this->movement_vector*speed);
         }

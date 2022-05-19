@@ -5,24 +5,9 @@
 #include <vector>
 #include "Collision.h"
 
-Collision::Collision(bool collide, Vec2 impact, Vec2 rebound) : _collide(collide), _impact(impact), _rebound(rebound)
-{
+Collision::Collision(bool collide, Vec2 impact, Vec2 newPos, Vec2 newDir) : isColliding(collide), impact(impact), newPos(newPos), newDir(newDir) {
 }
 
-bool Collision::isCollide() const
-{
-    return _collide;
-}
-
-Vec2 Collision::getImpact() const
-{
-    return _impact;
-}
-
-Vec2 Collision::getRebound() const
-{
-    return _rebound;
-}
 
 Collision Collision::getLineLineCollision(Vec2 line1Start, Vec2 line1End, Vec2 line2Start, Vec2 line2End, Vec2 reboundMulti)
 {
@@ -59,27 +44,24 @@ Collision Collision::getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rec
     Collision top = getLineLineCollision(lineStart, lineEnd, Vec2(rectTopLeft.x, rectTopLeft.y), Vec2(rectBottomRight.x, rectTopLeft.y), Vec2(1, -1));
     Collision bottom = getLineLineCollision(lineStart, lineEnd, Vec2(rectTopLeft.x, rectBottomRight.y), Vec2(rectBottomRight.x, rectBottomRight.y), Vec2(1, -1));
 
-    bool coliding = false;
-    if (left.isCollide() || right.isCollide() || top.isCollide() || bottom.isCollide())
+    Collision out(false);
+    if (left.isColliding || right.isColliding || top.isColliding || bottom.isColliding)
     {
-        coliding = true;
+        out.isColliding = true;
     }
-
-    // get the closest impact and rebound
-    Vec2 impact(-1, -1);
-    Vec2 rebound(-1, -1);
 
     for (Collision &col : std::vector<Collision>{left, right, top, bottom})
     {
-        if (col.isCollide())
-            if (impact == Vec2(-1, -1) || impact.distance(lineStart) > col.getImpact().distance(lineStart))
+        if (col.isColliding)
+            if (out.impact == Vec2(0,0) || out.impact.distance(lineStart) > col.impact.distance(lineStart))
             {
-                impact = col.getImpact();
-                rebound = col.getRebound();
+                out.impact = col.impact;
+                out.newDir= Vec2(1 - ((col.impact-lineStart).norm()/(lineEnd-lineStart).norm())) * col.newPos * (lineEnd-lineStart);
+                out.newPos = out.impact + out.newDir;
             }
     }
 
-    return Collision(coliding, impact, rebound);
+    return out;
 }
 
 Collision Collision::getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, Vec2 rectBottomRight)
@@ -89,5 +71,5 @@ Collision Collision::getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, V
     {
         coliding = true;
     }
-    return Collision(coliding, point, Vec2(-1, -1));
+    return Collision(coliding, point);
 }

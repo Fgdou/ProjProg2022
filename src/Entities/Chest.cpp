@@ -28,7 +28,7 @@ void Chest::update(Room &room) {
         return;
 
     auto col = Collision::getPointInsideRectCollision(room.getPlayer()->getPos() ,getPos()-size/2, getPos()+size/2);
-    if(col.isCollide()){
+    if(col.isColliding){
         room.getPlayer()->lootEquippableItem(item);
         item = nullptr;
     }

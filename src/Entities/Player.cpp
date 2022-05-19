@@ -34,10 +34,10 @@ void Player::update(Room & room) {
 
     Vec2 vec_move = this->movement_vector*current_speed_multiply;
     auto c = room.getCollisionAfterMove(this->position, vec_move);
-    if(c.isCollide()){
-        this->setPos(c.getImpact() + c.getRebound());
-        this->movement_vector = c.getRebound().normalize();
-        this->speed = c.getRebound().norm() * this->decelerationReboundMultiplier;
+    if(c.isColliding){
+        this->setPos(c.newPos);
+        this->movement_vector = c.newDir.normalize();
+        this->speed = current_speed_multiply * this->decelerationReboundMultiplier;
     } else {
         this->setPos(this->getPos() + vec_move);
     }
