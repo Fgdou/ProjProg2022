@@ -2,9 +2,10 @@
 // Created by yami2200 on 19/05/22.
 //
 
+#include <iostream>
 #include "Player.h"
-#include "../Renderer.h"
 #include "../Maths/Timer.h"
+#include "../Items/EquippableItem.h"
 
 Player::Player(Vec2 &pos) : DamageableEntity(pos, 100.0), acceleration(1), deceleration(2), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
 
@@ -31,7 +32,7 @@ void Player::update(Room & room) {
     // Input
     if(Input::getInstance().isPressed(Input::MouseLeft)){
         if(this->currentItemValid()){
-            this->inventory[this->current_item]->use(this, room.getEntities());
+            this->inventory[this->current_item]->use(*this, room.getEntities());
         }
     }
 }
@@ -60,4 +61,8 @@ void Player::lootEquippableItem(std::shared_ptr<EquippableItem> item) {
 
 bool Player::currentItemValid() {
     return this->current_item != -1 && this->current_item < this->inventory.size();
+}
+
+void Player::dead() {
+    std::cout << "Fin frérot, tu es mort" << std::endl;
 }

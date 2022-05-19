@@ -62,3 +62,7 @@ Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
     }
     return Collision(false, {}, {});
 }
+
+std::vector<std::shared_ptr<DynamicEntity>> Room::getEntities() {
+    return this->_entities;
+}
