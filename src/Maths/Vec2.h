@@ -22,8 +22,8 @@ public:
 
     Vec2 operator+(const Vec2 &other) const;
     Vec2 operator-(const Vec2 &other) const;
-    Vec2 operator/(double n) const;
-    Vec2 operator*(double n) const;
+    Vec2 operator/(const Vec2 &other) const;
+    Vec2 operator*(const Vec2 &other) const;
 
     Vec2 &operator+=(const Vec2 &other);
     Vec2 &operator-=(const Vec2 &other);

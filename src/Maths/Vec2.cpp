@@ -83,17 +83,17 @@ Vec2 Vec2::operator-(const Vec2 &other) const
     return v;
 }
 
-Vec2 Vec2::operator/(double n) const
+Vec2 Vec2::operator/(const Vec2 &other) const
 {
     Vec2 v = *this;
-    v /= n;
+    v /= other;
     return v;
 }
 
-Vec2 Vec2::operator*(double n) const
+Vec2 Vec2::operator*(const Vec2 &other) const
 {
     Vec2 v = *this;
-    v *= n;
+    v *= other;
     return v;
 }
 
