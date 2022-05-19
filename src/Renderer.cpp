@@ -89,7 +89,6 @@ Camera &Renderer::getCamera()
   return _camera;
 }
 
-const Vec2 &getSize()
-{
+Vec2 Renderer::getSize() {
   return {WIN_WIDTH, WIN_HEIGHT};
 }
