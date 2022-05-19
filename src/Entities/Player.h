@@ -12,9 +12,11 @@ class Player : public DamageableEntity {
 private:
     // Movement Management
     double max_speed;
+    double speed;
     double acceleration;
     Vec2 movement_vector;
     double deceleration;
+    double rotAngle;
 
     // Stats
     double damage;
