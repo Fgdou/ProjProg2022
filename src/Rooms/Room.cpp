@@ -12,9 +12,15 @@ Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std
 
 void Room::update()
 {
-    for (auto &entity : _entities)
-    {
-        entity->update(*this);
+    auto it = _entities.begin();
+
+    while(it != _entities.end()){
+        auto dama = std::dynamic_pointer_cast<DamageableEntity>(*it);
+        if(dama != nullptr && dama->isDead1()) {
+            it = _entities.erase(it);
+            continue;
+        }
+        it++;
     }
 
     // check if the room is cleared
