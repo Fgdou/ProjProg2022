@@ -10,7 +10,7 @@
 
 class RoomFromFile : public Room {
 public:
-    static std::shared_ptr<Room> getRoom(std::string& path, World& world);
+    static std::shared_ptr<Room> getRoom(const std::string& path, World& world);
 };
 
 

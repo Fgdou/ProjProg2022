@@ -15,12 +15,14 @@ std::vector<std::string> openFile(const std::string& path){
 
     std::vector<std::string> vec;
 
-    while(file.peek() != file.eof()){
+    while(file){
         char cline[100];
         file.getline(cline, 100);
         std::string line(cline);
         vec.emplace_back(line);
     }
+
+    file.close();
 
     return vec;
 }
@@ -45,8 +47,9 @@ std::vector<std::shared_ptr<Wall>> getWalls(const std::vector<std::string>& list
         for(auto j=0; j<list[i].length(); j++){
             char c = list[i][j];
             if(c == '#'){
-                Vec2 pos(j * Renderer::getSize().y/list[0].length(), i*Renderer::getSize().x/list.size());
-                Vec2 size{Renderer::getSize().y/list[0].length(), Renderer::getSize().x/list[0].length()};
+                Vec2 pos((j+1.5) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                         , (i+1.5)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                Vec2 size{Renderer::getSize().x/list[0].length()*2+5, Renderer::getSize().y/list.size()*2+5};
                 walls.emplace_back(std::make_shared<Wall>(pos, size));
             }
         }
@@ -54,7 +57,7 @@ std::vector<std::shared_ptr<Wall>> getWalls(const std::vector<std::string>& list
     return walls;
 }
 
-std::shared_ptr<Room> RoomFromFile::getRoom(std::string &path, World& world) {
+std::shared_ptr<Room> RoomFromFile::getRoom(const std::string &path, World& world) {
     auto list = openFile(path);
     auto roomList = getRoomStrings(list);
     auto walls = getWalls(roomList);
