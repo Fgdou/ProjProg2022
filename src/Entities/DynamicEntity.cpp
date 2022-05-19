@@ -3,3 +3,7 @@
 //
 
 #include "DynamicEntity.h"
+
+DynamicEntity::DynamicEntity(Vec2 &pos) : Entity(pos) {
+
+}

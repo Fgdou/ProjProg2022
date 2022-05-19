@@ -15,6 +15,8 @@ protected:
 public:
     virtual void draw() = 0;
 
+    Entity(Vec2 & pos);
+
     void setPos(const Vec2& pos);
     const Vec2& getPos();
 };

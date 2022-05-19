@@ -11,3 +11,7 @@ void Entity::setPos(const Vec2 &pos) {
 const Vec2 &Entity::getPos() {
     return this->position;
 }
+
+Entity::Entity(Vec2 &pos) : position(pos){
+
+}

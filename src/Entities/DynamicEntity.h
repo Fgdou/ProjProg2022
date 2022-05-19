@@ -13,6 +13,8 @@ class DynamicEntity : public Entity {
 public:
     virtual void update() = 0;
 
+    DynamicEntity(Vec2 & pos);
+
 };
 
 
