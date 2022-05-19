@@ -69,6 +69,10 @@ Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
         }
 
     }
+
+    if (collision.isCollide())
+        return collision;
+
     return Collision(false, {}, {});
 }
 
