@@ -9,8 +9,9 @@
 #include "Door.h"
 
 class ClosedDoor : public Door {
-protected:
-    bool needKey=1;
+
+public:
+    void open();
 };
 
 

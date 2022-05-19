@@ -15,6 +15,8 @@ protected:
 public:
     void draw();
 
+    void open();
+
 
 };
 

@@ -4,8 +4,12 @@
 
 #include "Door.h"
 
-bool Door::keyNeeded(){
-    return needKey;
+void Door::open(){
+    closed = 0;
+}
+
+void Door::draw() {
+    if(closed);
 }
 
 

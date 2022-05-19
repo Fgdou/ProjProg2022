@@ -17,9 +17,10 @@ class Room
 protected:
     std::vector<std::shared_ptr<DynamicEntity>> entities;
     std::vector<std::shared_ptr<Wall>> walls;
-    std::vector<std::shared_ptr<Door>> doors;
 
 public:
+
+    Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls);
     void update();
     void draw();
 

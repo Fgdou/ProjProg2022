@@ -11,9 +11,11 @@
 
 class Door : public Wall{
 protected:
-    bool needKey=0;
+    bool closed;
+
 public:
-    bool keyNeeded();
+    void open();
+    void draw();
 };
 
 
