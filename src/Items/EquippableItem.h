@@ -27,7 +27,7 @@ public:
 
     virtual void use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities);
 
-    virtual void update();
+    virtual void update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities);
 
 };
 

@@ -24,6 +24,12 @@ void Chest::draw() {
 }
 
 void Chest::update(Room &room) {
-    //TODO interact with player
-//    Collision::getPointInsideRectCollision(room)
+    if(item == nullptr)
+        return;
+
+    auto col = Collision::getPointInsideRectCollision(room.getPlayer()->getPos() ,getPos()-size/2, getPos()+size/2);
+    if(col.isCollide()){
+        room.getPlayer()->lootEquippableItem(item);
+        item = nullptr;
+    }
 }

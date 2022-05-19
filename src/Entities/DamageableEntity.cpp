@@ -17,3 +17,11 @@ void DamageableEntity::heal(double life_amount) {
     this->life += life_amount;
     if(this->life_max < this->life) this->life = this->life_max;
 }
+
+void DamageableEntity::dead() {
+    this->isDead = true;
+}
+
+bool DamageableEntity::isDead1() const {
+    return isDead;
+}

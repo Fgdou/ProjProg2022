@@ -82,7 +82,7 @@ Collision Collision::getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rec
     return Collision(coliding, impact, rebound);
 }
 
-Collision getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, Vec2 rectBottomRight)
+Collision Collision::getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, Vec2 rectBottomRight)
 {
     bool coliding = false;
     if (point.x >= rectTopLeft.x && point.x <= rectBottomRight.x && point.y >= rectTopLeft.y && point.y <= rectBottomRight.y)

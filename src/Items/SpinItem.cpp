@@ -5,11 +5,20 @@
 #include "SpinItem.h"
 #include "../Maths/Timer.h"
 
-void SpinItem::update() {
+void SpinItem::update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
     }
     if(this->in_anim){
+        for(auto & entity : v_entities){
+            if(entity->getPos().distance(player.getPos())< this->length){
+                if (auto * de = dynamic_cast<DamageableEntity*>(entity.get()))
+                {
+                    de->takeDamage(player.getDamage() * this->damage);
+                }
+            }
+        }
+
         this->current_angle += Timer::getDeltaTime()*this->angle*1000;
         if(this->cooldown_max - this->current_cooldown > this->duration){
             this->in_anim = false;
@@ -32,14 +41,6 @@ void SpinItem::use(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v
         this->current_cooldown = this->cooldown_max;
         this->current_angle = 0;
         this->in_anim = true;
-        for(auto & entity : v_entities){
-            if(std::abs(player.getPos().lookAt(entity->getPos()).angleBetween(player.getDirection())) < this->angle){
-                if (auto * de = dynamic_cast<DamageableEntity*>(entity.get()))
-                {
-                    de->takeDamage(player.getDamage() * this->damage);
-                }
-            }
-        }
     }
 }
 

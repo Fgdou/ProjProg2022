@@ -6,6 +6,7 @@
 #include "../Entities/Chest.h"
 #include "../Items/BasicSword.h"
 #include "../Entities/BaseEnemy.h"
+#include "../Items/SpinItem.h"
 
 #include <utility>
 #include <fstream>
@@ -66,10 +67,11 @@ std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::
         for(auto j=0; j<list[i].length(); j++){
             char c = list[i][j];
             if(c == 'c'){
-                Vec2 pos((j) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
-                        , (i)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
-                Vec2 size{Renderer::getSize().x/list[0].length()+5, Renderer::getSize().y/list.size()+5};
-                auto chest = std::make_shared<Chest>(pos, size,nullptr);
+                Vec2 pos((j+.5) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                        , (i+.5)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                Vec2 size{Renderer::getSize().x/list[0].length(), Renderer::getSize().y/list.size()};
+                auto item = std::make_shared<SpinItem>(SpinItem({"../assets/stick.png"}, Vec2(10.0, 150.0), 1.0, 10.0, 80, 1.0));
+                auto chest = std::make_shared<Chest>(pos, size,item);
                 entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
             }else if(c == 'm'){
                 Vec2 pos((j+.5) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2

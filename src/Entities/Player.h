@@ -23,6 +23,10 @@ private:
     Vec2 movement_vector;
     double deceleration;
     double rotAngle;
+public:
+    void takeDamage(double damage) override;
+
+private:
     double decelerationReboundMultiplier;
 
     // Stats

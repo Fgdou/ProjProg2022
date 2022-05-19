@@ -15,6 +15,7 @@ protected:
     bool in_anim;
     Vec2 relative_position;
     double relative_rotation;
+
 public:
 
     BasicSword(Image sprite, Vec2 size, double cooldown, double damage, double angle, double length);
@@ -23,7 +24,7 @@ public:
 
     void draw(Vec2 &pos) override;
 
-    void update() override;
+    void update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) override;
 };
 
 

@@ -17,7 +17,7 @@ Renderer::Renderer() : _camera({0, 0})
         throw std::runtime_error("Failed to init SDL");
     // create the _win and _renderer
     // note that the _renderer is accelerated
-    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN, &_win, &_renderer);
+    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_MOUSE_CAPTURE, &_win, &_renderer);
 
     if (_win == nullptr)
         throw std::runtime_error("Failed to create window");
@@ -131,4 +131,8 @@ void Renderer::drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c)
     auto endScreen = end.worldToScreen();
     SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
     SDL_RenderDrawLine(_renderer, startScreen.x, startScreen.y, endScreen.x, endScreen.y);
+}
+
+SDL_Window *Renderer::getWin() const {
+    return _win;
 }

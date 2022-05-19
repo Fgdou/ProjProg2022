@@ -16,7 +16,7 @@ void BasicSword::use(Player & player, std::vector<std::shared_ptr<DynamicEntity>
         this->current_angle = -this->angle;
         this->in_anim = true;
         for(auto & entity : v_entities){
-            if(std::abs(player.getPos().lookAt(entity->getPos()).angleBetween(player.getDirection())) < this->angle){
+            if(Vec2::toDegrees(std::abs(player.getPos().lookAt(entity->getPos()).angleBetween(this->relative_position))) < this->angle*0.65 && player.getPos().distance(entity->getPos()) < this->length){
                 if (auto * de = dynamic_cast<DamageableEntity*>(entity.get()))
                 {
                     de->takeDamage(player.getDamage() * this->damage);
@@ -35,7 +35,7 @@ void BasicSword::draw(Vec2 &pos) {
     Renderer::getInstance().drawImage(this->sprite, pos + this->relative_position, this->size, this->relative_rotation+this->current_angle);
 }
 
-void BasicSword::update() {
+void BasicSword::update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
     }
