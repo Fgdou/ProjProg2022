@@ -2,7 +2,12 @@
 // Created by fgdou on 5/19/22.
 //
 
-#include "main.h"
+void tps(){
+
+}
+void fps(){
+
+}
 
 int main(int argc, char** argv){
     return 0;
