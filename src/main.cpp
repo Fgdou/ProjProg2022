@@ -2,8 +2,8 @@
 // Created by fgdou on 5/19/22.
 //
 
-#include <Timer.h>
-#include <Renderer.h>
+#include "Maths/Timer.h"
+#include "Renderer.h"
 
 void tps()
 {
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
     bool exit = false;
     Timer timer = Timer::getInstance();
-    Renderer renderere = Renderer::getInstance();
+    Renderer renderer = Renderer::getInstance();
 
     uint32_t last_time = timer.getMilliseconds();
     uint32_t time_offset = 0;
