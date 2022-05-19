@@ -1,0 +1,3 @@
+D:/ProjProg2022/cmake-build-debug/CMakeFiles/ProjProg2022.dir
+D:/ProjProg2022/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/ProjProg2022/cmake-build-debug/CMakeFiles/rebuild_cache.dir

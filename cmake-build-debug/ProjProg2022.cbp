@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ProjProg2022"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/ProjProg2022/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ProjProg2022">
+				<Option output="D:/ProjProg2022/cmake-build-debug/ProjProg2022.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/ProjProg2022/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjProg2022"/>
+					<CompileFile command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ProjProg2022/fast">
+				<Option output="D:/ProjProg2022/cmake-build-debug/ProjProg2022.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/ProjProg2022/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="D:/CLion 2022.1.1/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 ProjProg2022/fast"/>
+					<CompileFile command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/ProjProg2022/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/ProjProg2022/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/CLion 2022.1.1/bin/mingw/bin/mingw32-make.exe -f &quot;D:/ProjProg2022/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/ProjProg2022/src/Camera.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Camera.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/DamageableEntity.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/DamageableEntity.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/DynamicEntity.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/DynamicEntity.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/Entity.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/Entity.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/Player.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Entities/Player.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Image.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Image.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Input.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Input.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Maths/Timer.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Maths/Timer.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Maths/Vec2.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Maths/Vec2.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Renderer.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Renderer.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/ClosedDoor.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/ClosedDoor.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Collision.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Collision.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Door.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Door.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Room.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Room.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Wall.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/Rooms/Wall.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/World.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/World.h">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/src/main.cpp">
+			<Option target="ProjProg2022"/>
+		</Unit>
+		<Unit filename="D:/ProjProg2022/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

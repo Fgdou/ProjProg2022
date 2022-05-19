@@ -8,8 +8,5 @@ bool Door::keyNeeded(){
     return needKey;
 }
 
-char Door::getDir() {
-    return dir;
-}
 
 
