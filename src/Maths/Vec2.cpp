@@ -9,106 +9,115 @@
 Vec2::Vec2()
     : x(0), y(0)
 {
-
 }
 
 Vec2::Vec2(const Vec2 &copy)
     : x(copy.x), y(copy.y)
 {
-
 }
 
 Vec2::Vec2(double x, double y)
     : x(x), y(y)
 {
-
 }
 
 Vec2::Vec2(double v)
     : x(v), y(v)
 {
-
 }
 
-double Vec2::norm2() const {
-    return x*x + y*y;
+double Vec2::norm2() const
+{
+    return x * x + y * y;
 }
 
-double Vec2::norm() const {
+double Vec2::norm() const
+{
     return sqrt(norm2());
 }
 
-Vec2 Vec2::normalize() const {
-    return *this/norm2();
+Vec2 Vec2::normalize() const
+{
+    return *this / norm2();
 }
 
-Vec2 &Vec2::operator+=(const Vec2 &other) {
+Vec2 &Vec2::operator+=(const Vec2 &other)
+{
     x += other.x;
     y += other.y;
     return *this;
 }
 
-Vec2 &Vec2::operator-=(const Vec2 &other) {
+Vec2 &Vec2::operator-=(const Vec2 &other)
+{
     x -= other.x;
     y -= other.y;
     return *this;
 }
 
-Vec2 &Vec2::operator/=(const Vec2& other) {
+Vec2 &Vec2::operator/=(const Vec2 &other)
+{
     x /= other.x;
     y /= other.y;
     return *this;
 }
 
-Vec2 &Vec2::operator*=(const Vec2& other) {
+Vec2 &Vec2::operator*=(const Vec2 &other)
+{
     x *= other.x;
     y *= other.y;
     return *this;
 }
 
-Vec2 Vec2::operator+(const Vec2 &other) const {
+Vec2 Vec2::operator+(const Vec2 &other) const
+{
     Vec2 v = *this;
     v += other;
     return v;
 }
 
-Vec2 Vec2::operator-(const Vec2 &other) const {
+Vec2 Vec2::operator-(const Vec2 &other) const
+{
     Vec2 v = *this;
     v -= other;
     return v;
 }
 
-Vec2 Vec2::operator/(double n) const {
+Vec2 Vec2::operator/(double n) const
+{
     Vec2 v = *this;
     v /= n;
     return v;
 }
 
-Vec2 Vec2::operator*(double n) const {
+Vec2 Vec2::operator*(double n) const
+{
     Vec2 v = *this;
     v *= n;
     return v;
 }
 
-Vec2 Vec2::screenToWorld() const{
+Vec2 Vec2::screenToWorld() const
+{
     auto screenSize = Renderer::getInstance().getSize();
     auto worldPos = Renderer::getInstance().getCamera().getPos();
     auto scale = Renderer::getInstance().getCamera().getScale();
 
     Vec2 res = *this;
-    res -= screenSize/2;
+    res -= screenSize / 2;
     res *= scale;
 
-    //TODO verify calculus
+    // TODO verify calculus
 
     res += worldPos;
 
     return res;
 }
-Vec2 Vec2::WorldToScreen() const{
-
+Vec2 Vec2::WorldToScreen() const
+{
 }
 
-double Vec2::distance(const Vec2 &other) {
-    return (other-*this).norm();
+double Vec2::distance(const Vec2 &other)
+{
+    return (other - *this).norm();
 }
