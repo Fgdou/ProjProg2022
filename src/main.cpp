@@ -10,42 +10,51 @@
 
 void tps(const std::shared_ptr<World> &world)
 {
-    static int cnt = 0;
-    cnt++;
-    static double lastTime = Timer::getInstance().getSeconds();
-    double time = Timer::getInstance().getSeconds();
-    if (time - lastTime > 1.0)
-    {
-        lastTime = time;
-        std::cout << cnt << " tps" << std::endl;
-        cnt = 0;
-    }
+    // static int cnt = 0;
+    // cnt++;
+    // static double lastTime = Timer::getInstance().getSeconds();
+    // double time = Timer::getInstance().getSeconds();
+    // if (time - lastTime > 1.0)
+    // {
+    //     lastTime = time;
+    //     std::cout << cnt << " tps" << std::endl;
+    //     cnt = 0;
+    // }
 
     Input::getInstance().update();
     world->update();
 }
 void fps(const std::shared_ptr<World> &world)
 {
-    static int cnt = 0;
-    cnt++;
-    static double lastTime = Timer::getInstance().getSeconds();
-    double time = Timer::getInstance().getSeconds();
-    if (time - lastTime > 1.0)
-    {
-        lastTime = time;
-        std::cout << cnt << " fps" << std::endl;
-        cnt = 0;
-    }
+    // static int cnt = 0;
+    // cnt++;
+    // static double lastTime = Timer::getInstance().getSeconds();
+    // double time = Timer::getInstance().getSeconds();
+    // if (time - lastTime > 1.0)
+    // {
+    //     lastTime = time;
+    //     std::cout << cnt << " fps" << std::endl;
+    //     cnt = 0;
+    // }
 
     Renderer &renderer = Renderer::getInstance();
     renderer.clear();
 
     // DRAW CALLS BELLOW
     world->draw();
+    
+    // drawDebug(world);
 
+
+    renderer.render();
+}
+
+void drawDebug(const std::shared_ptr<World> &world){
+
+    //Collision debug with lineDraw
+    Renderer &renderer = Renderer::getInstance();
     Vec2 mouse = Input::getInstance().getMousePos();
     Vec2 pt(-500, 100);
-
     renderer.drawLine(pt, mouse, {255, 0, 0});
     Room &playerRoom = world->getPlayerRoom();
     Collision col = playerRoom.getCollisionAfterMove(pt, mouse - pt);
@@ -57,8 +66,6 @@ void fps(const std::shared_ptr<World> &world)
         renderer.drawLine(col.newPos, col.newPos + Vec2(20) *col.newDir.normalize(), {255, 0, 0});
         renderer.drawLine(col.impact, col.impact + col.newDir, {50, 50, 50,255});
     }
-
-    renderer.render();
 }
 
 int main(int argc, char **argv)
