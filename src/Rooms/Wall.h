@@ -21,7 +21,7 @@ public:
     // pos : top left corner position
     // size : scale of the wall (width, height)
     Wall(Vec2 &pos, Vec2 &size);
-    ~Wall();
+    ~Wall() = default;
 
     Vec2 getSize() const;
     void setColor(SDL_Color &c);
