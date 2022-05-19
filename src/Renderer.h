@@ -10,6 +10,7 @@
 
 #include "SDL2/SDL.h"
 #include "Camera.h"
+#include "Image.h"
 
 class Renderer
 {
@@ -18,10 +19,10 @@ public:
 
     void drawCircle(const Vec2 &pos, double size, const SDL_Color &c);
     void drawRect(const Vec2 &center, const Vec2 &halfSize, const SDL_Color &c);
-    void drawImage(const std::string &path, const Vec2 &center, const Vec2 &halfSize);
+    void drawImage(const Image &image, const Vec2 &center, const Vec2 &scale, const double rotation);
     void drawText(const std::string &text, const Vec2 &p1, double size);
     void clear();
-    SDL_Renderer *getSLDRenderer();
+    SDL_Renderer &getSLDRenderer();
     Camera &getCamera();
     const Vec2 &getSize();
 };
