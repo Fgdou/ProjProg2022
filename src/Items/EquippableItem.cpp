@@ -7,7 +7,7 @@
 #include "../Maths/Timer.h"
 #include "../Entities/DynamicEntity.h"
 
-EquippableItem::EquippableItem(Image sprite, Vec2 size, double cooldown, double damage) : isEquipped(false), size(size), sprite(sprite), angle(0.0), damage(damage), cooldown_max(cooldown) {
+EquippableItem::EquippableItem(Image sprite, Vec2 size, double cooldown, double damage) : isEquipped(false), size(size), sprite(sprite), angle(1.0), damage(damage), cooldown_max(cooldown) {
 
 }
 
