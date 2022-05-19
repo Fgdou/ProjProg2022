@@ -22,11 +22,11 @@ private:
     SDL_Renderer *_renderer;
     Camera _camera;
     static std::unique_ptr<Renderer> _instance;
-    Renderer();
 
 public:
     static Renderer &getInstance();
     SDL_Renderer &getSLDRenderer();
+    Renderer();
     ~Renderer();
 
     void clear();
@@ -35,7 +35,7 @@ public:
     void drawImage(const Image &image, const Vec2 &center, const Vec2 &scale, const double rotation);
     void drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c);
     Camera &getCamera();
-    const Vec2 &getSize();
+    static Vec2 getSize() ;
 };
 
 #endif // PROJPROG2022_RENDERER_H
