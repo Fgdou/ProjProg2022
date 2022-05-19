@@ -54,7 +54,8 @@ World & Room::getWorld() const
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
 {
-    for (std::shared_ptr<Wall>& w : _walls)
+    Collision collision = {false, {}, {}};
+    for (std::shared_ptr<Wall> w : _walls)
     {
         Collision c = Collision::getLineRectCollision(
             pos,
@@ -63,7 +64,8 @@ Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
             w->getPos() + w->getSize());
         if (c.isCollide())
         {
-            return {c.isCollide(), c.getImpact(), mov * c.getRebound()};
+            if (!collision.isCollide() || pos.distance(c.getImpact()) < pos.distance(collision.getImpact()))
+                collision = Collision(c.isCollide(), c.getImpact(), mov * c.getRebound());
         }
 
     }
