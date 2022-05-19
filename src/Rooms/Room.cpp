@@ -5,9 +5,8 @@
 #include "Room.h"
 #include "../Entities/DynamicEntity.h"
 #include "../World.h"
-#include <algorithm>
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World &world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World & world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
 {
 }
 
@@ -48,7 +47,7 @@ std::shared_ptr<Player> Room::getPlayer() const
     return _world.getPlayer();
 }
 
-World &Room::getWorld() const
+World & Room::getWorld() const
 {
     return _world;
 }
@@ -68,31 +67,8 @@ Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
             if (!collision.isCollide() || pos.distance(c.getImpact()) < pos.distance(collision.getImpact()))
                 collision = Collision(c.isCollide(), c.getImpact(), mov * c.getRebound());
         }
-    }
-    if (collision.isCollide())
-        return collision;
 
-    // check changement de room
-    auto screenSize = Renderer::getInstance().getSize();
-    Vec2 ScreenPos = (pos + mov).worldToScreen();
-    Vec2 currentRoom = _world.getSelectedRoom();
-    if (ScreenPos.x > screenSize.x)
-    {
-        _world.setSelectedRoom((currentRoom.x + 1, currentRoom.y));
     }
-    else if (ScreenPos.x < 0)
-    {
-        _world.setSelectedRoom((currentRoom.x - 1, currentRoom.y));
-    }
-    else if (ScreenPos.y > screenSize.y)
-    {
-        _world.setSelectedRoom((currentRoom.x, currentRoom.y + 1));
-    }
-    else if (ScreenPos.y < 0)
-    {
-        _world.setSelectedRoom((currentRoom.x, currentRoom.y - 1));
-    }
-
     return Collision(false, {}, {});
 }
 

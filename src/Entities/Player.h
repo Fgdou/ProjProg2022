@@ -23,6 +23,7 @@ private:
     Vec2 movement_vector;
     double deceleration;
     double rotAngle;
+    double decelerationReboundMultiplier;
 
     // Stats
     double damage;

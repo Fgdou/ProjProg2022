@@ -7,9 +7,11 @@
 #include "../Maths/Timer.h"
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Room.h"
+#include "../Items/BasicSword.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(25.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) , sprite(Image("../assets/player.png"))
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10, 10).normalize()), speed(5.0), max_speed(20.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
 {
+    this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
 }
 
 void Player::update(Room & room) {
@@ -32,7 +34,7 @@ void Player::update(Room & room) {
     if(c.isCollide()){
         this->setPos(c.getImpact() + c.getRebound());
         this->movement_vector = c.getRebound().normalize();
-        this->speed = c.getRebound().norm();
+        this->speed = c.getRebound().norm() * this->decelerationReboundMultiplier;
     } else {
         this->setPos(this->getPos() + vec_move);
     }
@@ -45,12 +47,15 @@ void Player::update(Room & room) {
         }
     }
 
+    // Inventory items update
+    for(auto item : this->inventory){
+        item->update();
+    }
+
 }
 
 void Player::draw() {
-
-    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(50,50), Vec2::toDegrees(this->movement_vector.angle()));
-
+    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(50, 50), Vec2::toDegrees(this->movement_vector.angle()));
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
     if(this->currentItemValid()){
