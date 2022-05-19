@@ -22,11 +22,11 @@ private:
     SDL_Renderer *_renderer;
     Camera _camera;
     static std::unique_ptr<Renderer> _instance;
-    Renderer();
 
 public:
     static Renderer &getInstance();
     SDL_Renderer &getSLDRenderer();
+    Renderer();
     ~Renderer();
 
     void clear();
