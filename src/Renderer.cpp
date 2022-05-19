@@ -65,8 +65,8 @@ void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
-    rect.x = centerScreen.x - scale.x / 2;
-    rect.y = centerScreen.y - scale.y / 2;
+    rect.x = centerScreen.x - centerScale.x / 2;
+    rect.y = centerScreen.y - centerScale.y / 2;
     rect.w = centerScale.x;
     rect.h = centerScale.y;
     SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
@@ -78,8 +78,8 @@ void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &sca
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
-    rect.x = centerScreen.x - scale.x / 2;
-    rect.y = centerScreen.y - scale.y / 2;
+    rect.x = centerScreen.x - centerScale.x / 2;
+    rect.y = centerScreen.y - centerScale.y / 2;
     rect.w = centerScale.x;
     rect.h = centerScale.y;
     SDL_Texture *texture = image.get();
