@@ -5,7 +5,6 @@
 #ifndef PROJPROG2022_PLAYER_H
 #define PROJPROG2022_PLAYER_H
 
-
 #include "DamageableEntity.h"
 #include "../Input.h"
 
@@ -25,7 +24,7 @@ private:
 public:
     Player(Vec2 & pos);
 
-    void update(World & world) override;
+    void update(Room & room) override;
 
     void draw() override;
 };
