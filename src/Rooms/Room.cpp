@@ -2,11 +2,9 @@
 // Created by fgdou on 5/19/22.
 //
 
-#include <cstdio>
 #include "Room.h"
-#include "../Entities/DynamicEntity.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls) : _entities(entities), _walls(walls), _isCleared(false)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, std::shared_ptr<World>) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
 {
 }
 
@@ -40,6 +38,16 @@ void Room::draw()
         w->draw();
     for (auto& e : _entities)
         e->draw();
+}
+
+std::shared_ptr<Player> Room::getPlayer() const
+{
+    return _world->getPlayer();
+}
+
+std::shared_ptr<World> Room::getWorld() const
+{
+    return _world;
 }
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)

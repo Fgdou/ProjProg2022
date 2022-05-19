@@ -6,9 +6,13 @@
 #define PROJPROG2022_ROOM_H
 
 #include "../Entities/Entity.h"
+#include "../Entities/Player.h"
 #include "Wall.h"
 #include "Collision.h"
+#include "../World.h"
 #include <vector>
+#include <cstdio>
+#include "../Entities/DynamicEntity.h"
 
 class DynamicEntity;
 
@@ -19,11 +23,18 @@ protected:
     std::vector<std::shared_ptr<Wall>> _walls;
     std::vector<std::shared_ptr<Wall>> _doors;
     bool _isCleared;
+    std::shared_ptr<World> _world;
 
 public:
-    Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls);
+    Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, std::shared_ptr<World> world);
+
     void update();
+
     void draw();
+
+    std::shared_ptr<Player> getPlayer() const;
+
+    std::shared_ptr<World> getWorld() const;
 
     // Open the doors when the room is cleared
     void onClear();
