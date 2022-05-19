@@ -8,7 +8,7 @@
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Room.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(1,1).normalize()), speed(30.0), max_speed(300.0), acceleration(1), deceleration(2), rotAngle(100.0), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(25.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
 
 }
 
@@ -17,17 +17,24 @@ void Player::update(Room & room) {
     const Vec2 & mouse = Input::getInstance().getMousePos();
     const double dist_mouse_pos = mouse.distance(this->getPos());
     const double current_aim_speed = this->max_speed * std::max(std::min(1.0, (dist_mouse_pos / 500.0)), 0.3);
-    const double current_speed_multiply = (this->speed < current_aim_speed ? this->speed + (this->acceleration * Timer::getDeltaTime()) : this->speed - (this->deceleration * Timer::getDeltaTime()));
+
+    double current_speed_multiply = (this->speed < current_aim_speed ? this->speed + (this->acceleration * Timer::getDeltaTime()) : this->speed - (this->deceleration * Timer::getDeltaTime()));
+    current_speed_multiply = std::max(current_speed_multiply, 0.3*this->max_speed);
+    current_speed_multiply = std::min(current_speed_multiply, this->max_speed);
+
     const double angle_mouse = this->movement_vector.angleBetween(this->getPos().lookAt(mouse));
-    this->movement_vector = this->movement_vector.rotate((angle_mouse < 0 ? (-this->rotAngle) * Timer::getDeltaTime() : this->rotAngle * Timer::getDeltaTime())).normalize();
+    if(std::abs(angle_mouse) > std::abs(this->rotAngle * Timer::getDeltaTime())){
+        this->movement_vector = this->movement_vector.rotate((angle_mouse < 0 ? (-this->rotAngle) * Timer::getDeltaTime() : this->rotAngle * Timer::getDeltaTime())).normalize();
+    }
+
     Vec2 vec_move = this->movement_vector*current_speed_multiply;
     auto c = room.getPlayerCollision(this->position, vec_move);
     if(c.isCollide()){
-        this->setPos(c.getImpact());
+        this->setPos(c.getImpact() + c.getRebound());
         this->movement_vector = c.getRebound().normalize();
+        this->speed = c.getRebound().norm();
     } else {
-        this->setPos(this->getPos() + this->movement_vector*current_speed_multiply);
-        (this->movement_vector*current_speed_multiply).print();
+        this->setPos(this->getPos() + vec_move);
     }
     this->speed = current_speed_multiply;
 
@@ -38,11 +45,12 @@ void Player::update(Room & room) {
         }
     }
 
-
 }
 
 void Player::draw() {
     Renderer::getInstance().drawCircle(this->getPos(),30.0, {255,0,0, 255});
+    Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
+    Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
     if(this->currentItemValid()){
         this->inventory[this->current_item]->draw(this->position);
     }
