@@ -19,7 +19,12 @@ void SpinItem::update() {
 }
 
 void SpinItem::draw(Vec2 &pos) {
-    Renderer::getInstance().drawImage(this->sprite, pos, this->size, this->current_angle);
+    if(this->in_anim){
+        Renderer::getInstance().drawImage(this->sprite, pos, this->size, this->current_angle);
+    } else {
+        Renderer::getInstance().drawImage(this->sprite, pos, this->size*Vec2(1.0,0.3), this->current_angle);
+    }
+
 }
 
 void SpinItem::use(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
