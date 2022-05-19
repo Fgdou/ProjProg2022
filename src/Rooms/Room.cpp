@@ -4,7 +4,7 @@
 
 #include "Room.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, std::shared_ptr<World>) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, std::shared_ptr<World> world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
 {
 }
 
@@ -34,9 +34,9 @@ void Room::onClear()
 
 void Room::draw()
 {
-    for (auto& w : _walls)
+    for (auto &w : _walls)
         w->draw();
-    for (auto& e : _entities)
+    for (auto &e : _entities)
         e->draw();
 }
 
