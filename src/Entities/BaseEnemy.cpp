@@ -20,3 +20,11 @@ void BaseEnemy::update(Room & room) {
             (this->movement_vector*speed).print();
         }
 }
+
+void BaseEnemy::draw() {
+
+}
+
+void BaseEnemy::dead() {
+
+}

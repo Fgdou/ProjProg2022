@@ -5,6 +5,7 @@
 #include "RoomFromFile.h"
 #include "../Entities/Chest.h"
 #include "../Items/BasicSword.h"
+#include "../Entities/BaseEnemy.h"
 
 #include <utility>
 #include <fstream>
@@ -69,6 +70,11 @@ std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::
                         , (i)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
                 Vec2 size{Renderer::getSize().x/list[0].length()+5, Renderer::getSize().y/list.size()+5};
                 auto chest = std::make_shared<Chest>(pos, size,nullptr);
+                entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
+            }else if(c == 'm'){
+                Vec2 pos((j+.5) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                        , (i+.5)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                auto chest = std::make_shared<BaseEnemy>(pos, 100, 1);
                 entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
             }
         }

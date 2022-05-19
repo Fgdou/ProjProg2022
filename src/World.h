@@ -7,19 +7,22 @@
 
 #include "Rooms/Room.h"
 #include "Entities/Player.h"
+#include "Animations/AnimateRoom.h"
 
 class World {
 private:
     std::vector<std::vector<std::shared_ptr<Room>>> rooms;
     std::shared_ptr<Player> player;
     Vec2 selectedRoom;
+    Vec2 selectedRoomTransition;
+    std::shared_ptr<Animation> roomAnimation;
 public:
     World();
 
     void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
 
     const Vec2& getSelectedRoom();
-    void setSelectedRoom(Vec2 room);
+    void setSelectedRoom(const Vec2& room);
     std::shared_ptr<Player> getPlayer();
 
     void draw();

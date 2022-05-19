@@ -17,7 +17,12 @@ protected:
 public:
     BaseEnemy(Vec2 & pos, double lifemax, double damage);
 
-    void update(Room & room);
+    void update(Room & room) override;
+
+    void draw() override;
+
+protected:
+    void dead() override;
 };
 
 
