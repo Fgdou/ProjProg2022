@@ -10,35 +10,44 @@ Wall::Wall(Vec2 &pos, Vec2 &size) : Entity(pos), _size(size), _isEnabled(true), 
 
 void Wall::setColor(SDL_Color &c)
 {
-  _color = c;
+    _color = c;
 }
 
 void Wall::setTexture(std::shared_ptr<Image> &texture)
 {
-  _texture = texture;
+    _texture = texture;
 }
 
 void Wall::toggle()
 {
-  _isEnabled = !_isEnabled;
+    _isEnabled = !_isEnabled;
 }
 
 void Wall::disable()
 {
-  _isEnabled = false;
+    _isEnabled = false;
 }
 
 void Wall::enable()
 {
-  _isEnabled = true;
+    _isEnabled = true;
 }
 
 bool Wall::isEnabled()
 {
-  return _isEnabled;
+    return _isEnabled;
 }
 
 void Wall::draw()
 {
-  Renderer::getInstance().drawRect(pos, _size, _color);
+    Vec2 posToDraw = Vec2(position.x - _size.x / 2, position.y - _size.y / 2);
+    Vec2 scale = Vec2(_size.x / 2, _size.y / 2);
+    if (_texture != nullptr)
+    {
+        Renderer::getInstance().drawImage(*_texture, posToDraw, scale, 0);
+    }
+    else
+    {
+        Renderer::getInstance().drawRect(posToDraw, scale, _color);
+    }
 }

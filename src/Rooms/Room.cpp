@@ -6,25 +6,33 @@
 #include "Room.h"
 #include "../Entities/DynamicEntity.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls) : _entities(entities), _walls(walls)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls) : _entities(entities), _walls(walls), _isCleared(false)
 {
 }
 
 void Room::update()
 {
-    if (_entities.size() == 1)
+    for (auto &entity : _entities)
     {
-        for (std::shared_ptr<Wall> w : _walls)
+        entity->update(*this);
+    }
+
+    // check if the room is cleared
+    if (!_isCleared)
+    {
+        if (_entities.size() == 1)
         {
-            w->open();
+            _isCleared = true;
+            onClear();
         }
     }
-    else
+}
+
+void Room::onClear()
+{
+    for (auto &door : _doors)
     {
-        for (std::shared_ptr<DynamicEntity> e : _entities)
-        {
-            // e->update(this);
-        }
+        door->disable();
     }
 }
 
@@ -42,5 +50,6 @@ void Room::draw()
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
 {
+    // TODO
     return Collision(false, {}, {});
 }

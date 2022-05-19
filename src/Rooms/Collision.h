@@ -5,17 +5,16 @@
 #ifndef PROJPROG2022_COLLISION_H
 #define PROJPROG2022_COLLISION_H
 
-
 #include "../Maths/Vec2.h"
 
-class Collision {
+class Collision
+{
 protected:
-
     bool collide;
     Vec2 impact;
     Vec2 rebound;
-public:
 
+public:
     Collision(bool collide, Vec2 impact, Vec2 rebound);
 
     bool isCollide() const;
@@ -25,5 +24,4 @@ public:
     const Vec2 &getRebound() const;
 };
 
-
-#endif //PROJPROG2022_COLLISION_H
+#endif // PROJPROG2022_COLLISION_H
