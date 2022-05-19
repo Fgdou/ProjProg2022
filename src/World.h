@@ -14,7 +14,7 @@ private:
     std::shared_ptr<Player> player;
     Vec2 selectedRoom;
 public:
-    World(Vec2 size);
+    World();
 
     void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
 
