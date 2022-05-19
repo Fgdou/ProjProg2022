@@ -16,14 +16,14 @@ Renderer::Renderer() : _camera({0, 0})
         throw std::runtime_error("Failed to init SDL");
     // create the _win and _renderer
     // note that the _renderer is accelerated
-    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, 0, &_win, &_renderer);
+    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN, &_win, &_renderer);
 
     if (_win == nullptr)
         throw std::runtime_error("Failed to create window");
     if (_renderer == nullptr)
         throw std::runtime_error("Failed to create renderer");
     // SDL_WINDOW_FULLSCREEN or SDL_WINDOW_FULLSCREEN_DESKTOP
-    if (SDL_SetWindowFullscreen(_win, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+    if (SDL_SetWindowFullscreen(_win, 0) != 0)
         throw std::runtime_error("Failed to set to fullscreen");
 }
 
