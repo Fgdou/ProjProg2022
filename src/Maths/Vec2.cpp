@@ -155,8 +155,7 @@ Vec2 Vec2::rotate(double radian) const
 {
     return {
         x * cos(radian) - y * sin(radian),
-        x * sin(radian) + y * cos(radian)
-    };
+        x * sin(radian) + y * cos(radian)};
 }
 
 Vec2 Vec2::lookAt(const Vec2 &other) const
@@ -209,5 +208,5 @@ Vec2 Vec2::worldToScreenScale() const
 
 void Vec2::print() const
 {
-    std::cout << x << ' ' << y << '\n';
+    std::cout << "(" << x << ', ' << y << ")" << '\n';
 }
