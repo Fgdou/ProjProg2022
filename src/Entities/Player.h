@@ -7,16 +7,19 @@
 
 
 #include "DynamicEntity.h"
+#include "../Input.h"
 
 class Player : public DynamicEntity {
 private:
-    double vitesse_max;
+    double max_speed;
     double acceleration;
-    Vec2 vecteur_deplacement;
+    Vec2 movement_vector;
     double deceleration;
 
 public:
     Player(Vec2 & pos);
+
+    void update() override;
 };
 
 

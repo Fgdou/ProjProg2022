@@ -30,7 +30,7 @@ public:
     Vec2& operator/=(const Vec2& other);
     Vec2& operator*=(const Vec2& other);
 
-    double distance(const Vec2& other);
+    double distance(const Vec2& other) const;
 
     Vec2 screenToWorld() const;
     Vec2 WorldToScreen() const;

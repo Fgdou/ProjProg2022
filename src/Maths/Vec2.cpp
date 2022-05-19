@@ -109,6 +109,6 @@ Vec2 Vec2::WorldToScreen() const{
 
 }
 
-double Vec2::distance(const Vec2 &other) {
+double Vec2::distance(const Vec2 &other) const {
     return (other-*this).norm();
 }
