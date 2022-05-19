@@ -11,6 +11,7 @@ BaseEnemy::BaseEnemy(Vec2 & pos, double lifemax, double damage) : DamageableEnti
 
 void BaseEnemy::update(Room & room) {
         if(this->timerHitDamage > 0.0) this->timerHitDamage -= Timer::getDeltaTime();
+        if(this->cooldownDamage > 0.0) this->cooldownDamage -= Timer::getDeltaTime();
         auto player = room.getPlayer();
         this->movement_vector = position.lookAt(player->getPos()).normalize();
         Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime() ;
@@ -36,4 +37,16 @@ void BaseEnemy::takeDamage(double damage) {
         DamageableEntity::takeDamage(damage);
         this->timerHitDamage = 0.4;
     }
+}
+
+double BaseEnemy::getDamage() {
+    return this->damage;
+}
+
+void BaseEnemy::hasAttackedPlayer() {
+    this->cooldownDamage = 0.5;
+}
+
+bool BaseEnemy::canAttack() {
+    return this->cooldownDamage <= 0.0;
 }

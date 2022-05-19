@@ -9,8 +9,9 @@
 #include "../Rooms/Room.h"
 #include "../Items/BasicSword.h"
 #include "../Items/SpinItem.h"
+#include "BaseEnemy.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10, 10).normalize()), speed(2.0), max_speed(20.0), acceleration(20.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), damage(1.0), movement_vector(Vec2(10, 10).normalize()), speed(2.0), max_speed(20.0), acceleration(20.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
 {
     //this->lootEquippableItem(std::make_shared<SpinItem>(SpinItem({"../assets/stick.png"}, Vec2(10.0, 150.0), 1.0, 10.0, 80, 1.0)));
     this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
@@ -54,11 +55,23 @@ void Player::update(Room & room) {
         item->update(*this, room.getEntities());
     }
 
+    // Check Ennemy near you
+    for(auto & entity : room.getEntities()){
+        if(entity->getPos().distance(this->getPos()) < 30){
+            if (auto * e = dynamic_cast<BaseEnemy*>(entity.get()))
+            {
+                if(e->canAttack()){
+                    this->takeDamage(e->getDamage());
+                    e->hasAttackedPlayer();
+                }
+            }
+        }
+    }
+
 }
 
 void Player::draw() {
     double squish = std::max(std::min(0.4 + (1 - (speed/(max_speed - 0.3 * max_speed))), 1.0),0.0);
-    std::cout << squish << std::endl;
     Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 10*squish+20), Vec2::toDegrees(this->movement_vector.angle()));
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
@@ -77,9 +90,7 @@ double Player::getDamage() {
 
 void Player::lootEquippableItem(std::shared_ptr<EquippableItem> item) {
     this->inventory.push_back(item);
-    if(this->current_item == -1){
-        this->current_item = 0;
-    }
+    this->current_item = this->inventory.size() -1;
 }
 
 bool Player::currentItemValid() {
@@ -89,3 +100,9 @@ bool Player::currentItemValid() {
 void Player::dead() {
     std::cout << "Fin frérot, tu es mort" << std::endl;
 }
+
+void Player::takeDamage(double damage) {
+    DamageableEntity::takeDamage(damage);
+    std::cout << "OUILLE  :  " << damage <<std::endl;
+}
+

@@ -15,6 +15,7 @@ protected:
     bool in_anim;
     Vec2 relative_position;
     double relative_rotation;
+
 public:
 
     BasicSword(Image sprite, Vec2 size, double cooldown, double damage, double angle, double length);
