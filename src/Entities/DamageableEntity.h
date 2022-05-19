@@ -20,6 +20,8 @@ public:
 
     virtual void takeDamage(double damage);
 
+    bool isDead1() const;
+
     void heal(double life_amount);
 };
 

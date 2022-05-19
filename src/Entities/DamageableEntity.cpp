@@ -21,3 +21,7 @@ void DamageableEntity::heal(double life_amount) {
 void DamageableEntity::dead() {
     this->isDead = true;
 }
+
+bool DamageableEntity::isDead1() const {
+    return isDead;
+}
