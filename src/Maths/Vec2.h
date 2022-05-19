@@ -20,6 +20,8 @@ public:
     double norm() const;
     double norm2() const;
 
+    bool operator!=(const Vec2 &other);
+    bool operator==(const Vec2 &other);
     Vec2 operator+(const Vec2 &other) const;
     Vec2 operator-(const Vec2 &other) const;
     Vec2 operator/(double n) const;
@@ -31,8 +33,8 @@ public:
     Vec2 &operator*=(const Vec2 &other);
 
     double distance(const Vec2 &other) const;
-    double angleBetween(const Vec2& other) const;
-    double dot(const Vec2& other) const;
+    double angleBetween(const Vec2 &other) const;
+    double dot(const Vec2 &other) const;
     double angle() const;
 
     Vec2 lookAt(const Vec2 &other) const;

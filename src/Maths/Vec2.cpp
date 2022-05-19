@@ -41,6 +41,16 @@ Vec2 Vec2::normalize() const
     return *this / norm2();
 }
 
+bool Vec2::operator!=(const Vec2 &other)
+{
+    return x != other.x || y != other.y;
+}
+
+bool Vec2::operator==(const Vec2 &other)
+{
+    return x == other.x && y == other.y;
+}
+
 Vec2 &Vec2::operator+=(const Vec2 &other)
 {
     x += other.x;
@@ -144,27 +154,31 @@ Vec2 Vec2::lookAt(const Vec2 &other) const
     return (other - *this).normalize();
 }
 
-double Vec2::angleBetween(const Vec2 &other) const {
+double Vec2::angleBetween(const Vec2 &other) const
+{
     auto angleMe = angle();
     auto angleOther = other.angle();
 
-    auto res = angleOther-angleMe;
-    if(res < M_PI)
-        res += 2*M_PI;
-    if(res > M_PI)
-        res -= 2*M_PI;
+    auto res = angleOther - angleMe;
+    if (res < M_PI)
+        res += 2 * M_PI;
+    if (res > M_PI)
+        res -= 2 * M_PI;
     return res;
 }
 
-double Vec2::dot(const Vec2 &other) const {
-    return x*other.x + y*other.y;
+double Vec2::dot(const Vec2 &other) const
+{
+    return x * other.x + y * other.y;
 }
 
-double Vec2::angle() const {
+double Vec2::angle() const
+{
     return atan2(y, x);
 }
 
-Vec2 Vec2::screenToWorldScale() const {
+Vec2 Vec2::screenToWorldScale() const
+{
     auto scale = Renderer::getInstance().getCamera().getScale();
 
     Vec2 res = *this;
@@ -173,7 +187,8 @@ Vec2 Vec2::screenToWorldScale() const {
     return res;
 }
 
-Vec2 Vec2::worldToScreenScale() const {
+Vec2 Vec2::worldToScreenScale() const
+{
     auto scale = Renderer::getInstance().getCamera().getScale();
 
     Vec2 res = *this;
