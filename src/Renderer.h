@@ -20,8 +20,9 @@ public:
     void drawImage(const std::string &path, const Vec2 &center, const Vec2 &halfSize);
     void drawText(const std::string &text, const Vec2 &p1, double size);
     void clear();
-
-    const Vec2 &getSize();
+    SDL_Renderer *getSLDRenderer();
+    const Vec2 &
+    getSize();
 };
 
 #endif // PROJPROG2022_RENDERER_H
