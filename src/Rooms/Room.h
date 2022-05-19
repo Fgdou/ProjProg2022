@@ -18,7 +18,6 @@ protected:
     std::vector<std::shared_ptr<DynamicEntity>> entities;
     std::vector<std::shared_ptr<Wall>> walls;
     std::vector<std::shared_ptr<Door>> doors;
-    std::vector<std::vector<
 public:
     void update();
     void draw();
