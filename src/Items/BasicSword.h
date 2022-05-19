@@ -10,11 +10,20 @@
 class BasicSword : public EquippableItem {
 protected:
     double angle;
+    double length;
+    double current_angle;
+    bool in_anim;
+    Vec2 relative_position;
+    double relative_rotation;
 public:
 
-    BasicSword(Image sprite, double damage, double angle);
+    BasicSword(Image sprite, Vec2 size, double cooldown, double damage, double angle, double length);
 
     void use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) override;
+
+    void draw(Vec2 &pos) override;
+
+    void update() override;
 };
 
 

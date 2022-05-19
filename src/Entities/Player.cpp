@@ -7,9 +7,10 @@
 #include "../Maths/Timer.h"
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Room.h"
+#include "../Items/BasicSword.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(25.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
-
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(20.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5) {
+    this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
 }
 
 void Player::update(Room & room) {
@@ -32,7 +33,7 @@ void Player::update(Room & room) {
     if(c.isCollide()){
         this->setPos(c.getImpact() + c.getRebound());
         this->movement_vector = c.getRebound().normalize();
-        this->speed = c.getRebound().norm();
+        this->speed = c.getRebound().norm() * this->decelerationReboundMultiplier;
     } else {
         this->setPos(this->getPos() + vec_move);
     }
@@ -43,6 +44,11 @@ void Player::update(Room & room) {
         if(this->currentItemValid()){
             this->inventory[this->current_item]->use(*this, room.getEntities());
         }
+    }
+
+    // Inventory items update
+    for(auto item : this->inventory){
+        item->update();
     }
 
 }
