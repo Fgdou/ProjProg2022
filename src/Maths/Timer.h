@@ -18,9 +18,9 @@ public:
     uint64_t getTicks();
 
     // returns the number of milliseconds since the last update
-    inline uint64_t getDeltaTime()
+    inline double getDeltaTime()
     {
-        return 1000 / 60;
+        return 1000.0 / 60;
     }
 
     // returns the number of milliseconds since the timer was started
