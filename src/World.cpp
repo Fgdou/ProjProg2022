@@ -19,6 +19,8 @@ World::World()
     auto room =
     rooms[0][0] = RoomFromFile::getRoom("../assets/level/level1.txt", *this);
     rooms[0][1] = RoomFromFile::getRoom("../assets/level/level2.txt", *this);
+
+    updateRoomPos();
 }
 
 const Vec2 &World::getSelectedRoom() {
@@ -46,8 +48,13 @@ void World::addRoom(const std::shared_ptr<Room> &room, Vec2 pos) {
 }
 
 void World::draw() {
-    if(roomAnimation != nullptr)
+    if(roomAnimation != nullptr) {
         roomAnimation->draw();
+        auto room2 = rooms[selectedRoomTransition.y][selectedRoomTransition.x];
+        if(room2 == nullptr)
+            return;
+        room2->draw();
+    }
 
     auto room = rooms[selectedRoom.y][selectedRoom.x];
     if(room == nullptr)
@@ -87,5 +94,16 @@ void World::update() {
         setSelectedRoom(selectedRoom + Vec2{0, 1});
     } else if( ScreenPos.y < 0){
         setSelectedRoom(selectedRoom + Vec2{0, -1});
+    }
+}
+
+void World::updateRoomPos() {
+    for (int i = 0; i < rooms.size(); ++i) {
+        for (int j = 0; j < rooms[i].size(); ++j) {
+            if(rooms[i][j] == nullptr)
+                continue;
+            Vec2 pos = Vec2(j, i) * Renderer::getSize();
+            rooms[i][j]->updatePos(pos);
+        }
     }
 }

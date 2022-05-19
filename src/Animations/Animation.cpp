@@ -12,11 +12,11 @@ void Animation::update() {
     if(time >= duration)
         time = duration;
     else
-        duration += Timer::getDeltaTime();
+        time += Timer::getDeltaTime();
 }
 
 Animation::Animation(double duration)
-    : duration(0), time(0)
+    : duration(duration), time(0)
 {}
 
 double Animation::getTime() const {

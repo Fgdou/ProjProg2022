@@ -27,6 +27,9 @@ public:
 
     void draw();
     void update();
+
+private:
+    void updateRoomPos();
 };
 
 
