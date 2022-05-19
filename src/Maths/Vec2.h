@@ -39,6 +39,8 @@ public:
 
     Vec2 screenToWorld() const;
     Vec2 worldToScreen() const;
+    Vec2 screenToWorldScale() const;
+    Vec2 worldToScreenScale() const;
 
     double x, y;
 };
