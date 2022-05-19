@@ -50,6 +50,13 @@ void Room::draw()
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
 {
-    // TODO
+    for (std::shared_ptr<Wall> w : _walls)
+    {
+        Collision c = Collision::getLineRectCollision();
+        if (c.isCollide())
+        {
+            return Collision(c.isCollide(), c.getImpact(), mov * c.getRebound());
+        }
+    }
     return Collision(false, {}, {});
 }

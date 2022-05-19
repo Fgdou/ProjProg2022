@@ -10,18 +10,22 @@
 class Collision
 {
 protected:
-    bool collide;
-    Vec2 impact;
-    Vec2 rebound;
+    bool _collide;
+    Vec2 _impact;
+    Vec2 _rebound;
 
 public:
+    static Collision getLineLineCollision(Vec2 line1Start, Vec2 line1End, Vec2 line2Start, Vec2 line2End, Vec2 reboundMulti = Vec2(-1, -1));
+
+    static Collision getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rectTopLeft, Vec2 rectBottomRight);
+
     Collision(bool collide, Vec2 impact, Vec2 rebound);
 
     bool isCollide() const;
 
-    const Vec2 &getImpact() const;
+    Vec2 getImpact() const;
 
-    const Vec2 &getRebound() const;
+    Vec2 getRebound() const;
 };
 
 #endif // PROJPROG2022_COLLISION_H
