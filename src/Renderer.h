@@ -7,13 +7,13 @@
 
 #include "Maths/Vec2.h"
 #include "Camera.h"
-#include "Image.h"
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
+class Image;
 
 class Renderer
 {

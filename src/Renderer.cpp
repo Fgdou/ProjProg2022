@@ -3,6 +3,7 @@
 //
 
 #include "Renderer.h"
+#include "Image.h"
 
 Renderer::Renderer() : _win(nullptr), _renderer(nullptr), _camera({0, 0})
 {

@@ -6,11 +6,12 @@
 #define PROJPROG2022_ROOM_H
 
 #include "../Entities/Entity.h"
-#include "../Entities/DynamicEntity.h"
 #include "Wall.h"
 #include "Door.h"
 #include "Collision.h"
 #include <vector>
+
+class DynamicEntity;
 
 class Room
 {

@@ -22,5 +22,5 @@ void draw(){
 }
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov){
-
+    return Collision(false, {}, {});
 }
