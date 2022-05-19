@@ -39,4 +39,5 @@ int main(int argc, char **argv)
 
         fps();
     }
+    SDL_Quit();
 }
