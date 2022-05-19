@@ -80,10 +80,9 @@ void Player::update(Room & room) {
 }
 
 void Player::draw() {
-    double squish = std::max(std::min(0.4 + (1 - (speed/(max_speed - 0.3 * max_speed))), 1.0),0.0);
+    double squish = std::max(std::min(0.2 + (1 - (speed/(max_speed - 0.3 * max_speed))), 1.0),0.0);
     Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 10*squish+20), Vec2::toDegrees(this->movement_vector.angle()));
-    Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
-    Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
+    
     if(this->currentItemValid()){
         this->inventory[this->current_item]->draw(this->position);
     }
