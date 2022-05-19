@@ -17,6 +17,7 @@ public:
         MouseRight,
         MouseMiddle,
         escape,
+        exit
     };
 
     void operator=(const Input&) = delete;
