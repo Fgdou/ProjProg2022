@@ -2,42 +2,57 @@
 // Created by fgdou on 5/19/22.
 //
 
+#include <iostream>
 #include "Maths/Timer.h"
 #include "Renderer.h"
+#include "Input.h"
 
 void tps()
 {
+    static double time = Timer::getInstance().getSeconds();
+    static double lastTime = Timer::getInstance().getSeconds();
+    double dt = lastTime - time;
+    std::cout << (int)(1 / dt) << " tps" << std::endl;
+    lastTime = time;
+
+    Input::getInstance().update();
 }
 void fps()
 {
+
+    static double time = Timer::getInstance().getSeconds();
+    static double lastTime = Timer::getInstance().getSeconds();
+    double dt = lastTime - time;
+    std::cout << (int)(1 / dt) << " fps" << std::endl;
+    lastTime = time;
+
     Renderer renderer = Renderer::getInstance();
     renderer.clear();
 
-    //  DRAW CODE BELLOW
+    //  DRAW CALLS BELLOW
 
     SDL_RenderPresent(&renderer.getSLDRenderer());
 }
 
 int main(int argc, char **argv)
 {
-
     bool exit = false;
     Timer timer = Timer::getInstance();
     Renderer renderer = Renderer::getInstance();
 
-    uint32_t last_time = timer.getMilliseconds();
-    uint32_t time_offset = 0;
+    double last_time = timer.getSeconds();
+    double time_offset = 0;
 
     // main loop
-    while (!exit)
+    while (!Input::getInstance().hasBeenPressedOnce(Input::escape))
     {
-        uint32_t now = timer.getMilliseconds();
-        uint32_t dt = now - last_time;
+        auto now = timer.getSeconds();
+        auto dt = now - last_time;
 
-        while (time_offset < timer.getDeltaTime())
+        while (time_offset < Timer::getDeltaTime())
         {
             time_offset += dt;
-            now = timer.getMilliseconds();
+            now = timer.getSeconds();
             dt = now - last_time;
             tps();
         }

@@ -28,7 +28,10 @@ const Vec2 &Input::getMousePos() {
     return mousePos;
 }
 
-void Input::update(SDL_Event &e) {
+void Input::update() {
+
+    SDL_Event e;
+    SDL_PollEvent(&e);
 
     if(e.type == SDL_MOUSEMOTION){
         mousePos = Vec2(
