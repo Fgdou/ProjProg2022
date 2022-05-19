@@ -10,7 +10,7 @@
 
 class Image {
 public:
-    virtual void draw(const Vec2& center, const Vec2& halfSize) = 0;
+    void draw(const Vec2& center, const Vec2& halfSize);
 };
 
 

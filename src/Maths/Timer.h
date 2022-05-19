@@ -11,10 +11,12 @@ class Timer {
 public:
     static Timer& getInstance(){}
 
-    virtual uint64_t getTicks() = 0;
+    uint64_t getTicks();
     inline double getDeltaTime(){
         return 1.0/60;
     }
+
+    void update();
 };
 
 

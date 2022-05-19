@@ -17,13 +17,13 @@ public:
 //        return Renderer();
 //    }
 
-    virtual void drawCircle(const Vec2& pos, double size, const SDL_Color& c) = 0;
-    virtual void drawRect(const Vec2& center, const Vec2& halfSize, const SDL_Color& c) = 0;
-    virtual void drawImage(const std::string& path, const Vec2& center, const Vec2& halfSize) = 0;
-    virtual void drawText(const std::string& text, const Vec2& p1, double size) = 0;
-    virtual void clear() = 0;
+    void drawCircle(const Vec2& pos, double size, const SDL_Color& c);
+    void drawRect(const Vec2& center, const Vec2& halfSize, const SDL_Color& c);
+    void drawImage(const std::string& path, const Vec2& center, const Vec2& halfSize);
+    void drawText(const std::string& text, const Vec2& p1, double size);
+    void clear();
 
-    virtual const Vec2& getSize() = 0;
+    const Vec2& getSize();
 
 };
 

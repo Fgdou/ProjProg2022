@@ -22,10 +22,10 @@ public:
         escape,
     };
 
-    virtual void update() = 0;
-    virtual const Vec2& getMousePos() = 0;
-    virtual bool isPressed(Inputs input) = 0;
-    virtual bool hasBeenPressedOnce(Inputs input) = 0;
+    void update();
+    const Vec2& getMousePos();
+    bool isPressed(Inputs input);
+    bool hasBeenPressedOnce(Inputs input);
 };
 
 
