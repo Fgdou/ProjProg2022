@@ -107,8 +107,6 @@ Vec2 Vec2::screenToWorld() const
     res -= screenSize / 2;
     res *= scale;
 
-    // TODO verify calculus
-
     res += worldPos;
 
     return res;

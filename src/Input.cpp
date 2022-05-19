@@ -3,6 +3,7 @@
 //
 
 #include "Input.h"
+#include <algorithm>
 
 std::unique_ptr<Input> Input::ptr;
 
@@ -13,6 +14,8 @@ Input &Input::getInstance() {
 }
 
 bool Input::isPressed(Input::Inputs input) {
+    if(inputs.find(input) == inputs.end())
+        return false;
     return inputs[input];
 }
 
