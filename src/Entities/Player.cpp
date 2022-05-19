@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "../Maths/Timer.h"
 #include "../Items/EquippableItem.h"
+#include "../Rooms/Room.h"
 
 Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), acceleration(1), deceleration(2), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
 

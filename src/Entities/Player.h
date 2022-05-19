@@ -5,8 +5,10 @@
 #ifndef PROJPROG2022_PLAYER_H
 #define PROJPROG2022_PLAYER_H
 
+#include <vector>
 #include "DamageableEntity.h"
 #include "../Input.h"
+
 class EquippableItem;
 
 class Player : public DamageableEntity {

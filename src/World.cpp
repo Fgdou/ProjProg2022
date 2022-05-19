@@ -3,6 +3,9 @@
 //
 
 #include "World.h"
+#include "Rooms/Room.h"
+#include "Entities/Player.h"
+
 
 World::World(Vec2 size)
     : player(std::make_shared<Player>(Vec2{0, 0})), selectedRoom({0, 0})
@@ -12,7 +15,7 @@ World::World(Vec2 size)
         v.resize(size.x);
     }
 
-    auto room = std::make_shared<Room>(std::vector<std::shared_ptr<DynamicEntity>>{}, std::vector<std::shared_ptr<Wall>>{});
+    auto room = std::make_shared<Room>(std::vector<std::shared_ptr<DynamicEntity>>{}, std::vector<std::shared_ptr<Wall>>{}, *this);
     rooms[0][0] = room;
 }
 
