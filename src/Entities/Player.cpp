@@ -8,9 +8,11 @@
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Room.h"
 #include "../Items/BasicSword.h"
+#include "../Items/SpinItem.h"
 
 Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10, 10).normalize()), speed(5.0), max_speed(20.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
 {
+    this->lootEquippableItem(std::make_shared<SpinItem>(SpinItem({"../assets/stick.png"}, Vec2(10.0, 150.0), 1.0, 10.0, 80, 1.0)));
     this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
 }
 
