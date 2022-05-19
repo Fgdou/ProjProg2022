@@ -52,9 +52,7 @@ void Player::update(Room & room) {
 
     // Input
     if(Input::getInstance().isPressed(Input::MouseLeft)){
-        std::cout << "click" << std::endl;
         if(this->currentItemValid()){
-            std::cout << "use" << std::endl;
             this->inventory[this->current_item]->use(*this, room.getEntities());
         }
     }

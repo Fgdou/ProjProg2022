@@ -32,7 +32,6 @@ Renderer::~Renderer()
 {
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_win);
-    std::cout << "delete window" << std::endl;
 }
 
 Renderer &Renderer::getInstance()
