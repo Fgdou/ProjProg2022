@@ -57,7 +57,7 @@ void Player::update(Room & room) {
 }
 
 void Player::draw() {
-    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(50, 50), Vec2::toDegrees(this->movement_vector.angle()));
+    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 30), Vec2::toDegrees(this->movement_vector.angle()));
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
     if(this->currentItemValid()){

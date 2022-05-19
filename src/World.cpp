@@ -4,7 +4,6 @@
 
 #include "World.h"
 #include "Rooms/Room.h"
-#include "Entities/Player.h"
 #include "Rooms/RoomFromFile.h"
 
 
@@ -26,8 +25,16 @@ const Vec2 &World::getSelectedRoom() {
     return selectedRoom;
 }
 
-void World::setSelectedRoom(Vec2 room){
+void World::setSelectedRoom(const Vec2& room){
+
+    auto from = getSelectedRoom()*Renderer::getSize();
+    auto to = room*Renderer::getSize();
+
+    selectedRoomTransition = selectedRoom;
     selectedRoom = room;
+
+
+    roomAnimation = std::make_shared<AnimateRoom>(2, from, to);
 }
 
 std::shared_ptr<Player> World::getPlayer() {
@@ -39,6 +46,9 @@ void World::addRoom(const std::shared_ptr<Room> &room, Vec2 pos) {
 }
 
 void World::draw() {
+    if(roomAnimation != nullptr)
+        roomAnimation->draw();
+
     auto room = rooms[selectedRoom.y][selectedRoom.x];
     if(room == nullptr)
         return;
@@ -53,16 +63,29 @@ void World::update() {
     player->update(*room);
     room->update();
 
+    if(roomAnimation != nullptr){
+        if(roomAnimation->running()) {
+            roomAnimation->update();
+            auto room2 = rooms[selectedRoomTransition.y][selectedRoomTransition.x];
+            if (room2 == nullptr)
+                return;
+            room2->update();
+        }else{
+            roomAnimation = nullptr;
+        }
+        return;
+    }
+
     //Change room
     auto screenSize = Renderer::getSize();
     Vec2 ScreenPos = player->getPos().worldToScreen();
     if(ScreenPos.x >= screenSize.x){
-        selectedRoom.x++;
+        setSelectedRoom(selectedRoom + Vec2{1, 0});
     } else if( ScreenPos.x < 0){
-        selectedRoom.x--;
+        setSelectedRoom(selectedRoom + Vec2{-1, 0});
     } else if( ScreenPos.y >= screenSize.y){
-        selectedRoom.y++;
+        setSelectedRoom(selectedRoom + Vec2{0, 1});
     } else if( ScreenPos.y < 0){
-        selectedRoom.y--;
+        setSelectedRoom(selectedRoom + Vec2{0, -1});
     }
 }
