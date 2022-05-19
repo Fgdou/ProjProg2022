@@ -19,6 +19,8 @@ public:
 
     static Collision getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rectTopLeft, Vec2 rectBottomRight);
 
+    static Collision getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, Vec2 rectBottomRight);
+
     Collision(bool collide, Vec2 impact, Vec2 rebound);
 
     bool isCollide() const;

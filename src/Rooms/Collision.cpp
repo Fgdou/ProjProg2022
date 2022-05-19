@@ -69,7 +69,7 @@ Collision Collision::getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rec
     Vec2 impact(-1, -1);
     Vec2 rebound(-1, -1);
 
-    for (Collision& col : std::vector<Collision>{left, right, top, bottom})
+    for (Collision &col : std::vector<Collision>{left, right, top, bottom})
     {
         if (col.isCollide())
             if (impact == Vec2(-1, -1) || impact.distance(lineStart) > col.getImpact().distance(lineStart))
@@ -80,4 +80,14 @@ Collision Collision::getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rec
     }
 
     return Collision(coliding, impact, rebound);
+}
+
+Collision getPointInsideRectCollision(Vec2 point, Vec2 rectTopLeft, Vec2 rectBottomRight)
+{
+    bool coliding = false;
+    if (point.x >= rectTopLeft.x && point.x <= rectBottomRight.x && point.y >= rectTopLeft.y && point.y <= rectBottomRight.y)
+    {
+        coliding = true;
+    }
+    return Collision(coliding, point, Vec2(-1, -1));
 }
