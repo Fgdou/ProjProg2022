@@ -2,6 +2,7 @@
 // Created by yami2200 on 19/05/22.
 //
 
+#include <iostream>
 #include "SpinItem.h"
 #include "../Maths/Timer.h"
 

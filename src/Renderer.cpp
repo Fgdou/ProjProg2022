@@ -17,7 +17,7 @@ Renderer::Renderer() : _camera({0, 0})
         throw std::runtime_error("Failed to init SDL");
     // create the _win and _renderer
     // note that the _renderer is accelerated
-    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_MOUSE_CAPTURE, &_win, &_renderer);
+    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN | 0, &_win, &_renderer);
 
     if (_win == nullptr)
         throw std::runtime_error("Failed to create window");

@@ -60,7 +60,7 @@ void Player::update(Room & room) {
     }
 
     // Inventory items update
-    for(auto item : this->inventory){
+    for(auto& item : this->inventory){
         item->update(*this, room.getEntities());
     }
 
