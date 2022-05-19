@@ -18,4 +18,10 @@ void LifeBar::draw() {
 
     Renderer& r = Renderer::getInstance();
     r.drawRect((pos-size/2).screenToWorld(), size.screenToWorldScale(), Theme::lifeBarBackground);
+
+    auto newpos = pos;
+    auto newsize = size;
+    newpos.x -= size.x/2*(1-percent);
+    newsize.x *= percent;
+    r.drawRect((newpos-size/2).screenToWorld(), newsize.screenToWorldScale(), Theme::lifeBarFull);
 }
