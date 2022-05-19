@@ -13,10 +13,14 @@ private:
     bool in_anim;
     double length;
     double current_angle;
+    Image spin_sprite;
+    Vec2 lastPos;
+    Vec2 pos;
+    Vec2 spin_size;
 
 public:
 
-    SpinItem(Image sprite, Vec2 size, double cooldown, double damage, double length, double duration);
+    SpinItem(Image sprite, Image spin_sprite, Vec2 size, Vec2 spin_size, double cooldown, double damage, double length, double duration);
 
     void use(Player & player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) override;
 

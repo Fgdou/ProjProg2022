@@ -6,6 +6,10 @@
 #include "SpinItem.h"
 #include "../Maths/Timer.h"
 
+SpinItem::SpinItem(Image sprite, Image spin_sprite, Vec2 size, Vec2 spin_size, double cooldown, double damage, double length, double duration) : EquippableItem(sprite, size, cooldown+duration, damage), spin_sprite(spin_sprite) , length(length), duration(duration), lastPos() , pos(), spin_size(spin_size)
+{}
+
+
 void SpinItem::update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
@@ -26,13 +30,17 @@ void SpinItem::update(Player &player, const std::vector<std::shared_ptr<DynamicE
             this->current_angle = 0.0;
         }
     }
+    this->lastPos = this->pos;
+    this->pos = player.getPos();
 }
 
 void SpinItem::draw(Vec2 &pos) {
     if(this->in_anim){
-        Renderer::getInstance().drawImage(this->sprite, pos, this->size, this->current_angle);
+        Renderer::getInstance().drawImage(this->spin_sprite, pos, this->spin_size * Vec2(5), this->current_angle);
     } else {
-        Renderer::getInstance().drawImage(this->sprite, pos, this->size*Vec2(1.0,0.3), this->current_angle);
+        double offset = 10;
+        Vec2 backward = this->lastPos - this->pos;
+        Renderer::getInstance().drawImage(this->sprite, pos + backward * Vec2(offset), this->size* Vec2(6), Vec2::toDegrees(backward.angle())+90);
     }
 
 }
@@ -46,6 +54,3 @@ void SpinItem::use(Player &player, const std::vector<std::shared_ptr<DynamicEnti
     }
 }
 
-SpinItem::SpinItem(Image sprite, Vec2 size, double cooldown, double damage, double length, double duration) : EquippableItem(sprite, size, cooldown+duration, damage), length(length), duration(duration) {
-
-}
