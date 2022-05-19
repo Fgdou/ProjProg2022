@@ -4,7 +4,7 @@
 
 #include "Image.h"
 
-Image::Image(const std::string &path)
+Image::Image(const std::string &path) : _texture(nullptr)
 {
   SDL_Renderer &sdl_renderer = Renderer::getInstance().getSLDRenderer();
 
