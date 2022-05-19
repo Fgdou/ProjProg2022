@@ -18,6 +18,7 @@ protected:
     double speed;
     Vec2 movement_vector;
     double timerHitDamage;
+    double cooldownDamage;
 
 public:
     BaseEnemy(Vec2 & pos, double lifemax, double damage);
@@ -25,6 +26,12 @@ public:
     void update(Room & room) override;
 
     void draw() override;
+
+    double getDamage();
+
+    void hasAttackedPlayer();
+
+    bool canAttack();
 };
 
 
