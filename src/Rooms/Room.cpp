@@ -11,18 +11,23 @@ std::vector<std::shared_ptr<DynamicEntity>> entities;
 std::vector<std::shared_ptr<Wall>> walls;
 std::vector<std::shared_ptr<Door>> doors;
 
-void update(){
-    if(entities.size()==0){
-        for (auto i = doors.begin(); i !=doors.end(); ++i) {
-            if(!(*i)->keyNeeded()) i=doors.erase(i);
+void update()
+{
+    if (entities.size() == 0)
+    {
+        for (auto i = doors.begin(); i != doors.end(); ++i)
+        {
+            if (!(*i)->keyNeeded())
+                i = doors.erase(i);
         }
     }
-    for (int i = 0; i < entities.size(); ++i) {
+    for (int i = 0; i < entities.size(); ++i)
+    {
         entities[i]->update();
     }
 }
 void draw();
 
-Collision Room::collide(Vec2 pos, Vec2 mov) {
-
+Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
+{
 }
