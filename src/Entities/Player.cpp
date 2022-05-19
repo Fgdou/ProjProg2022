@@ -9,7 +9,7 @@
 #include "../Rooms/Room.h"
 #include "../Items/BasicSword.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10, 10).normalize()), speed(5.0), max_speed(20.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10, 10).normalize()), speed(2.0), max_speed(10.0), acceleration(20.0), deceleration(30.0), rotAngle(4), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
 {
     this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
 }
@@ -55,7 +55,9 @@ void Player::update(Room & room) {
 }
 
 void Player::draw() {
-    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 30), Vec2::toDegrees(this->movement_vector.angle()));
+    double squish = std::max(std::min(0.4 + (1 - (speed/(max_speed - 0.3 * max_speed))), 1.0),0.0);
+    std::cout << squish << std::endl;
+    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 10*squish+20), Vec2::toDegrees(this->movement_vector.angle()));
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
     if(this->currentItemValid()){
