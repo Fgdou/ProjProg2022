@@ -9,22 +9,29 @@
 
 void tps()
 {
-    static double time = Timer::getInstance().getSeconds();
+    static int cnt = 0;
+    cnt++;
     static double lastTime = Timer::getInstance().getSeconds();
-    double dt = lastTime - time;
-    std::cout << (int)(1 / dt) << " tps" << std::endl;
-    lastTime = time;
+    double time = Timer::getInstance().getSeconds();
+    if(time - lastTime > 1.0){
+        lastTime = time;
+        std::cout << cnt << " tps" << std::endl;
+        cnt = 0;
+    }
 
     Input::getInstance().update();
 }
 void fps()
 {
-
-    static double time = Timer::getInstance().getSeconds();
+    static int cnt = 0;
+    cnt++;
     static double lastTime = Timer::getInstance().getSeconds();
-    double dt = lastTime - time;
-    std::cout << (int)(1 / dt) << " fps" << std::endl;
-    lastTime = time;
+    double time = Timer::getInstance().getSeconds();
+    if(time - lastTime > 1.0){
+        lastTime = time;
+        std::cout << cnt << " fps" << std::endl;
+        cnt = 0;
+    }
 
     Renderer renderer = Renderer::getInstance();
     renderer.clear();
@@ -41,7 +48,6 @@ int main(int argc, char **argv)
     Renderer renderer = Renderer::getInstance();
 
     double last_time = timer.getSeconds();
-    double time_offset = 0;
 
     // main loop
     while (!Input::getInstance().hasBeenPressedOnce(Input::escape))
@@ -49,16 +55,14 @@ int main(int argc, char **argv)
         auto now = timer.getSeconds();
         auto dt = now - last_time;
 
-        while (time_offset < Timer::getDeltaTime())
+        if (dt > Timer::getDeltaTime())
         {
-            time_offset += dt;
-            now = timer.getSeconds();
-            dt = now - last_time;
+            last_time = now;
             tps();
+        }else{
+            fps();
         }
-        time_offset -= dt;
 
-        fps();
     }
     SDL_Quit();
 }
