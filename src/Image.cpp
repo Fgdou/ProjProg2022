@@ -15,3 +15,8 @@ Image::~Image()
 {
   SDL_DestroyTexture(_texture);
 }
+
+SDL_Texture *Image::get() const
+{
+  return _texture;
+}
