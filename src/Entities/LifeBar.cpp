@@ -13,15 +13,17 @@ LifeBar::LifeBar(Player &p)
 
 void LifeBar::draw() {
     double percent = p.getLife()/p.getLifeMax();
-    Vec2 size(200, 20);
-    Vec2 pos = Renderer::getSize() - Vec2{10, 10};
+    Vec2 winSize = Renderer::getSize();
+    double height = 10;
+    Vec2 size(winSize.x, height);
+    Vec2 pos = winSize - Vec2{winSize.x/2, height/2};
 
     Renderer& r = Renderer::getInstance();
-    r.drawRect((pos-size/2).screenToWorld(), size.screenToWorldScale(), Theme::lifeBarBackground);
+    r.drawRect(pos.screenToWorld(), size.screenToWorldScale(), Theme::lifeBarBackground);
 
     auto newpos = pos;
     auto newsize = size;
     newpos.x -= size.x/2*(1-percent);
     newsize.x *= percent;
-    r.drawRect((newpos-size/2).screenToWorld(), newsize.screenToWorldScale(), Theme::lifeBarFull);
+    r.drawRect(newpos.screenToWorld(), newsize.screenToWorldScale(), Theme::lifeBarFull);
 }
