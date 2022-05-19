@@ -80,3 +80,15 @@ std::vector<std::shared_ptr<DynamicEntity>> Room::getEntities()
 {
     return this->_entities;
 }
+
+void Room::updatePos(const Vec2 &pos) {
+    for (auto& e : _entities) {
+        e->setPos(e->getPos()+pos);
+    }
+    for(auto& w : _walls){
+        w->setPos(w->getPos() + pos);
+    }
+    for(auto& w : _doors){
+        w->setPos(w->getPos() + pos);
+    }
+}
