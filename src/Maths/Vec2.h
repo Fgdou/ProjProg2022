@@ -35,7 +35,7 @@ public:
     Vec2 lookAt(const Vec2 &other) const;
 
     Vec2 screenToWorld() const;
-    Vec2 WorldToScreen() const;
+    Vec2 worldToScreen() const;
 
     double x, y;
 };

@@ -113,7 +113,7 @@ Vec2 Vec2::screenToWorld() const
 
     return res;
 }
-Vec2 Vec2::WorldToScreen() const
+Vec2 Vec2::worldToScreen() const
 {
     auto screenSize = Renderer::getInstance().getSize();
     auto worldPos = Renderer::getInstance().getCamera().getPos();
