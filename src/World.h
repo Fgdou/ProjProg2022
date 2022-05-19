@@ -28,6 +28,8 @@ public:
     void draw();
     void update();
 
+    bool ended();
+
 private:
     void updateRoomPos();
 };

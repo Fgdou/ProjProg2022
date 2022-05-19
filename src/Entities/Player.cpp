@@ -100,11 +100,10 @@ bool Player::currentItemValid() {
 }
 
 void Player::dead() {
-    std::cout << "Fin frérot, tu es mort" << std::endl;
+    isDead = true;
 }
 
 void Player::takeDamage(double damage) {
     DamageableEntity::takeDamage(damage);
-    std::cout << "OUILLE  :  " << damage <<std::endl;
 }
 
