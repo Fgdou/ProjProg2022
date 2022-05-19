@@ -8,13 +8,14 @@
 #include "Input.h"
 #include "World.h"
 
-void tps(const std::shared_ptr<World>& world)
+void tps(const std::shared_ptr<World> &world)
 {
     static int cnt = 0;
     cnt++;
     static double lastTime = Timer::getInstance().getSeconds();
     double time = Timer::getInstance().getSeconds();
-    if(time - lastTime > 1.0){
+    if (time - lastTime > 1.0)
+    {
         lastTime = time;
         std::cout << cnt << " tps" << std::endl;
         cnt = 0;
@@ -23,19 +24,20 @@ void tps(const std::shared_ptr<World>& world)
     Input::getInstance().update();
     world->update();
 }
-void fps(const std::shared_ptr<World>& world)
+void fps(const std::shared_ptr<World> &world)
 {
     static int cnt = 0;
     cnt++;
     static double lastTime = Timer::getInstance().getSeconds();
     double time = Timer::getInstance().getSeconds();
-    if(time - lastTime > 1.0){
+    if (time - lastTime > 1.0)
+    {
         lastTime = time;
         std::cout << cnt << " fps" << std::endl;
         cnt = 0;
     }
 
-    Renderer& renderer = Renderer::getInstance();
+    Renderer &renderer = Renderer::getInstance();
     renderer.clear();
 
     //  DRAW CALLS BELLOW
@@ -64,14 +66,15 @@ int main(int argc, char **argv)
         {
             last_time = now;
             tps(world);
-        }else{
+        }
+        else
+        {
             fps(world);
         }
 
-        std::string err = std::string(SDL_GetError());
-        if(!err.empty())
-            std::cerr << err << '\n';
-
+        // std::string err = std::string(SDL_GetError());
+        // if (!err.empty())
+        //     std::cerr << err << '\n';
     }
-//    SDL_Quit();
+    SDL_Quit();
 }
