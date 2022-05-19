@@ -36,7 +36,7 @@ void World::setSelectedRoom(const Vec2& room){
     selectedRoom = room;
 
 
-    roomAnimation = std::make_shared<AnimateRoom>(2, from, to);
+    roomAnimation = std::make_shared<AnimateRoom>(1, from, to);
 }
 
 std::shared_ptr<Player> World::getPlayer() {
@@ -64,24 +64,22 @@ void World::draw() {
 }
 
 void World::update() {
-    auto room = rooms[selectedRoom.y][selectedRoom.x];
-    if(room == nullptr)
-        return;
-    player->update(*room);
-    room->update();
+
 
     if(roomAnimation != nullptr){
         if(roomAnimation->running()) {
             roomAnimation->update();
-            auto room2 = rooms[selectedRoomTransition.y][selectedRoomTransition.x];
-            if (room2 == nullptr)
-                return;
-            room2->update();
         }else{
             roomAnimation = nullptr;
         }
         return;
     }
+
+    auto room = rooms[selectedRoom.y][selectedRoom.x];
+    if(room == nullptr)
+        return;
+    player->update(*room);
+    room->update();
 
     //Change room
     auto screenSize = Renderer::getSize();

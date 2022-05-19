@@ -30,6 +30,8 @@ public:
     void operator=(const Renderer &) = delete;
     ~Renderer();
 
+    SDL_Window *getWin() const;
+
     void clear();
     void drawCircle(const Vec2 &pos, double size, const SDL_Color &c);
     void drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &c);
