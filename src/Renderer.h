@@ -27,6 +27,7 @@ public:
     static Renderer &getInstance();
     SDL_Renderer &getSLDRenderer();
     Renderer();
+    void operator=(const Renderer&) = delete;
     ~Renderer();
 
     void clear();
@@ -36,6 +37,8 @@ public:
     void drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c);
     Camera &getCamera();
     static Vec2 getSize() ;
+
+    void render();
 };
 
 #endif // PROJPROG2022_RENDERER_H

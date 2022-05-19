@@ -16,6 +16,7 @@ private:
 
 public:
     Timer();
+    void operator=(const Timer&) = delete;
 
     static Timer &getInstance();
 

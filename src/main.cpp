@@ -33,12 +33,12 @@ void fps()
         cnt = 0;
     }
 
-    Renderer renderer = Renderer::getInstance();
+    Renderer& renderer = Renderer::getInstance();
     renderer.clear();
 
     //  DRAW CALLS BELLOW
 
-    SDL_RenderPresent(&renderer.getSLDRenderer());
+    renderer.render();
 }
 
 int main(int argc, char **argv)
@@ -63,6 +63,10 @@ int main(int argc, char **argv)
             fps();
         }
 
+        std::string err = std::string(SDL_GetError());
+        if(!err.empty())
+            std::cerr << err << '\n';
+
     }
-    SDL_Quit();
+//    SDL_Quit();
 }
