@@ -8,11 +8,14 @@
 #include <vector>
 #include "DamageableEntity.h"
 #include "../Input.h"
+#include "../Image.h"
 
 class EquippableItem;
 
 class Player : public DamageableEntity {
 private:
+    Image sprite;
+
     // Movement Management
     double max_speed;
     double speed;

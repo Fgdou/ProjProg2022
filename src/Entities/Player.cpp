@@ -8,8 +8,8 @@
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Room.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(25.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
-
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), movement_vector(Vec2(10,10).normalize()), speed(5.0), max_speed(25.0), acceleration(45.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) , sprite(Image("../assets/player.png"))
+{
 }
 
 void Player::update(Room & room) {
@@ -48,7 +48,9 @@ void Player::update(Room & room) {
 }
 
 void Player::draw() {
-    Renderer::getInstance().drawCircle(this->getPos(),30.0, {255,0,0, 255});
+
+    Renderer::getInstance().drawImage(sprite, getPos(), Vec2(50,50), Vec2::toDegrees(this->movement_vector.angle()));
+
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->getPos().lookAt(Input::getInstance().getMousePos())*200.0);
     Renderer::getInstance().drawLine(this->getPos(), this->getPos() + this->movement_vector*this->speed, {0,255,0, 255});
     if(this->currentItemValid()){
