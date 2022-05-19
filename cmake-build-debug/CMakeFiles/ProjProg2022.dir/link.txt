@@ -1,3 +1,0 @@
-"D:\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\ProjProg2022.dir/objects.a
-"D:\CLion 2022.1.1\bin\mingw\bin\ar.exe" qc CMakeFiles\ProjProg2022.dir/objects.a @CMakeFiles\ProjProg2022.dir\objects1.rsp
-"D:\CLion 2022.1.1\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\ProjProg2022.dir/objects.a -Wl,--no-whole-archive -o ProjProg2022.exe -Wl,--out-implib,libProjProg2022.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ProjProg2022.dir\linklibs.rsp
