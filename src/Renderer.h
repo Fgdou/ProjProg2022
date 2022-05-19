@@ -9,6 +9,7 @@
 #include "Maths/Vec2.h"
 
 #include "SDL2/SDL.h"
+#include "Camera.h"
 
 class Renderer
 {
@@ -21,8 +22,8 @@ public:
     void drawText(const std::string &text, const Vec2 &p1, double size);
     void clear();
     SDL_Renderer *getSLDRenderer();
-    const Vec2 &
-    getSize();
+    Camera &getCamera();
+    const Vec2 &getSize();
 };
 
 #endif // PROJPROG2022_RENDERER_H
