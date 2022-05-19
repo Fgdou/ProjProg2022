@@ -13,10 +13,7 @@
 class Renderer
 {
 public:
-    static Renderer &getInstance()
-    {
-        return Renderer();
-    }
+    static Renderer &getInstance();
 
     void drawCircle(const Vec2 &pos, double size, const SDL_Color &c);
     void drawRect(const Vec2 &center, const Vec2 &halfSize, const SDL_Color &c);
