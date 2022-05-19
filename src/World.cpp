@@ -29,6 +29,9 @@ const Vec2 &World::getSelectedRoom() {
 
 void World::setSelectedRoom(const Vec2& room){
 
+    if(room.x < 0 || room.x >= rooms[0].size() || room.y < 0 || room.y >= rooms.size())
+        return;
+
     auto from = getSelectedRoom()*Renderer::getSize();
     auto to = room*Renderer::getSize();
 
