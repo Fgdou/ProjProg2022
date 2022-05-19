@@ -7,6 +7,10 @@
 Wall::Wall(Vec2 &pos, Vec2 &size) : Entity(pos), _size(size), _isEnabled(true), _color({15, 15, 15, 255}), _texture(nullptr)
 {
 }
+Vec2 Wall::getSize() const
+{
+    return _size;
+}
 
 void Wall::setColor(SDL_Color &c)
 {

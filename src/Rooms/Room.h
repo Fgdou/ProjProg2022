@@ -27,9 +27,10 @@ public:
 
     // Open the doors when the room is cleared
     void onClear();
+
     std::vector<std::shared_ptr<DynamicEntity>> getEntities();
 
-    Collision getPlayerCollision(Vec2 pos, Vec2 mov);
+    Collision getPlayerCollision(Vec2 currentPos, Vec2 directionToNextPos);
 };
 
 #endif // PROJPROG2022_ROOM_H
