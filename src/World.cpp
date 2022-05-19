@@ -5,6 +5,7 @@
 #include "World.h"
 #include "Rooms/Room.h"
 #include "Entities/Player.h"
+#include "Rooms/RoomFromFile.h"
 
 
 World::World(Vec2 size)
@@ -15,7 +16,8 @@ World::World(Vec2 size)
         v.resize(size.x);
     }
 
-    auto room = std::make_shared<Room>(std::vector<std::shared_ptr<DynamicEntity>>{}, std::vector<std::shared_ptr<Wall>>{}, *this);
+    std::string path = "../assets/level/level1.txt";
+    auto room = RoomFromFile::getRoom(path, *this);
     rooms[0][0] = room;
 }
 
