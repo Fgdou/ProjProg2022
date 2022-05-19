@@ -10,9 +10,16 @@
 
 class Camera {
 public:
+    Camera(const Vec2& pos);
+
     void setPos(const Vec2& pos);
-    Vec2& getPos();
-    double getScale();
+    const Vec2& getPos() const;
+    double getScale() const;
+    void setScale(double v);
+
+private:
+    Vec2 pos;
+    double scale;
 };
 
 
