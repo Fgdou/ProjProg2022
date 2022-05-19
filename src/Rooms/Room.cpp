@@ -21,9 +21,19 @@ void update()
             w->open();
         }
     }
+    else{
+        for(std::shared_ptr<DynamicEntity>e : entities){
+            //e->update(this);
+        }
+    }
 }
 void draw(){
-
+    for (std::shared_ptr<Wall> w: walls) {
+        w->draw();
+    }
+    for(std::shared_ptr<DynamicEntity>e : entities){
+        e->draw();
+    }
 }
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov){

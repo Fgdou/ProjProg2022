@@ -15,6 +15,7 @@ protected:
 public:
     KeyDoor(char key = '0', Vec2 pos = (0,0), Vec2 size = (0,0), bool closed=1);
     void giveKey(char key);
+    void draw();
 };
 
 

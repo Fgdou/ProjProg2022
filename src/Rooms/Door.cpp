@@ -13,7 +13,9 @@ void Door::open(){
 }
 
 void Door::draw() {
-//    if(closed);
+    if(closed) {
+        Wall::draw();
+    }
 }
 
 

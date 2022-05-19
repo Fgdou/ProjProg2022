@@ -19,7 +19,7 @@ public:
     ~Wall();
     virtual void open() = 0;
 
-
+    void draw();
 };
 
 
