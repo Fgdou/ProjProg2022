@@ -30,6 +30,7 @@ public:
     ~Renderer();
 
     void clear();
+    void drawCircle(const Vec2 &pos, double size, const SDL_Color &c);
     void drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &c);
     void drawImage(const Image &image, const Vec2 &center, const Vec2 &scale, const double rotation);
     void drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c);

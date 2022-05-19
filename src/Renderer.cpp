@@ -40,6 +40,11 @@ void Renderer::clear()
   SDL_RenderClear(_renderer);
 }
 
+void Renderer::drawCircle(const Vec2 &pos, double size, const SDL_Color &c)
+{
+  drawRect(pos, {size, size}, c);
+}
+
 void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &c)
 {
   SDL_Rect rect;
