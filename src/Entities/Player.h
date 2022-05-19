@@ -6,20 +6,28 @@
 #define PROJPROG2022_PLAYER_H
 
 
-#include "DynamicEntity.h"
+#include "DamageableEntity.h"
 #include "../Input.h"
 
-class Player : public DynamicEntity {
+class Player : public DamageableEntity {
 private:
+    // Movement Management
     double max_speed;
     double acceleration;
     Vec2 movement_vector;
     double deceleration;
 
+    // Stats
+    double damage;
+    double resistance;
+
+
 public:
     Player(Vec2 & pos);
 
-    void update() override;
+    void update(World & world) override;
+
+    void draw() override;
 };
 
 
