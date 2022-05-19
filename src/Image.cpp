@@ -3,3 +3,15 @@
 //
 
 #include "Image.h"
+
+Image::Image(const std::string &path)
+{
+  SDL_Renderer &sdl_renderer = Renderer::getInstance().getSLDRenderer();
+
+  _texture = IMG_LoadTexture(&sdl_renderer, path.c_str());
+}
+
+Image::~Image()
+{
+  SDL_DestroyTexture(_texture);
+}

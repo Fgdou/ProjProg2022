@@ -5,13 +5,22 @@
 #ifndef PROJPROG2022_IMAGE_H
 #define PROJPROG2022_IMAGE_H
 
-
 #include "Maths/Vec2.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include "Renderer.h"
 
-class Image {
+class Image
+{
+private:
+    SDL_Texture *_texture;
+
 public:
-    void draw(const Vec2& center, const Vec2& halfSize);
+    // load the image
+    Image(const std::string &path);
+
+    // unload the image
+    ~Image();
 };
 
-
-#endif //PROJPROG2022_IMAGE_H
+#endif // PROJPROG2022_IMAGE_H
