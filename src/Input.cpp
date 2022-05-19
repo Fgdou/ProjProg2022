@@ -4,6 +4,7 @@
 
 #include "Input.h"
 #include <algorithm>
+#include "Renderer.h"
 
 std::unique_ptr<Input> Input::ptr;
 
@@ -34,13 +35,16 @@ const Vec2 &Input::getMousePos() {
 void Input::update() {
 
     SDL_Event e;
+    int x, y, wx, wy;
+    SDL_GetGlobalMouseState(&x, &y);
+    SDL_GetWindowPosition(Renderer::getInstance().getWin(), &wx, &wy);
+    mousePos = Vec2(
+            x-wx,
+            y-wy
+    ).screenToWorld();
     while(SDL_PollEvent(&e)){
-        if(e.type == SDL_MOUSEMOTION){
-            mousePos = Vec2(
-                    e.motion.x,
-                    e.motion.y
-            ).screenToWorld();
-        }else if(e.type == SDL_MOUSEBUTTONDOWN){
+
+        if(e.type == SDL_MOUSEBUTTONDOWN){
             if(e.button.button == SDL_BUTTON_LEFT)
                 setButtonTrue(MouseLeft);
             else if(e.button.button == SDL_BUTTON_RIGHT)
