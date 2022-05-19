@@ -121,6 +121,8 @@ void Renderer::render()
 
 void Renderer::drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c)
 {
+    if(isnan(start.x) || isnan(end.x))
+        return;
     auto startScreen = start.worldToScreen();
     auto endScreen = end.worldToScreen();
     SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
