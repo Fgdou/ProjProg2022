@@ -2,10 +2,11 @@
 // Created by yami2200 on 19/05/22.
 //
 
+#include <iostream>
 #include "SpinItem.h"
 #include "../Maths/Timer.h"
 
-void SpinItem::update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
+void SpinItem::update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
     }
@@ -36,7 +37,8 @@ void SpinItem::draw(Vec2 &pos) {
 
 }
 
-void SpinItem::use(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
+void SpinItem::use(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) {
+    EquippableItem::use(player, v_entities);
     if(this->current_cooldown <= 0.0){
         this->current_cooldown = this->cooldown_max;
         this->current_angle = 0;

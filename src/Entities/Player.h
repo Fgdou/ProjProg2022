@@ -9,6 +9,7 @@
 #include "DamageableEntity.h"
 #include "../Input.h"
 #include "../Image.h"
+#include "LifeBar.h"
 
 class EquippableItem;
 
@@ -37,6 +38,8 @@ private:
     std::vector<std::shared_ptr<EquippableItem>> inventory;
     int current_item;
     bool currentItemValid();
+
+    LifeBar lifeBar;
 
 
 public:

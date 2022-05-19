@@ -25,9 +25,9 @@ public:
 
     virtual void draw(Vec2 & pos);
 
-    virtual void use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities);
+    virtual void use(Player & player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities);
 
-    virtual void update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities);
+    virtual void update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities);
 
 };
 

@@ -10,7 +10,7 @@ BasicSword::BasicSword(Image sprite, Vec2 size, double cooldown, double damage, 
 
 }
 
-void BasicSword::use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
+void BasicSword::use(Player & player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) {
     if(this->current_cooldown <= 0.0){
         this->current_cooldown = this->cooldown_max;
         this->current_angle = -this->angle;
@@ -35,7 +35,7 @@ void BasicSword::draw(Vec2 &pos) {
     Renderer::getInstance().drawImage(this->sprite, pos + this->relative_position, this->size, this->relative_rotation+this->current_angle);
 }
 
-void BasicSword::update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
+void BasicSword::update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
     }

@@ -17,7 +17,7 @@ Renderer::Renderer() : _camera({0, 0})
         throw std::runtime_error("Failed to init SDL");
     // create the _win and _renderer
     // note that the _renderer is accelerated
-    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_MOUSE_CAPTURE, &_win, &_renderer);
+    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN | 0, &_win, &_renderer);
 
     if (_win == nullptr)
         throw std::runtime_error("Failed to create window");
@@ -65,8 +65,8 @@ void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
-    rect.x = centerScreen.x - scale.x / 2;
-    rect.y = centerScreen.y - scale.y / 2;
+    rect.x = centerScreen.x - centerScale.x / 2;
+    rect.y = centerScreen.y - centerScale.y / 2;
     rect.w = centerScale.x;
     rect.h = centerScale.y;
     SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
@@ -78,8 +78,8 @@ void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &sca
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
-    rect.x = centerScreen.x - scale.x / 2;
-    rect.y = centerScreen.y - scale.y / 2;
+    rect.x = centerScreen.x - centerScale.x / 2;
+    rect.y = centerScreen.y - centerScale.y / 2;
     rect.w = centerScale.x;
     rect.h = centerScale.y;
     SDL_Texture *texture = image.get();

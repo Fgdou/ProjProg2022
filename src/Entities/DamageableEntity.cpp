@@ -25,3 +25,11 @@ void DamageableEntity::dead() {
 bool DamageableEntity::isDead1() const {
     return isDead;
 }
+
+double DamageableEntity::getLifeMax() const {
+    return life_max;
+}
+
+double DamageableEntity::getLife() const {
+    return life;
+}

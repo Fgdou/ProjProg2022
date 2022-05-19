@@ -7,7 +7,8 @@
 #include "../Rooms/Room.h"
 #include "../Maths/Timer.h"
 
-BaseEnemy::BaseEnemy(Vec2 & pos, double lifemax, double damage) : DamageableEntity(pos, lifemax), damage(damage), speed(8.0){}
+BaseEnemy::BaseEnemy(Vec2 & pos, double lifemax, double damage)
+    : DamageableEntity(pos, lifemax), damage(damage), speed(2.0){}
 
 void BaseEnemy::update(Room & room) {
         if(this->timerHitDamage > 0.0) this->timerHitDamage -= Timer::getDeltaTime();

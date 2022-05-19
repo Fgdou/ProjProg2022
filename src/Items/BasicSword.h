@@ -20,11 +20,11 @@ public:
 
     BasicSword(Image sprite, Vec2 size, double cooldown, double damage, double angle, double length);
 
-    void use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) override;
+    void use(Player & player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) override;
 
     void draw(Vec2 &pos) override;
 
-    void update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) override;
+    void update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities) override;
 };
 
 

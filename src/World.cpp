@@ -108,3 +108,7 @@ void World::updateRoomPos() {
         }
     }
 }
+
+bool World::ended() {
+    return player->isDead1();
+}

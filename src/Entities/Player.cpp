@@ -11,7 +11,14 @@
 #include "../Items/SpinItem.h"
 #include "BaseEnemy.h"
 
-Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), damage(1.0), movement_vector(Vec2(10, 10).normalize()), speed(2.0), max_speed(20.0), acceleration(20.0), deceleration(30.0), rotAngle(10), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()), decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png"))
+Player::Player(Vec2 pos)
+: DamageableEntity(pos, 100.0), damage(1.0),
+    movement_vector(Vec2(10, 10).normalize()), speed(2.0),
+    max_speed(20.0), acceleration(20.0), deceleration(30.0), rotAngle(10),
+    current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()),
+    decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png")),
+    lifeBar(*this),
+    resistance(0)
 {
     this->lootEquippableItem(std::make_shared<SpinItem>(SpinItem({"../assets/stick.png"}, Vec2(10.0, 150.0), 1.0, 10.0, 80, 1.0)));
     //this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
@@ -53,7 +60,7 @@ void Player::update(Room & room) {
     }
 
     // Inventory items update
-    for(auto item : this->inventory){
+    for(auto& item : this->inventory){
         item->update(*this, room.getEntities());
     }
 
@@ -80,6 +87,7 @@ void Player::draw() {
     if(this->currentItemValid()){
         this->inventory[this->current_item]->draw(this->position);
     }
+    lifeBar.draw();
 }
 
 Vec2 &Player::getDirection() {
@@ -100,11 +108,10 @@ bool Player::currentItemValid() {
 }
 
 void Player::dead() {
-    std::cout << "Fin frérot, tu es mort" << std::endl;
+    isDead = true;
 }
 
 void Player::takeDamage(double damage) {
     DamageableEntity::takeDamage(damage);
-    std::cout << "OUILLE  :  " << damage <<std::endl;
 }
 
