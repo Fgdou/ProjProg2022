@@ -25,6 +25,10 @@ const Vec2 &World::getSelectedRoom() {
     return selectedRoom;
 }
 
+void World::setSelectedRoom(Vec2 room){
+    selectedRoom = room;
+}
+
 std::shared_ptr<Player> World::getPlayer() {
     return player;
 }

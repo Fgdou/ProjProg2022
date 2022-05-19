@@ -19,6 +19,7 @@ public:
     void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
 
     const Vec2& getSelectedRoom();
+    void setSelectedRoom(Vec2 room);
     std::shared_ptr<Player> getPlayer();
 
     void draw();
