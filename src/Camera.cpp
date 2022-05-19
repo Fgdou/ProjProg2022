@@ -5,7 +5,7 @@
 #include "Camera.h"
 
 Camera::Camera(const Vec2 &pos)
-    : scale(0), pos(pos)
+    : scale(1), pos(pos)
 {
 
 }
