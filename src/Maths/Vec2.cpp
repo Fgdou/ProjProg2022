@@ -143,3 +143,23 @@ Vec2 Vec2::lookAt(const Vec2 &other) const
 {
     return (other - *this).normalize();
 }
+
+double Vec2::angleBetween(const Vec2 &other) const {
+    auto angleMe = angle();
+    auto angleOther = other.angle();
+
+    auto res = angleOther-angleMe;
+    if(res < M_PI)
+        res += 2*M_PI;
+    if(res > M_PI)
+        res -= 2*M_PI;
+    return res;
+}
+
+double Vec2::dot(const Vec2 &other) const {
+    return x*other.x + y*other.y;
+}
+
+double Vec2::angle() const {
+    return atan2(y, x);
+}

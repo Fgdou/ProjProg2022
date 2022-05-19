@@ -31,6 +31,9 @@ public:
     Vec2 &operator*=(const Vec2 &other);
 
     double distance(const Vec2 &other) const;
+    double angleBetween(const Vec2& other) const;
+    double dot(const Vec2& other) const;
+    double angle() const;
 
     Vec2 lookAt(const Vec2 &other) const;
 
