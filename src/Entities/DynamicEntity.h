@@ -7,11 +7,12 @@
 
 
 #include "Entity.h"
+#include "../World.h"
 
 class DynamicEntity : public Entity {
 
 public:
-    virtual void update() = 0;
+    virtual void update(World & world) = 0;
 
     DynamicEntity(Vec2 & pos);
 
