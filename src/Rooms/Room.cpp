@@ -50,10 +50,22 @@ void Room::draw()
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
 {
-    // TODO
+    for (std::shared_ptr<Wall> w : _walls)
+    {
+        Collision c = Collision::getLineRectCollision(
+            pos,
+            pos + mov,
+            w->getPos(),
+            w->getPos() + w->getSize());
+        if (c.isCollide())
+        {
+            return Collision(c.isCollide(), c.getImpact(), mov * c.getRebound());
+        }
+    }
     return Collision(false, {}, {});
 }
 
-std::vector<std::shared_ptr<DynamicEntity>> Room::getEntities() {
+std::vector<std::shared_ptr<DynamicEntity>> Room::getEntities()
+{
     return this->_entities;
 }

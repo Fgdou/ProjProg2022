@@ -23,6 +23,7 @@ public:
     Wall(Vec2 &pos, Vec2 &size);
     ~Wall();
 
+    Vec2 getSize() const;
     void setColor(SDL_Color &c);
     void setTexture(std::shared_ptr<Image> &texture);
     void toggle();
