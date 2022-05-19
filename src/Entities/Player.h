@@ -7,6 +7,7 @@
 
 #include "DamageableEntity.h"
 #include "../Input.h"
+#include "../Items/EquippableItem.h"
 
 class Player : public DamageableEntity {
 private:
@@ -22,6 +23,11 @@ private:
     double damage;
     double resistance;
 
+    // Items
+    std::vector<std::shared_ptr<EquippableItem>> inventory;
+    int current_item;
+    bool currentItemValid();
+
 
 public:
     Player(Vec2 & pos);
@@ -29,6 +35,12 @@ public:
     void update(Room & room) override;
 
     void draw() override;
+
+    Vec2 & getDirection();
+
+    double getDamage();
+
+    void lootEquippableItem(std::shared_ptr<EquippableItem> item);
 };
 
 
