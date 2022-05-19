@@ -9,7 +9,8 @@
 
 std::unique_ptr<Renderer> Renderer::_instance;
 
-Renderer::Renderer() : _camera({0, 0}) {
+Renderer::Renderer() : _camera({0, 0})
+{
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
         throw std::runtime_error("Failed to init SDL");
@@ -17,39 +18,49 @@ Renderer::Renderer() : _camera({0, 0}) {
     // note that the _renderer is accelerated
     SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN, &_win, &_renderer);
 
-    if(_win == nullptr)
+    if (_win == nullptr)
         throw std::runtime_error("Failed to create window");
-    if(_renderer == nullptr)
+    if (_renderer == nullptr)
         throw std::runtime_error("Failed to create renderer");
+    // SDL_WINDOW_FULLSCREEN or SDL_WINDOW_FULLSCREEN_DESKTOP
+    if (SDL_SetWindowFullscreen(_win, SDL_WINDOW_FULLSCREEN_DESKTOP) != 0)
+        throw std::runtime_error("Failed to set to fullscreen");
 }
 
-Renderer::~Renderer() {
+Renderer::~Renderer()
+{
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_win);
     std::cout << "delete window" << std::endl;
 }
 
-Renderer &Renderer::getInstance() {
-    if (_instance == nullptr) {
+Renderer &Renderer::getInstance()
+{
+    if (_instance == nullptr)
+    {
         _instance = std::make_unique<Renderer>();
     }
     return *_instance;
 }
 
-SDL_Renderer &Renderer::getSLDRenderer() {
+SDL_Renderer &Renderer::getSLDRenderer()
+{
     return *_renderer;
 }
 
-void Renderer::clear() {
+void Renderer::clear()
+{
     SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
     SDL_RenderClear(_renderer);
 }
 
-void Renderer::drawCircle(const Vec2 &pos, double size, const SDL_Color &c) {
+void Renderer::drawCircle(const Vec2 &pos, double size, const SDL_Color &c)
+{
     drawRect(pos, {size, size}, c);
 }
 
-void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &c) {
+void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &c)
+{
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
@@ -61,7 +72,8 @@ void Renderer::drawRect(const Vec2 &center, const Vec2 &scale, const SDL_Color &
     SDL_RenderFillRect(_renderer, &rect);
 }
 
-void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &scale, const double rotation) {
+void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &scale, const double rotation)
+{
     auto centerScreen = center.worldToScreen();
     auto centerScale = scale.worldToScreenScale();
     SDL_Rect rect;
@@ -73,7 +85,8 @@ void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &sca
     SDL_RenderCopyEx(_renderer, texture, nullptr, &rect, rotation, nullptr, SDL_FLIP_NONE);
 }
 
-void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c) {
+void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c)
+{
     auto posScreen = pos.worldToScreen();
 
     SDL_Color color = {c.r, c.g, c.b, c.a};
@@ -91,14 +104,17 @@ void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, c
     TTF_CloseFont(font);
 }
 
-Camera &Renderer::getCamera() {
+Camera &Renderer::getCamera()
+{
     return _camera;
 }
 
-Vec2 Renderer::getSize() {
+Vec2 Renderer::getSize()
+{
     return {WIN_WIDTH, WIN_HEIGHT};
 }
 
-void Renderer::render() {
+void Renderer::render()
+{
     SDL_RenderPresent(_renderer);
 }
