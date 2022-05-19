@@ -20,6 +20,7 @@ void Room::update()
             it = _entities.erase(it);
             continue;
         }
+        (*it)->update(*this);
         it++;
     }
 
