@@ -14,7 +14,9 @@ protected:
 
 public:
 //    void draw() override;
+    Wall(Vec2 pos = (0,0), Vec2 size = (0,0));
 
+    ~Wall();
     virtual void open() = 0;
 
 

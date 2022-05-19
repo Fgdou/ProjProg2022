@@ -5,8 +5,11 @@
 #ifndef PROJPROG2022_WORLD_H
 #define PROJPROG2022_WORLD_H
 
+#include "Rooms/Room.h"
 
 class World {
+private:
+    std::vector<std::vector<Room>> rooms;
 public:
     void render();
     void update();

@@ -16,6 +16,11 @@ Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std
 
 void update()
 {
+    if(entities.size()==1){
+        for (std::shared_ptr<Wall> w: walls) {
+            w->open();
+        }
+    }
 }
 void draw(){
 

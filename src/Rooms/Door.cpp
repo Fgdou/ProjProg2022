@@ -4,6 +4,10 @@
 
 #include "Door.h"
 
+
+Door::Door(Vec2 pos, Vec2 size, bool closed): Wall(pos, size), closed(closed) {
+
+}
 void Door::open(){
     closed = false;
 }

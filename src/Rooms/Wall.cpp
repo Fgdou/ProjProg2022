@@ -4,3 +4,5 @@
 
 #include "Wall.h"
 
+Wall::Wall(Vec2 pos, Vec2 size): Entity(pos), size(size){}
+

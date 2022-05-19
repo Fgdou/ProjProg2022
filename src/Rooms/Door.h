@@ -13,6 +13,7 @@ protected:
     bool closed;
 
 public:
+    Door(Vec2 pos = (0,0), Vec2 size = (0,0), bool closed=1);
     void open() override;
     void draw() override;
 };
