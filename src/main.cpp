@@ -10,6 +10,12 @@ void tps()
 }
 void fps()
 {
+    Renderer renderer = Renderer::getInstance();
+    renderer.clear();
+
+    //  DRAW CODE BELLOW
+
+    SDL_RenderPresent(&renderer.getSLDRenderer());
 }
 
 int main(int argc, char **argv)
