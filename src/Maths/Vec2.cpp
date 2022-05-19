@@ -5,6 +5,7 @@
 #include "Vec2.h"
 #include "../Renderer.h"
 #include <cmath>
+#include <iostream>
 
 Vec2::Vec2()
     : x(0), y(0)
@@ -193,4 +194,8 @@ Vec2 Vec2::worldToScreenScale() const
     res /= scale;
 
     return res;
+}
+
+void Vec2::print() const {
+    std::cout << x << ' ' << y << '\n';
 }

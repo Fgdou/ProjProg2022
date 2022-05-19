@@ -7,7 +7,7 @@
 #include "../Maths/Timer.h"
 #include "../Items/EquippableItem.h"
 
-Player::Player(Vec2 &pos) : DamageableEntity(pos, 100.0), acceleration(1), deceleration(2), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
+Player::Player(Vec2 pos) : DamageableEntity(pos, 100.0), acceleration(1), deceleration(2), current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()) {
 
 }
 
@@ -35,6 +35,8 @@ void Player::update(Room & room) {
             this->inventory[this->current_item]->use(*this, room.getEntities());
         }
     }
+
+    getPos().print();
 }
 
 void Player::draw() {

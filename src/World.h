@@ -6,12 +6,22 @@
 #define PROJPROG2022_WORLD_H
 
 #include "Rooms/Room.h"
+#include "Entities/Player.h"
 
 class World {
 private:
-    std::vector<std::vector<Room>> rooms;
+    std::vector<std::vector<std::shared_ptr<Room>>> rooms;
+    std::shared_ptr<Player> player;
+    Vec2 selectedRoom;
 public:
-    void render();
+    World(Vec2 size);
+
+    void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
+
+    const Vec2& getSelectedRoom();
+    std::shared_ptr<Player> getPlayer();
+
+    void draw();
     void update();
 };
 

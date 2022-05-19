@@ -31,21 +31,15 @@ void Room::update()
 void Room::onClear()
 {
     for (auto &door : _doors)
-    {
         door->disable();
-    }
 }
 
 void Room::draw()
 {
-    for (std::shared_ptr<Wall> w : _walls)
-    {
+    for (auto& w : _walls)
         w->draw();
-    }
-    for (std::shared_ptr<DynamicEntity> e : _entities)
-    {
+    for (auto& e : _entities)
         e->draw();
-    }
 }
 
 Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)

@@ -45,6 +45,8 @@ public:
     Vec2 worldToScreenScale() const;
 
     double x, y;
+
+    void print() const;
 };
 
 #endif // PROJPROG2022_VEC2_H

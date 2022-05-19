@@ -6,8 +6,9 @@
 #include "Maths/Timer.h"
 #include "Renderer.h"
 #include "Input.h"
+#include "World.h"
 
-void tps()
+void tps(const std::shared_ptr<World>& world)
 {
     static int cnt = 0;
     cnt++;
@@ -20,8 +21,9 @@ void tps()
     }
 
     Input::getInstance().update();
+    world->update();
 }
-void fps()
+void fps(const std::shared_ptr<World>& world)
 {
     static int cnt = 0;
     cnt++;
@@ -37,6 +39,7 @@ void fps()
     renderer.clear();
 
     //  DRAW CALLS BELLOW
+    world->draw();
 
     renderer.render();
 }
@@ -49,6 +52,8 @@ int main(int argc, char **argv)
 
     double last_time = timer.getSeconds();
 
+    auto world = std::make_shared<World>(Vec2{1, 1});
+
     // main loop
     while (!Input::getInstance().hasBeenPressedOnce(Input::escape))
     {
@@ -58,9 +63,9 @@ int main(int argc, char **argv)
         if (dt > Timer::getDeltaTime())
         {
             last_time = now;
-            tps();
+            tps(world);
         }else{
-            fps();
+            fps(world);
         }
 
         std::string err = std::string(SDL_GetError());

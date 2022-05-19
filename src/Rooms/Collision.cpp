@@ -2,6 +2,7 @@
 // Created by guill on 19/05/2022.
 //
 
+#include <vector>
 #include "Collision.h"
 
 Collision::Collision(bool collide, Vec2 impact, Vec2 rebound) : _collide(collide), _impact(impact), _rebound(rebound)
@@ -67,7 +68,8 @@ Collision Collision::getLineRectCollision(Vec2 lineStart, Vec2 lineEnd, Vec2 rec
     // get the closest impact and rebound
     Vec2 impact(-1, -1);
     Vec2 rebound(-1, -1);
-    for (Collision col : {left, right, top, bottom})
+
+    for (Collision& col : std::vector<Collision>{left, right, top, bottom})
     {
         if (col.isCollide())
             if (impact == Vec2(-1, -1) || impact.distance(lineStart) > col.getImpact().distance(lineStart))

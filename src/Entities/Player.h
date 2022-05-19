@@ -30,7 +30,7 @@ private:
 
 
 public:
-    Player(Vec2 & pos);
+    Player(Vec2 pos);
 
     void update(Room & room) override;
 
