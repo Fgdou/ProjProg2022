@@ -88,9 +88,12 @@ void Renderer::drawImage(const Image &image, const Vec2 &center, const Vec2 &sca
 void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, const SDL_Color &c)
 {
     auto posScreen = pos.worldToScreen();
-
     SDL_Color color = {c.r, c.g, c.b, c.a};
-    TTF_Font *font = TTF_OpenFont("assets/fonts/JoefinSans.ttf", size);
+    TTF_Font *font = TTF_OpenFont("../assets/fonts/JosefinSans.ttf", size);
+    if (font == nullptr)
+    {
+        throw std::runtime_error("Failed to open font");
+    }
     SDL_Surface *surface = TTF_RenderText_Solid(font, text.c_str(), color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(_renderer, surface);
     SDL_Rect rect;
