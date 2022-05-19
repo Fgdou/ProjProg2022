@@ -4,22 +4,29 @@
 
 #include "Renderer.h"
 #include "Image.h"
+#include <stdexcept>
+#include <iostream>
 
 std::unique_ptr<Renderer> Renderer::_instance;
 
-Renderer::Renderer() : _win(nullptr), _renderer(nullptr), _camera({0, 0}) {
+Renderer::Renderer() : _camera({0, 0}) {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
-        return;
+        throw std::runtime_error("Failed to init SDL");
     // create the _win and _renderer
     // note that the _renderer is accelerated
-    _win = SDL_CreateWindow("LE JEU", 100, 100, WIN_WIDTH, WIN_HEIGHT, 0);
-    _renderer = SDL_CreateRenderer(_win, -1, SDL_RENDERER_ACCELERATED);
+    SDL_CreateWindowAndRenderer(WIN_WIDTH, WIN_HEIGHT, SDL_WINDOW_SHOWN, &_win, &_renderer);
+
+    if(_win == nullptr)
+        throw std::runtime_error("Failed to create window");
+    if(_renderer == nullptr)
+        throw std::runtime_error("Failed to create renderer");
 }
 
 Renderer::~Renderer() {
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_win);
+    std::cout << "delete window" << std::endl;
 }
 
 Renderer &Renderer::getInstance() {
@@ -34,6 +41,7 @@ SDL_Renderer &Renderer::getSLDRenderer() {
 }
 
 void Renderer::clear() {
+    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
     SDL_RenderClear(_renderer);
 }
 
@@ -89,4 +97,8 @@ Camera &Renderer::getCamera() {
 
 Vec2 Renderer::getSize() {
     return {WIN_WIDTH, WIN_HEIGHT};
+}
+
+void Renderer::render() {
+    SDL_RenderPresent(_renderer);
 }

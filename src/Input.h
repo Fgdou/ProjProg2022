@@ -19,6 +19,8 @@ public:
         escape,
     };
 
+    void operator=(const Input&) = delete;
+
     void update();
     const Vec2& getMousePos();
     bool isPressed(Inputs input);
