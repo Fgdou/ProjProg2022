@@ -26,6 +26,8 @@ public:
     const Vec2& getMousePos();
     bool isPressed(Inputs input);
     bool hasBeenPressedOnce(Inputs input);
+
+    static Input& getInstance();
 };
 
 

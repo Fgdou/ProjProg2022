@@ -9,12 +9,16 @@
 #include "../Maths/Vec2.h"
 
 class Entity {
+protected:
+    Vec2 position;
+
 public:
-    virtual void update() = 0;
     virtual void draw() = 0;
 
-    virtual void setPos(const Vec2& pos) = 0;
-    virtual const Vec2& getPos() = 0;
+    Entity(Vec2 & pos);
+
+    void setPos(const Vec2& pos);
+    const Vec2& getPos();
 };
 
 
