@@ -6,28 +6,34 @@
 #define PROJPROG2022_TIMER_H
 
 #include <inttypes.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 class Timer
 {
 private:
 public:
-    static Timer &getInstance() {}
+    Timer();
+
+    static Timer &getInstance();
 
     // returns the number of ticks since the timer was started
-    uint64_t getTicks();
+    uint64_t getTicks() const;
 
     // returns the number of milliseconds since the last update
-    inline double getDeltaTime()
+    static inline double getDeltaTime()
     {
         return 1000.0 / 60;
     }
 
     // returns the number of milliseconds since the timer was started
-    uint32_t getMilliseconds();
+    uint64_t getNanoseconds() const;
+    double getSeconds() const;
 
-    void
-    update();
+    void update();
+
+private:
+    uint64_t count;
+    uint64_t time_started;
 };
 
 #endif // PROJPROG2022_TIMER_H
