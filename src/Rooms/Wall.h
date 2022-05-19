@@ -13,9 +13,9 @@ protected:
     Vec2 size;
 
 public:
-    void draw();
+//    void draw() override;
 
-    void open();
+    virtual void open() = 0;
 
 
 };

@@ -11,7 +11,7 @@
 class ClosedDoor : public Door {
 
 public:
-    void open();
+    void open() override;
 };
 
 

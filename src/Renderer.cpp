@@ -5,6 +5,8 @@
 #include "Renderer.h"
 #include "Image.h"
 
+std::unique_ptr<Renderer> Renderer::_instance;
+
 Renderer::Renderer() : _win(nullptr), _renderer(nullptr), _camera({0, 0})
 {
   // Initialize SDL

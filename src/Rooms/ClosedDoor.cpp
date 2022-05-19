@@ -3,3 +3,7 @@
 //
 
 #include "ClosedDoor.h"
+
+void ClosedDoor::open() {
+    Door::open();
+}

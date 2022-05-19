@@ -6,7 +6,6 @@
 #define PROJPROG2022_DOOR_H
 
 
-#include "../Entities/Entity.h"
 #include "Wall.h"
 
 class Door : public Wall{
@@ -14,8 +13,8 @@ protected:
     bool closed;
 
 public:
-    void open();
-    void draw();
+    void open() override;
+    void draw() override;
 };
 
 

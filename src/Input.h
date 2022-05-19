@@ -32,6 +32,8 @@ private:
     std::map<Inputs, bool> inputs;
     std::map<Inputs, bool> pressedOnce;
     Vec2 mousePos;
+
+    static std::unique_ptr<Input> ptr;
 };
 
 

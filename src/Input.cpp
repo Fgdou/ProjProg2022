@@ -4,7 +4,7 @@
 
 #include "Input.h"
 
-std::unique_ptr<Input> ptr;
+std::unique_ptr<Input> Input::ptr;
 
 Input &Input::getInstance() {
     if(ptr == nullptr)

@@ -5,11 +5,11 @@
 #include "Door.h"
 
 void Door::open(){
-    closed = 0;
+    closed = false;
 }
 
 void Door::draw() {
-    if(closed);
+//    if(closed);
 }
 
 
