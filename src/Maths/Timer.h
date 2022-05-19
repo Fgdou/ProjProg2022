@@ -25,7 +25,7 @@ public:
     // returns the number of milliseconds since the last update
     static inline double getDeltaTime()
     {
-        return 1000.0 / 60;
+        return 1.0 / 60;
     }
 
     // returns the number of milliseconds since the timer was started

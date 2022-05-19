@@ -32,7 +32,7 @@ uint64_t Timer::getNanoseconds() const
 {
     uint64_t now = clock();
 
-    return (time_started - now);
+    return (now - time_started);
 }
 
 double Timer::getSeconds() const

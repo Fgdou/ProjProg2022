@@ -7,6 +7,8 @@
 
 
 #include "../Image.h"
+#include "../Entities/DynamicEntity.h"
+#include "../Entities/Player.h"
 
 class EquippableItem {
 protected:
@@ -15,13 +17,15 @@ protected:
     Vec2 size;
     double angle;
     double damage;
+    double cooldown_max;
+    double current_cooldown;
 
 public:
     EquippableItem(Image sprite, double damage = 0.0);
 
     virtual void draw(Vec2 & pos);
 
-
+    virtual void use(Player & player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) = 0;
 
 };
 
