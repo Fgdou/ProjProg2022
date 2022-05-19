@@ -5,6 +5,7 @@
 #include "Chest.h"
 
 #include <utility>
+#include "../Rooms/Room.h"
 #include "../Items/EquippableItem.h"
 #include "../Rooms/Collision.h"
 
@@ -24,4 +25,5 @@ void Chest::draw() {
 
 void Chest::update(Room &room) {
     //TODO interact with player
+//    Collision::getPointInsideRectCollision(room)
 }
