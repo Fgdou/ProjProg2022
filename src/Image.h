@@ -19,6 +19,8 @@ public:
     // load the image
     Image(const std::string &path);
 
+    SDL_Texture *get() const;
+
     // unload the image
     ~Image();
 };

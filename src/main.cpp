@@ -12,18 +12,26 @@ void tps()
     static double time = Timer::getInstance().getSeconds();
     static double lastTime = Timer::getInstance().getSeconds();
     double dt = lastTime - time;
-    std::cout << (int)(1/dt) << " tps" << std::endl;
+    std::cout << (int)(1 / dt) << " tps" << std::endl;
     lastTime = time;
 
     Input::getInstance().update();
 }
 void fps()
 {
+
     static double time = Timer::getInstance().getSeconds();
     static double lastTime = Timer::getInstance().getSeconds();
     double dt = lastTime - time;
-    std::cout << (int)(1/dt) << " fps" << std::endl;
+    std::cout << (int)(1 / dt) << " fps" << std::endl;
     lastTime = time;
+
+    Renderer renderer = Renderer::getInstance();
+    renderer.clear();
+
+    //  DRAW CALLS BELLOW
+
+    SDL_RenderPresent(&renderer.getSLDRenderer());
 }
 
 int main(int argc, char **argv)
@@ -36,7 +44,8 @@ int main(int argc, char **argv)
     double time_offset = 0;
 
     // main loop
-    while (!Input::getInstance().hasBeenPressedOnce(Input::escape)){
+    while (!Input::getInstance().hasBeenPressedOnce(Input::escape))
+    {
         auto now = timer.getSeconds();
         auto dt = now - last_time;
 
