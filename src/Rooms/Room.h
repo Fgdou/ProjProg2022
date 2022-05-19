@@ -10,6 +10,8 @@
 #include "Collision.h"
 #include <vector>
 
+class DynamicEntity;
+
 class Room
 {
 protected:
