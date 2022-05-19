@@ -10,9 +10,14 @@
 
 class BaseEnemy : public DamageableEntity {
 protected:
+public:
+    void takeDamage(double damage) override;
+
+protected:
     double damage;
     double speed;
     Vec2 movement_vector;
+    double timerHitDamage;
 
 public:
     BaseEnemy(Vec2 & pos, double lifemax, double damage);
@@ -20,9 +25,6 @@ public:
     void update(Room & room) override;
 
     void draw() override;
-
-protected:
-    void dead() override;
 };
 
 

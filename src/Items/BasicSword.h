@@ -23,7 +23,7 @@ public:
 
     void draw(Vec2 &pos) override;
 
-    void update() override;
+    void update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) override;
 };
 
 

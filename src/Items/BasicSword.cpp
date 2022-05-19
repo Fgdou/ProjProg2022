@@ -35,7 +35,7 @@ void BasicSword::draw(Vec2 &pos) {
     Renderer::getInstance().drawImage(this->sprite, pos + this->relative_position, this->size, this->relative_rotation+this->current_angle);
 }
 
-void BasicSword::update() {
+void BasicSword::update(Player &player, std::vector<std::shared_ptr<DynamicEntity>> v_entities) {
     if(this->current_cooldown > 0.0){
         this->current_cooldown -= Timer::getDeltaTime();
     }

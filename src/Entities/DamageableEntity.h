@@ -12,12 +12,13 @@ class DamageableEntity : public DynamicEntity{
 protected:
     double life_max;
     double life;
+    bool isDead;
 
-    virtual void dead() = 0;
+    virtual void dead();
 public:
     DamageableEntity(Vec2 & pos, double lifemax);
 
-    void takeDamage(double damage);
+    virtual void takeDamage(double damage);
 
     void heal(double life_amount);
 };
