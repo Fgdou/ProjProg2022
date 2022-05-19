@@ -7,10 +7,13 @@
 
 #include <inttypes.h>
 #include <SDL2/SDL.h>
+#include <memory>
 
 class Timer
 {
 private:
+    static std::unique_ptr<Timer> ptr;
+
 public:
     Timer();
 
