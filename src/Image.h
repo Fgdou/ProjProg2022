@@ -14,10 +14,14 @@ class Image
 {
 private:
     SDL_Texture *_texture;
+    std::string path;
 
 public:
     // load the image
     Image(const std::string &path);
+    Image(const Image& copy);
+    Image& operator=(const Image& copy);
+
 
     SDL_Texture *get() const;
 

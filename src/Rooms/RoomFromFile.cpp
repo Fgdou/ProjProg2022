@@ -3,6 +3,8 @@
 //
 
 #include "RoomFromFile.h"
+#include "../Entities/Chest.h"
+#include "../Items/BasicSword.h"
 
 #include <utility>
 #include <fstream>
@@ -57,12 +59,28 @@ std::vector<std::shared_ptr<Wall>> getWalls(const std::vector<std::string>& list
     return walls;
 }
 
+std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::string>& list){
+    std::vector<std::shared_ptr<DynamicEntity>> entities;
+    for(int i=0; i<list.size(); i++){
+        for(auto j=0; j<list[i].length(); j++){
+            char c = list[i][j];
+            if(c == 'c'){
+                Vec2 pos((j+2) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                        , (i+2)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                Vec2 size{Renderer::getSize().x/list[0].length()*2+5, Renderer::getSize().y/list.size()*2+5};
+                auto chest = std::make_shared<Chest>(pos, size,nullptr);
+                entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
+            }
+        }
+    }
+    return entities;
+}
+
 std::shared_ptr<Room> RoomFromFile::getRoom(const std::string &path, World& world) {
     auto list = openFile(path);
     auto roomList = getRoomStrings(list);
     auto walls = getWalls(roomList);
-
-    std::vector<std::shared_ptr<DynamicEntity>> entities;
+    auto entities = getEntitiess(roomList);
 
     std::shared_ptr<Room> res = std::make_shared<Room>(entities, walls, world);
 
