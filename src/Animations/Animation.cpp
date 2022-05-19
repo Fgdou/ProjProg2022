@@ -28,5 +28,6 @@ double Animation::getDuration() const {
 }
 
 double Animation::getAvancement() const {
-    return time/duration;
+    double t = time/duration;
+    return (t*t)/(2.0*(t*t-t)+1.0);
 }
