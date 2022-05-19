@@ -49,9 +49,9 @@ std::vector<std::shared_ptr<Wall>> getWalls(const std::vector<std::string>& list
         for(auto j=0; j<list[i].length(); j++){
             char c = list[i][j];
             if(c == '#'){
-                Vec2 pos((j+1.5) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
-                         , (i+1.5)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
-                Vec2 size{Renderer::getSize().x/list[0].length()*2+5, Renderer::getSize().y/list.size()*2+5};
+                Vec2 pos((j) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                         , (i)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                Vec2 size{Renderer::getSize().x/list[0].length()+5, Renderer::getSize().y/list.size()+5};
                 walls.emplace_back(std::make_shared<Wall>(pos, size));
             }
         }
@@ -65,9 +65,9 @@ std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::
         for(auto j=0; j<list[i].length(); j++){
             char c = list[i][j];
             if(c == 'c'){
-                Vec2 pos((j+2) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
-                        , (i+2)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
-                Vec2 size{Renderer::getSize().x/list[0].length()*2+5, Renderer::getSize().y/list.size()*2+5};
+                Vec2 pos((j) * Renderer::getSize().x/list[0].length() - Renderer::getSize().x/2
+                        , (i)*Renderer::getSize().y/list.size() - Renderer::getSize().y/2);
+                Vec2 size{Renderer::getSize().x/list[0].length()+5, Renderer::getSize().y/list.size()+5};
                 auto chest = std::make_shared<Chest>(pos, size,nullptr);
                 entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
             }

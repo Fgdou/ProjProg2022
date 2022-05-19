@@ -44,14 +44,13 @@ bool Wall::isEnabled()
 
 void Wall::draw()
 {
-    Vec2 posToDraw = (position - _size/2);
-    Vec2 scale = _size/2;
+    Vec2 posToDraw = (position + _size/2);
     if (_texture != nullptr)
     {
-        Renderer::getInstance().drawImage(*_texture, posToDraw, scale, 0);
+        Renderer::getInstance().drawImage(*_texture, posToDraw, _size, 0);
     }
     else
     {
-        Renderer::getInstance().drawRect(posToDraw, scale, _color);
+        Renderer::getInstance().drawRect(posToDraw, _size, _color);
     }
 }
