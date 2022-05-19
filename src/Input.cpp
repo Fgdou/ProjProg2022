@@ -60,6 +60,9 @@ void Input::update() {
         }else if(e.type == SDL_KEYUP){
             if(e.key.keysym.sym == SDLK_ESCAPE)
                 inputs[escape] = false;
+        }else if(e.type == SDL_WINDOWEVENT){
+            if(e.window.event == SDL_WINDOWEVENT_CLOSE)
+                setButtonTrue(exit);
         }
     }
 }

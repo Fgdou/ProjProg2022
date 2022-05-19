@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     auto world = std::make_shared<World>(Vec2{1, 1});
 
     // main loop
-    while (!Input::getInstance().hasBeenPressedOnce(Input::escape))
+    while (!(Input::getInstance().hasBeenPressedOnce(Input::escape) || Input::getInstance().hasBeenPressedOnce(Input::exit)))
     {
         auto now = timer.getSeconds();
         auto dt = now - last_time;
