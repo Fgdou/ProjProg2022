@@ -12,25 +12,22 @@ void tps()
     static double time = Timer::getInstance().getSeconds();
     static double lastTime = Timer::getInstance().getSeconds();
     double dt = lastTime - time;
-
     std::cout << (int)(1/dt) << " tps" << std::endl;
-
     lastTime = time;
+
+    Input::getInstance().update();
 }
 void fps()
 {
     static double time = Timer::getInstance().getSeconds();
     static double lastTime = Timer::getInstance().getSeconds();
     double dt = lastTime - time;
-
     std::cout << (int)(1/dt) << " fps" << std::endl;
-
     lastTime = time;
 }
 
 int main(int argc, char **argv)
 {
-
     bool exit = false;
     Timer timer = Timer::getInstance();
     Renderer renderer = Renderer::getInstance();

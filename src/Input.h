@@ -19,7 +19,7 @@ public:
         escape,
     };
 
-    void update(SDL_Event& e);
+    void update();
     const Vec2& getMousePos();
     bool isPressed(Inputs input);
     bool hasBeenPressedOnce(Inputs input);
