@@ -106,29 +106,9 @@ Vec2 Vec2::screenToWorld() const{
     return res;
 }
 Vec2 Vec2::WorldToScreen() const{
-    auto screenSize = Renderer::getInstance().getSize();
-    auto worldPos = Renderer::getInstance().getCamera().getPos();
-    auto scale = Renderer::getInstance().getCamera().getScale();
 
-    Vec2 res = *this;
-    res -= worldPos;
-    res /= scale;
-    res += screenSize/2;
-
-    return res;
 }
 
-double Vec2::distance(const Vec2 &other) const {
+double Vec2::distance(const Vec2 &other) {
     return (other-*this).norm();
-}
-
-Vec2 Vec2::rotate(double radian) const {
-    return {
-        x*cos(radian) - y*sin(radian),
-        x*sin(radian) - y*cos(radian)
-    };
-}
-
-Vec2 Vec2::lookAt(const Vec2 &other) const {
-    return (other-*this).normalize();
 }
