@@ -59,7 +59,7 @@ World & Room::getWorld() const
     return _world;
 }
 
-Collision Room::getPlayerCollision(Vec2 pos, Vec2 mov)
+Collision Room::getCollisionAfterMove(Vec2 pos, Vec2 mov)
 {
     Collision collision = {false, {}, {}};
     for (std::shared_ptr<Wall> w : _walls)

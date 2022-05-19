@@ -39,7 +39,7 @@ public:
 
     std::vector<std::shared_ptr<DynamicEntity>> getEntities();
 
-    Collision getPlayerCollision(Vec2 currentPos, Vec2 directionToNextPos);
+    Collision getCollisionAfterMove(Vec2 currentPos, Vec2 directionToNextPos);
 
     void updatePos(const Vec2& pos);
 };
