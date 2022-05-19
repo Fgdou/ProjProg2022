@@ -7,7 +7,7 @@
 
 #include "DamageableEntity.h"
 #include "../Input.h"
-#include "../Items/EquippableItem.h"
+class EquippableItem;
 
 class Player : public DamageableEntity {
 private:
@@ -41,6 +41,8 @@ public:
     double getDamage();
 
     void lootEquippableItem(std::shared_ptr<EquippableItem> item);
+
+    void dead() override;
 };
 
 
