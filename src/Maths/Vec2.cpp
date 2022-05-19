@@ -7,6 +7,16 @@
 #include <cmath>
 #include <iostream>
 
+double Vec2::toDegrees(double radians)
+{
+    return radians * 180 / M_PI;
+}
+
+double Vec2::toRadians(double degrees)
+{
+    return degrees * M_PI / 180;
+}
+
 Vec2::Vec2()
     : x(0), y(0)
 {
@@ -39,7 +49,7 @@ double Vec2::norm() const
 
 Vec2 Vec2::normalize() const
 {
-    return *this / norm2();
+    return *this / norm();
 }
 
 bool Vec2::operator!=(const Vec2 &other)
@@ -159,7 +169,7 @@ double Vec2::angleBetween(const Vec2 &other) const
     auto angleOther = other.angle();
 
     auto res = angleOther - angleMe;
-    if (res < M_PI)
+    if (res < -M_PI)
         res += 2 * M_PI;
     if (res > M_PI)
         res -= 2 * M_PI;
@@ -196,6 +206,7 @@ Vec2 Vec2::worldToScreenScale() const
     return res;
 }
 
-void Vec2::print() const {
+void Vec2::print() const
+{
     std::cout << x << ' ' << y << '\n';
 }

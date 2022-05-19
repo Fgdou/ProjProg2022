@@ -10,6 +10,9 @@
 class Vec2
 {
 public:
+    static double toRadians(double degrees);
+    static double toDegrees(double radians);
+
     Vec2();
     Vec2(const Vec2 &copy);
     Vec2(double x, double y);
