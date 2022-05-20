@@ -57,7 +57,7 @@ void Player::update(Room &room)
     this->speed = current_speed_multiply;
 
     // Input
-    if (Input::getInstance().isPressed(Input::MouseLeft))
+    if (Input::getInstance().hasBeenPressedOnce(Input::MouseLeft))
     {
         if (this->currentItemValid())
         {
