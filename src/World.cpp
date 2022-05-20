@@ -21,13 +21,7 @@ World::World()
     rooms[0][1] = RoomFromFile::getRoom("../assets/level/level2.txt", *this);
 
     updateRoomPos();
-    if (Input::getInstance().isPressed(Input::MouseLeft)) {
-        funMeter = 100;
-    }
-    else if (Input::getInstance().isPressed(Input::MouseRight)) {
-        funMeter = 100;
-    }
-    funMeter *= 0.99;
+
 }
 
 Room &World::getPlayerRoom() {
@@ -106,6 +100,14 @@ void World::update() {
     } else if( ScreenPos.y < 0){
         setSelectedRoom(selectedRoom + Vec2{0, -1});
     }
+
+    if (Input::getInstance().isPressed(Input::MouseLeft)) {
+        funMeter = 100;
+    }
+    else if (Input::getInstance().isPressed(Input::MouseRight)) {
+        funMeter = 100;
+    }
+    funMeter *= 0.99;
 }
 
 void World::updateRoomPos() {
