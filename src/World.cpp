@@ -21,6 +21,13 @@ World::World()
     rooms[0][1] = RoomFromFile::getRoom("../assets/level/level2.txt", *this);
 
     updateRoomPos();
+    if (Input::getInstance().isPressed(Input::MouseLeft)) {
+        funMeter = 100;
+    }
+    else if (Input::getInstance().isPressed(Input::MouseRight)) {
+        funMeter = 100;
+    }
+    funMeter *= 0.99;
 }
 
 Room &World::getPlayerRoom() {
@@ -58,6 +65,9 @@ void World::draw() {
             return;
         room2->draw();
     }
+
+
+    Renderer::getInstance().drawText(std::to_string((int)funMeter),  Vec2{0, 0}, 220,  {255,255,255, (unsigned char)(15.0 + std::abs(funMeter) * 120.0)});
 
     auto room = rooms[selectedRoom.y][selectedRoom.x];
     if(room == nullptr)

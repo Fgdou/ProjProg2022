@@ -18,6 +18,7 @@ private:
     std::shared_ptr<Animation> roomAnimation;
 public:
     World();
+    double funMeter = 0;
 
     void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
 
