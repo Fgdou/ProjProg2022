@@ -49,8 +49,8 @@ void tps()
              }else if(selected == "Quit"){
                  shouldQuit = true;
              }else if(selected == "Restart"){
-                 menu = nullptr;
                  world = std::make_shared<World>();
+                 menu = nullptr;
              }
          }
      }

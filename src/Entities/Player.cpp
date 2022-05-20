@@ -18,7 +18,8 @@ Player::Player(Vec2 pos)
       current_item(-1), inventory(std::vector<std::shared_ptr<EquippableItem>>()),
       decelerationReboundMultiplier(0.5), sprite(Image("../assets/player.png")),
       lifeBar(*this),
-      resistance(0)
+      resistance(0),
+      hasSwitched(false)
 {
     //this->lootEquippableItem(std::make_shared<SpinItem>(SpinItem({"../assets/sword.png"}, {"../assets/SwordDouble.png"}, Vec2(7, 15),Vec2(6 * 3.387, 6 * 5), 1.0, 10.0, 80, 1.0)));
     //this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
@@ -62,6 +63,12 @@ void Player::update(Room &room)
         {
             this->inventory[this->current_item]->use(*this, room.getEntities());
         }
+    }
+    if (Input::getInstance().isPressed(Input::MouseRight))
+    {
+        this->switchItem();
+    } else if(this->hasSwitched) {
+        this->hasSwitched = false;
     }
 
     // Inventory items update
@@ -130,4 +137,15 @@ void Player::dead()
 void Player::takeDamage(double damage)
 {
     DamageableEntity::takeDamage(damage);
+}
+
+void Player::switchItem() {
+    if(this->currentItemValid() && !this->hasSwitched){
+        this->hasSwitched = true;
+        if(this->current_item == this->inventory.size() -1){
+            this->current_item = 0;
+        } else {
+            this->current_item++;
+        }
+    }
 }
