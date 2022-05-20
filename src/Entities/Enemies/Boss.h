@@ -32,6 +32,10 @@ public:
     bool canDealDamage();
 
     void dealsDamage();
+
+    double getPercentLife();
+
+    void printLife();
 };
 
 
