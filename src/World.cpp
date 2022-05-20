@@ -118,14 +118,6 @@ void World::update()
         setSelectedRoom(selectedRoom + Vec2{0, -1});
     }
 
-    if (Input::getInstance().isPressed(Input::MouseLeft))
-    {
-        Renderer::getInstance().funMeter = 50;
-    }
-    else if (Input::getInstance().isPressed(Input::MouseRight))
-    {
-        Renderer::getInstance().funMeter = -50;
-    }
     Renderer::getInstance().funMeter *= 0.96;
 
     if (Renderer::getInstance().funMeter < 0)

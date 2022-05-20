@@ -46,6 +46,7 @@ void Player::update(Room &room)
     auto c = room.getCollisionAfterMove(this->position, vec_move);
     if (c.isColliding)
     {
+        Renderer::getInstance().funMeter = 20;
         this->setPos(c.newPos);
         this->movement_vector = c.newDir.normalize();
         this->speed = current_speed_multiply * this->decelerationReboundMultiplier;
@@ -136,6 +137,7 @@ void Player::dead()
 
 void Player::takeDamage(double damage)
 {
+    Renderer::getInstance().funMeter = -50;
     DamageableEntity::takeDamage(damage);
 }
 
