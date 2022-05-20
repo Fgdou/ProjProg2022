@@ -4,8 +4,8 @@
 
 #include <iostream>
 #include "BaseEnemy.h"
-#include "../Rooms/Room.h"
-#include "../Maths/Timer.h"
+#include "../../Rooms/Room.h"
+#include "../../Maths/Timer.h"
 
 BaseEnemy::BaseEnemy(Vec2 & pos, double lifemax, double damage)
     : DamageableEntity(pos, lifemax), damage(damage), speed(2.0), lastDamage(0), cooldownDamage(0.0), timerHitDamage(0.0){}
