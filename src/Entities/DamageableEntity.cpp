@@ -33,3 +33,11 @@ double DamageableEntity::getLifeMax() const {
 double DamageableEntity::getLife() const {
     return life;
 }
+
+void DamageableEntity::bump(Vec2 dir) {
+
+}
+
+bool DamageableEntity::getIsBump() {
+    return this->isBump;
+}
