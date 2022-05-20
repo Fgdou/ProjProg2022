@@ -1,4 +1,7 @@
 # ProjProg2022
+
+![](gif.gif)
+
 PROG 2 ESIR Project
 
 During this 30 hour project, we built from scratch a game on the adventure theme. 
