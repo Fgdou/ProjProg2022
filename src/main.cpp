@@ -120,7 +120,7 @@ int main(int argc, char **argv)
 
         if (dt > Timer::getDeltaTime())
         {
-            last_time = now;
+            last_time += dt;
             tps();
         }
         else

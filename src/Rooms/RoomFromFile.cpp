@@ -83,7 +83,8 @@ std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::
             {
                 Vec2 pos((j + .5) * Renderer::getSize().x / list[0].length() - Renderer::getSize().x / 2, (i + .5) * Renderer::getSize().y / list.size() - Renderer::getSize().y / 2);
                 Vec2 size{Renderer::getSize().x / list[0].length(), Renderer::getSize().y / list.size()};
-                auto item = std::make_shared<SpinItem>(SpinItem({"../assets/sword.png"}, {"../assets/SwordDouble.png"}, Vec2(2*7, 2*15),Vec2(2*6 * 3.387, 2*6 * 5), 1.0, 10.0, 80, 1.0));
+                auto item =std::make_shared<SpinItem>(SpinItem({"../assets/swordSpin.png"}, {"../assets/SwordDouble.png"}, Vec2(7, 15),Vec2(6 * 3.387, 6 * 5), 1.0, 10.0, 80, 1.0));
+                // std::make_shared<SpinItem>(SpinItem({"../assets/sword.png"}, {"../assets/SwordDouble.png"}, Vec2(2*7, 2*15),Vec2(2*6 * 3.387, 2*6 * 5), 1.0, 10.0, 80, 1.0));
                 auto chest = std::make_shared<Chest>(pos, size, item);
                 entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(chest));
             }
