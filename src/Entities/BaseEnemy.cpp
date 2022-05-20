@@ -14,15 +14,27 @@ void BaseEnemy::update(Room & room) {
         if(this->timerHitDamage > 0.0) this->timerHitDamage -= Timer::getDeltaTime();
         if(this->cooldownDamage > 0.0) this->cooldownDamage -= Timer::getDeltaTime();
         auto player = room.getPlayer();
+        Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime();
         if(this->isBump){
             this->setPos(this->getPos() + this->movement_vector*(this->speedBump*15));
             this->speedBump -= Timer::getDeltaTime();
             if(this->speedBump <= 0.0) this->isBump = false;
         } else {
             this->movement_vector = position.lookAt(player->getPos()).normalize();
-            Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime();
             this->setPos(this->getPos() + this->movement_vector*speed);
         }
+        auto c = room.getCollisionAfterMove(this->position, vec_move);
+        if (c.isColliding)
+        {
+            this->setPos(c.newPos);
+            this->movement_vector = c.newDir.normalize();
+            this->speed = speedBump;
+        }
+        else
+        {
+            this->setPos(this->getPos() + vec_move);
+        }
+        this->speed=2.0;
 
 }
 
