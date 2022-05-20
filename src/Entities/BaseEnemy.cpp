@@ -16,13 +16,13 @@ void BaseEnemy::update(Room & room) {
         auto player = room.getPlayer();
         this->movement_vector = position.lookAt(player->getPos()).normalize();
         Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime() ;
-        auto c = room.getCollisionAfterMove(this->position, vec_move);
+        /*auto c = room.getCollisionAfterMove(this->position, vec_move);
         if(c.isColliding){
             this->setPos(c.newPos);
             this->movement_vector = c.newDir.normalize();
-        } else {
+        } else {*/
             this->setPos(this->getPos() + this->movement_vector*speed);
-        }
+        //}
 }
 
 void BaseEnemy::draw() {
