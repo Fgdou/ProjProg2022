@@ -13,5 +13,8 @@ namespace Theme {
     const SDL_Color lifeBarFull = {255, 0, 0, 255};
     const SDL_Color lifeBarBackground = {100, 0, 0, 255};
     const SDL_Color enemy = {218, 0, 55};
+    const SDL_Color button = {0,0,0,255};
+    const SDL_Color button_hovered = {20,20,20,255};
+    const SDL_Color menuBackground = {0,0,0,100};
 }
 #endif
