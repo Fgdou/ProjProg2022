@@ -38,6 +38,7 @@ private:
     std::vector<std::shared_ptr<EquippableItem>> inventory;
     int current_item;
     bool currentItemValid();
+    bool hasSwitched;
 
     LifeBar lifeBar;
 
@@ -56,6 +57,8 @@ public:
     void lootEquippableItem(std::shared_ptr<EquippableItem> item);
 
     void dead() override;
+
+    void switchItem();
 };
 
 
