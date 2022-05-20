@@ -5,11 +5,10 @@
 #ifndef PROJPROG2022_ENEMY_H
 #define PROJPROG2022_ENEMY_H
 
-#include "DamageableEntity.h"
-#include "Player.h"
+#include "../DamageableEntity.h"
+#include "../Player.h"
 
 class BaseEnemy : public DamageableEntity {
-protected:
 public:
     void takeDamage(double damage) override;
 

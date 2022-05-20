@@ -5,7 +5,7 @@
 #ifndef PROJPROG2022_SILLYENEMY_H
 #define PROJPROG2022_SILLYENEMY_H
 
-#include "../BaseEnemy.h"
+#include "BaseEnemy.h"
 
 
 class SillyEnemy : public BaseEnemy {

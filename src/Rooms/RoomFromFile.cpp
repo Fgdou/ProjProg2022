@@ -5,7 +5,7 @@
 #include "RoomFromFile.h"
 #include "../Entities/Chest.h"
 #include "../Items/BasicSword.h"
-#include "../Entities/BaseEnemy.h"
+#include "../Entities/Enemies/BaseEnemy.h"
 #include "../Entities/Enemies/SillyEnemy.h"
 #include "../Items/SpinItem.h"
 

@@ -9,7 +9,7 @@
 #include "../Rooms/Room.h"
 #include "../Items/BasicSword.h"
 #include "../Items/SpinItem.h"
-#include "BaseEnemy.h"
+#include "Enemies/BaseEnemy.h"
 
 Player::Player(Vec2 pos)
     : DamageableEntity(pos, 100.0), damage(1.0),
