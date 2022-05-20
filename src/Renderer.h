@@ -24,6 +24,7 @@ private:
     static std::unique_ptr<Renderer> _instance;
 
 public:
+    double funMeter;
     static Renderer &getInstance();
     SDL_Renderer &getSLDRenderer();
     Renderer();

@@ -10,7 +10,7 @@
 
 std::unique_ptr<Renderer> Renderer::_instance;
 
-Renderer::Renderer() : _camera({0, 0})
+Renderer::Renderer() : _camera({0, 0}), funMeter(0)
 {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
