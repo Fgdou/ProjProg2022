@@ -10,6 +10,7 @@
 #include "../Items/BasicSword.h"
 #include "../Items/SpinItem.h"
 #include "Enemies/BaseEnemy.h"
+#include "Enemies/Boss.h"
 
 Player::Player(Vec2 pos)
     : DamageableEntity(pos, 100.0), damage(1.0),
@@ -81,9 +82,9 @@ void Player::update(Room &room)
     // Check Ennemy near you
     for (auto &entity : room.getEntities())
     {
-        if (entity->getPos().distance(this->getPos()) < 40)
+        if (auto *e = dynamic_cast<BaseEnemy *>(entity.get()))
         {
-            if (auto *e = dynamic_cast<BaseEnemy *>(entity.get()))
+            if (entity->getPos().distance(this->getPos()) < 40)
             {
                 if (e->canAttack())
                 {
@@ -91,6 +92,16 @@ void Player::update(Room &room)
                     e->hasAttackedPlayer();
                     this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
                     this->speed*=1.2;
+                }
+            }
+        }
+        else if (auto *e = dynamic_cast<Boss *>(entity.get())) {
+            if (entity->getPos().distance(this->getPos()) < e->getDistance()) {
+                if (e->canAttack()) {
+                    this->takeDamage(e->getDamage());
+                    e->hasAttackedPlayer();
+                    this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
+                    this->speed *= 1.2;
                 }
             }
         }

@@ -45,6 +45,8 @@ bool Wall::isEnabled()
 
 void Wall::draw()
 {
+    if(!_isEnabled)
+        return;
     Vec2 posToDraw = (position + _size/2);
     if (_texture != nullptr)
     {

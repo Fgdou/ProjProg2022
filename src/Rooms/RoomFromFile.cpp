@@ -70,6 +70,24 @@ std::vector<std::shared_ptr<Wall>> getWalls(const std::vector<std::string> &list
     }
     return walls;
 }
+std::vector<std::shared_ptr<Wall>> getDoors(const std::vector<std::string> &list)
+{
+    std::vector<std::shared_ptr<Wall>> walls;
+    for (int i = 0; i < list.size(); i++)
+    {
+        for (auto j = 0; j < list[i].length(); j++)
+        {
+            char c = list[i][j];
+            if (c == 'd')
+            {
+                Vec2 pos((j)*Renderer::getSize().x / list[0].length() - Renderer::getSize().x / 2, (i)*Renderer::getSize().y / list.size() - Renderer::getSize().y / 2);
+                Vec2 size{Renderer::getSize().x / list[0].length() + 5, Renderer::getSize().y / list.size() + 5};
+                walls.emplace_back(std::make_shared<Wall>(pos, size));
+            }
+        }
+    }
+    return walls;
+}
 
 std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::string> &list)
 {
@@ -117,9 +135,10 @@ std::shared_ptr<Room> RoomFromFile::getRoom(const std::string &path, World &worl
     auto list = openFile(path);
     auto roomList = getRoomStrings(list);
     auto walls = getWalls(roomList);
+    auto doors = getDoors(roomList);
     auto entities = getEntitiess(roomList);
 
-    std::shared_ptr<Room> res = std::make_shared<Room>(entities, walls, world);
+    std::shared_ptr<Room> res = std::make_shared<Room>(entities, doors, walls, world);
 
     return res;
 }
