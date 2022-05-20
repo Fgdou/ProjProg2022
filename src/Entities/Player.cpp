@@ -81,6 +81,8 @@ void Player::update(Room &room)
                 {
                     this->takeDamage(e->getDamage());
                     e->hasAttackedPlayer();
+                    this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
+                    this->speed*=1.2;
                 }
             }
         }
