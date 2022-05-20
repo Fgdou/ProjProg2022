@@ -69,7 +69,6 @@ void Boss::draw() {
         Renderer::getInstance().drawCircle(this->getPos(), this->distance, {255, 255, 255, 100});
     }
     if(this->timerHitDamage > 0.0){
-        Renderer::getInstance().drawCircle(this->getPos(), 20.0, {255, 0, 0, 255});
         Renderer::getInstance().drawImage({"../assets/boss_hurt.png"}, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
     } else {
         Renderer::getInstance().drawImage({"../assets/boss.png"}, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
