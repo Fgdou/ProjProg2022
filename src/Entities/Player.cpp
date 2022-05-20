@@ -21,7 +21,7 @@ Player::Player(Vec2 pos)
       resistance(0)
 {
     //this->lootEquippableItem(std::make_shared<SpinItem>(SpinItem({"../assets/sword.png"}, {"../assets/SwordDouble.png"}, Vec2(7, 15),Vec2(6 * 3.387, 6 * 5), 1.0, 10.0, 80, 1.0)));
-    this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
+    //this->lootEquippableItem(std::make_shared<BasicSword>(BasicSword({"../assets/sword.png"}, Vec2(30.0, 150.0), 0.5, 10.0, 80, 120.0)));
 }
 
 void Player::update(Room &room)

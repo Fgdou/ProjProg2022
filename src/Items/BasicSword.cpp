@@ -20,6 +20,7 @@ void BasicSword::use(Player & player, const std::vector<std::shared_ptr<DynamicE
                 if (auto * de = dynamic_cast<DamageableEntity*>(entity.get()))
                 {
                     de->takeDamage(player.getDamage() * this->damage);
+                    de->bump(player.getPos().lookAt(de->getPos()).normalize());
                 }
             }
         }
