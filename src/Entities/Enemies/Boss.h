@@ -12,6 +12,13 @@ protected:
     double distance;
     double distanceMax;
     bool isBump = false;
+    bool inAttack;
+    double jump;
+    bool inJump;
+    bool forwardJump;
+    double speedJump;
+    bool dealDamage;
+
 public:
     Boss(Vec2 & pos, double lifemax, double damage);
 
@@ -20,7 +27,11 @@ public:
 
     double getDistance();
 
-    void hasAttackedPlayer();
+    void hasAttackedPlayer() override;
+
+    bool canDealDamage();
+
+    void dealsDamage();
 };
 
 

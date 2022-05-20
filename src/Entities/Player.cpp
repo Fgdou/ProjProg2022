@@ -82,7 +82,23 @@ void Player::update(Room &room)
     // Check Ennemy near you
     for (auto &entity : room.getEntities())
     {
-        if (auto *e = dynamic_cast<BaseEnemy *>(entity.get()))
+        if (auto *e = dynamic_cast<Boss *>(entity.get())) {
+            if (entity->getPos().distance(this->getPos()) < e->getDistance()) {
+                if (e->canDealDamage()) {
+                    e->dealsDamage();
+                    this->takeDamage(e->getDamage());
+                    e->hasAttackedPlayer();
+                    this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
+                    this->speed *= 1.2;
+                }
+            } else if(entity->getPos().distance(this->getPos()) < 65){
+                this->takeDamage(e->getDamage());
+                e->hasAttackedPlayer();
+                this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
+                this->speed *= 1.2;
+            }
+        }
+        else if (auto *e = dynamic_cast<BaseEnemy *>(entity.get()))
         {
             if (entity->getPos().distance(this->getPos()) < 40)
             {
@@ -95,22 +111,12 @@ void Player::update(Room &room)
                 }
             }
         }
-        else if (auto *e = dynamic_cast<Boss *>(entity.get())) {
-            if (entity->getPos().distance(this->getPos()) < e->getDistance()) {
-                if (e->canAttack()) {
-                    this->takeDamage(e->getDamage());
-                    e->hasAttackedPlayer();
-                    this->movement_vector = e->getPos().lookAt(this->getPos()).normalize();
-                    this->speed *= 1.2;
-                }
-            }
-        }
     }
 }
 
 void Player::draw()
 {
-    double squish = std::max(std::min(0.2 + (1 - (speed / (max_speed - 0.3 * max_speed))), 1.0), 0.0);
+    double squish = std::max(std::min(0.4 + (1 - (speed / (max_speed - 0.3 * max_speed))), 1.0), 0.0);
     Renderer::getInstance().drawImage(sprite, getPos(), Vec2(30, 10 * squish + 20), Vec2::toDegrees(this->movement_vector.angle()));
 
     if (this->currentItemValid())

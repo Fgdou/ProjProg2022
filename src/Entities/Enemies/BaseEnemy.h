@@ -29,7 +29,7 @@ public:
 
     double getDamage();
 
-    void hasAttackedPlayer();
+    virtual void hasAttackedPlayer();
 
     bool canAttack();
 
