@@ -9,6 +9,7 @@
 #include "World.h"
 #include "Menu/Menu.h"
 #include "Menu/StartMenu.h"
+#include "Menu/EndMenu.h"
 
 int ntps, nfps;
 std::shared_ptr<Menu> menu;
@@ -33,9 +34,12 @@ void tps()
 
     Input::getInstance().update();
 
-     if(menu == nullptr)
-        world->update();
-     else {
+     if(menu == nullptr) {
+         world->update();
+         if(world->ended()){
+             menu = std::make_shared<EndMenu>();
+         }
+     }else {
          menu->update();
          auto selected = menu->getSelected();
 
@@ -44,6 +48,9 @@ void tps()
                  menu = nullptr;
              }else if(selected == "Quit"){
                  shouldQuit = true;
+             }else if(selected == "Restart"){
+                 menu = nullptr;
+                 world = std::make_shared<World>();
              }
          }
      }
