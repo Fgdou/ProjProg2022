@@ -23,7 +23,7 @@ void BaseEnemy::update(Room & room) {
             this->movement_vector = position.lookAt(player->getPos()).normalize();
             this->setPos(this->getPos() + this->movement_vector*speed);
         }
-        auto c = room.getCollisionAfterMove(this->position, vec_move);
+        /*auto c = room.getCollisionAfterMove(this->position, vec_move);
         if (c.isColliding)
         {
             this->setPos(c.newPos);
@@ -31,9 +31,9 @@ void BaseEnemy::update(Room & room) {
             this->speed = speedBump;
         }
         else
-        {
-            this->setPos(this->getPos() + vec_move);
-        }
+        {*/
+        this->setPos(this->getPos() + vec_move);
+        //}
         this->speed=2.0;
 
 }
