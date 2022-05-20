@@ -6,7 +6,7 @@
 #include "SpinItem.h"
 #include "../Maths/Timer.h"
 
-SpinItem::SpinItem(Image sprite, Image spin_sprite, Vec2 size, Vec2 spin_size, double cooldown, double damage, double length, double duration) : EquippableItem(sprite, size, cooldown+duration, damage), spin_sprite(spin_sprite) , length(length), duration(duration), lastPos() , pos(), spin_size(spin_size)
+SpinItem::SpinItem(Image sprite, Image spin_sprite, Vec2 size, Vec2 spin_size, double cooldown, double damage, double length, double duration) : EquippableItem(sprite, size, cooldown+duration, damage), spin_sprite(spin_sprite) , in_anim(false), length(length), duration(duration), lastPos() , pos(), spin_size(spin_size)
 {}
 
 
@@ -24,7 +24,7 @@ void SpinItem::update(Player &player, const std::vector<std::shared_ptr<DynamicE
             }
         }
 
-        this->current_angle += Timer::getDeltaTime()*this->angle*1000;
+        this->current_angle += Timer::getDeltaTime()*this->angle*2000;
         if(this->cooldown_max - this->current_cooldown > this->duration){
             this->in_anim = false;
             this->current_angle = 0.0;
