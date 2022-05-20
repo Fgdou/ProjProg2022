@@ -25,10 +25,12 @@ protected:
     bool _isCleared;
     World & _world;
 
-    int cntMonsters();
 
 public:
     Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> doors , std::vector<std::shared_ptr<Wall>> walls, World & world);
+
+    int cntMonsters();
+
 
     void update();
 

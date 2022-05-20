@@ -5,13 +5,15 @@
 #include "EndMenu.h"
 #include "../Renderer.h"
 
-EndMenu::EndMenu(): Menu(2.0) {
+EndMenu::EndMenu(bool win): Menu(2.0) {
     auto ssize = Renderer::getSize();
     auto size = Vec2{300, 100};
     auto pos = ssize/2 - Vec2{0, 160};
 
+    std::string str = (win) ? "You win !" : "Your are dead !";
+
     addButton(Button{
-            pos, size, "Your are dead !", false
+            pos, size, str, false
     });
 
     pos += {0, 120};

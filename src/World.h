@@ -29,7 +29,10 @@ public:
     void draw();
     void update();
 
-    bool ended();
+    bool isDead();
+    bool hasWin();
+
+    int cntEnemies();
 
 private:
     void updateRoomPos();

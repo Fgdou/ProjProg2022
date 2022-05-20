@@ -10,7 +10,7 @@
 
 class EndMenu : public Menu {
 public:
-    EndMenu();
+    EndMenu(bool win);
 };
 
 

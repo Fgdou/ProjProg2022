@@ -148,7 +148,21 @@ void World::updateRoomPos()
     }
 }
 
-bool World::ended()
+bool World::isDead()
 {
     return player->isDead1();
+}
+
+bool World::hasWin() {
+    return cntEnemies() == 0;
+}
+
+int World::cntEnemies() {
+    int cnt = 0;
+    for(auto& v : rooms){
+        for(auto& r : v){
+            cnt += r->cntMonsters();
+        }
+    }
+    return cnt;
 }

@@ -36,8 +36,11 @@ void tps()
 
      if(menu == nullptr) {
          world->update();
-         if(world->ended()){
-             menu = std::make_shared<EndMenu>();
+         if(world->isDead()){
+             menu = std::make_shared<EndMenu>(false);
+         }
+         if(world->hasWin()){
+             menu = std::make_shared<EndMenu>(true);
          }
      }else {
          menu->update();
