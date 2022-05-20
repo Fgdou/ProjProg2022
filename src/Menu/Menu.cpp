@@ -4,32 +4,35 @@
 
 #include "Menu.h"
 
+#include <utility>
+#include "../Renderer.h"
+#include "../Theme.h"
+
 void Menu::update() {
     for(auto& b : buttons)
         b.update();
 }
 
 void Menu::draw() {
+    auto size = Renderer::getSize();
+    auto pos = size/2;
+    Renderer::getInstance().drawRect(pos.screenToWorld(), size.screenToWorldScale(), Theme::menuBackground);
     for(auto& b : buttons)
         b.draw();
 }
 
-const std::string & Menu::getSelected() {
+std::string Menu::getSelected() {
     for(auto& b : buttons){
         if(b.hasBeenClicked())
             return b.getName();
     }
+    return "";
 }
 
 Menu::Menu()
     : buttons()
-{
-    Vec2 pos{0, 0};
-    Vec2 size{100, 50};
-    buttons.emplace_back(
-            pos,
-            size,
-            "Play",
-            true
-            );
+{}
+
+void Menu::addButton(const Button &btn) {
+    buttons.emplace_back(btn);
 }
