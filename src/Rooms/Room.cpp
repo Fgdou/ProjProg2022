@@ -27,7 +27,6 @@ void Room::update()
                 double size = min*3 + (rand() % static_cast<int>(max/2 - min*3 + 1));
                 double randAngle = -1.2 + ((double)rand() / RAND_MAX) * (1.2 + 1.2);
                 double life = 0.7 + ((double)rand() / RAND_MAX) * (1.6 - 0.7);
-                std::cout << life << std::endl;
                 Vec2 dir =it->get()->getPos()+it->get()->getPos().lookAt(getPlayer()->getPos()).rotate(randAngle).normalize()*(-speed);
                 _blood.push_back(std::make_shared<Blood>(it->get()->getPos(), dir, size, life));
             }
