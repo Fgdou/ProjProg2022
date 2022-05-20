@@ -10,7 +10,7 @@
 #include "../Rooms/Collision.h"
 
 Chest::Chest(Vec2 &pos, Vec2& size, std::shared_ptr<EquippableItem> item)
-    : DynamicEntity(pos), item(std::move(item)), t_close("../assets/chest_close.png"), t_open("../assets/chest_open.png"), size(size)
+    : DynamicEntity(pos), item(std::move(item)), t_close("../assets/chest.png"), t_open("../assets/chest copy.png"), size(size)
 {
 
 }

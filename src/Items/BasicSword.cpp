@@ -29,6 +29,7 @@ void BasicSword::use(Player & player, const std::vector<std::shared_ptr<DynamicE
 }
 
 void BasicSword::draw(Vec2 &pos) {
+    printProgressBar(pos);
     auto mouse = Input::getInstance().getMousePos();
     if(!this->in_anim){
         this->relative_position = pos.lookAt(mouse).normalize()*15;

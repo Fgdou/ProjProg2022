@@ -29,6 +29,9 @@ public:
 
     virtual void update(Player &player, const std::vector<std::shared_ptr<DynamicEntity>>& v_entities);
 
+protected:
+    double getPercentCooldown() const;
+    void printProgressBar(const Vec2 &pos);
 };
 
 

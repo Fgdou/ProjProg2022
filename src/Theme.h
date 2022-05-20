@@ -15,6 +15,7 @@ namespace Theme {
     const SDL_Color text = {250, 250, 250, 255};
     const SDL_Color player = {237, 237, 237, 255};
     const SDL_Color lifeBarFull = {255, 0, 0, 255};
+    const SDL_Color progressCooldown = {226,135,67, 255};
     const SDL_Color lifeBarBackground = {100, 0, 0, 255};
     const SDL_Color enemy = {218, 0, 55, 255};
     const SDL_Color button = {0,0,0,255};

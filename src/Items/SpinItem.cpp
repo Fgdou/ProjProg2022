@@ -36,6 +36,7 @@ void SpinItem::update(Player &player, const std::vector<std::shared_ptr<DynamicE
 }
 
 void SpinItem::draw(Vec2 &pos) {
+    printProgressBar(pos);
     if(this->in_anim){
         Renderer::getInstance().drawImage(this->spin_sprite, pos, this->spin_size * Vec2(5), this->current_angle);
     } else {
