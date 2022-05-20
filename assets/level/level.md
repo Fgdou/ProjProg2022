@@ -6,5 +6,6 @@
 |a| spin chest|
 |m| base enemy|
 |s| silly enemy|
+|w| boss|
 
 
