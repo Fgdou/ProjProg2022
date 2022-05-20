@@ -30,5 +30,5 @@ void Timer::update()
 
 double Timer::getSeconds() const
 {
-    return (double)SDL_GetTicks64() / 1000;
+    return (double)SDL_GetTicks() / 1000;
 }
