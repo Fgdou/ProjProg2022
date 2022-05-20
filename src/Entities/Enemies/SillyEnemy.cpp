@@ -14,7 +14,7 @@ void SillyEnemy::update(Room & room) {
     if(c.isColliding){
         this->setPos(c.newPos);
         this->movement_vector = c.newDir.normalize();
-        double randAngle = -1.2 + ((double)rand() / RAND_MAX) * (1.2 + 1.2)
+        double randAngle = -1.2 + ((double)rand() / RAND_MAX) * (1.2 + 1.2);
         movement_vector.rotate(randAngle);
     } else {
         this->setPos(this->getPos() + this->movement_vector*speed);
