@@ -73,7 +73,7 @@ void Player::update(Room &room)
     // Check Ennemy near you
     for (auto &entity : room.getEntities())
     {
-        if (entity->getPos().distance(this->getPos()) < 30)
+        if (entity->getPos().distance(this->getPos()) < 40)
         {
             if (auto *e = dynamic_cast<BaseEnemy *>(entity.get()))
             {
