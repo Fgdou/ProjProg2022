@@ -123,7 +123,7 @@ std::vector<std::shared_ptr<DynamicEntity>> getEntitiess(const std::vector<std::
             else if (c == 's')
             {
                 Vec2 pos((j + .5) * Renderer::getSize().x / list[0].length() - Renderer::getSize().x / 2, (i + .5) * Renderer::getSize().y / list.size() - Renderer::getSize().y / 2);
-                auto monster = std::make_shared<SillyEnemy>(pos, 30.0, 15);
+                auto monster = std::make_shared<SillyEnemy>(pos, 5.0, 15);
                 entities.emplace_back(std::dynamic_pointer_cast<DynamicEntity>(monster));
             }
             else if (c == 'w')
