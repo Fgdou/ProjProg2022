@@ -23,5 +23,5 @@ void Blood::update(Room &room) {
 }
 
 void Blood::draw() {
-    Renderer::getInstance().drawCircle(this->getPos(), this->size, {255, 0, 0 , 255});
+    Renderer::getInstance().drawCircle(this->getPos(), this->size, {255, 0, 0 , static_cast<Uint8>(((std::abs(life/life_max))*255.0))});
 }

@@ -24,7 +24,7 @@ void Room::update()
                 int min = 2;
                 int max = 35;
                 double speed = min + (rand() % static_cast<int>(max*3 - min + 1));
-                double size = min*3 + (rand() % static_cast<int>(max/2 - min*3 + 1));
+                double size = min*2 + (rand() % static_cast<int>(max/3 - min*2 + 1));
                 double randAngle = -1.2 + ((double)rand() / RAND_MAX) * (1.2 + 1.2);
                 double life = 0.7 + ((double)rand() / RAND_MAX) * (1.6 - 0.7);
                 Vec2 dir =it->get()->getPos()+it->get()->getPos().lookAt(getPlayer()->getPos()).rotate(randAngle).normalize()*(-speed);
