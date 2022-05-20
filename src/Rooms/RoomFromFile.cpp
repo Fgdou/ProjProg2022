@@ -10,6 +10,7 @@
 
 #include <utility>
 #include <fstream>
+#include <iostream>
 
 std::vector<std::string> openFile(const std::string &path)
 {

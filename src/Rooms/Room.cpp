@@ -2,6 +2,7 @@
 // Created by fgdou on 5/19/22.
 //
 
+#include <iostream>
 #include "Room.h"
 #include "../Entities/DynamicEntity.h"
 #include "../World.h"

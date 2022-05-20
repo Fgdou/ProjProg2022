@@ -39,7 +39,9 @@ void SpinItem::draw(Vec2 &pos) {
         Renderer::getInstance().drawImage(this->spin_sprite, pos, this->spin_size * Vec2(5), this->current_angle);
     } else {
         double offset = 10;
-        Vec2 backward = this->lastPos - this->pos;
+        Vec2 backward = (this->lastPos - this->pos);
+        double length = backward.norm();
+        backward = backward.normalize()*std::min(length, 10.0);
         Renderer::getInstance().drawImage(this->sprite, pos + backward * Vec2(offset), this->size* Vec2(6), Vec2::toDegrees(backward.angle())+90);
     }
 
