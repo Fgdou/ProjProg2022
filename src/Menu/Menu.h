@@ -12,7 +12,7 @@
 
 class Menu {
 public:
-    Menu();
+    Menu(double delay);
     ~Menu() = default;
 
     void update();
@@ -24,6 +24,7 @@ public:
 
 private:
     std::vector<Button> buttons;
+    double time, delay;
 };
 
 

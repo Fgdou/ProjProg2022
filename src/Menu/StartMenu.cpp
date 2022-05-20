@@ -5,7 +5,7 @@
 #include "StartMenu.h"
 #include "../Renderer.h"
 
-StartMenu::StartMenu() {
+StartMenu::StartMenu(): Menu(0) {
     auto ssize = Renderer::getSize();
     auto size = Vec2{300, 100};
     auto pos = ssize/2 - Vec2{0, 60};

@@ -9,6 +9,11 @@
 
 
 class SillyEnemy : public BaseEnemy {
+private:
+    double angle;
+    double current_angle;
+    bool forward;
+
 public:
     void  update(Room & room);
 

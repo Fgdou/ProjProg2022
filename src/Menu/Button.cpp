@@ -21,7 +21,7 @@ void Button::update() {
     auto res = Collision::getPointInsideRectCollision(mousePos, pos-size/2, pos+size/2);
     hovered = res.isColliding;
 
-    if(hovered && Input::getInstance().hasBeenPressedOnce(Input::MouseLeft))
+    if(hovered && Input::getInstance().isPressed(Input::MouseLeft))
         clicked = true;
 }
 

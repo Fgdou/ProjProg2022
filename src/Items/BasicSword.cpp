@@ -19,6 +19,7 @@ void BasicSword::use(Player & player, const std::vector<std::shared_ptr<DynamicE
             if(Vec2::toDegrees(std::abs(player.getPos().lookAt(entity->getPos()).angleBetween(this->relative_position))) < this->angle*0.65 && player.getPos().distance(entity->getPos()) < this->length){
                 if (auto * de = dynamic_cast<DamageableEntity*>(entity.get()))
                 {
+                    Renderer::getInstance().funMeter = 50;
                     de->takeDamage(player.getDamage() * this->damage);
                     de->bump(player.getPos().lookAt(de->getPos()).normalize());
                 }

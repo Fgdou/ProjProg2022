@@ -32,9 +32,9 @@ void BaseEnemy::update(Room & room) {
         }
         else
         {*/
-        this->setPos(this->getPos() + vec_move);
+        //this->setPos(this->getPos() + vec_move);
         //}
-        this->speed=2.0;
+        //this->speed=2.0;
 
 }
 
