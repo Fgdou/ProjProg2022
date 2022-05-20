@@ -8,11 +8,14 @@
 #include "Input.h"
 #include "World.h"
 #include "Menu/Menu.h"
+#include "Menu/StartMenu.h"
 
 int ntps, nfps;
 std::shared_ptr<Menu> menu;
+std::shared_ptr<World> world;
+bool shouldQuit = false;
 
-void tps(const std::shared_ptr<World> &world)
+void tps()
 {
      static int cnt = 0;
      cnt++;
@@ -32,10 +35,20 @@ void tps(const std::shared_ptr<World> &world)
 
      if(menu == nullptr)
         world->update();
-     else
+     else {
          menu->update();
+         auto selected = menu->getSelected();
+
+         if(!selected.empty()){
+             if(selected == "Play"){
+                 menu = nullptr;
+             }else if(selected == "Quit"){
+                 shouldQuit = true;
+             }
+         }
+     }
 }
-void fps(const std::shared_ptr<World> &world)
+void fps()
 {
      static int cnt = 0;
      cnt++;
@@ -62,7 +75,7 @@ void fps(const std::shared_ptr<World> &world)
     renderer.render();
 }
 
-void drawDebug(const std::shared_ptr<World> &world){
+void drawDebug(){
 
     //Collision debug with lineDraw
     Renderer &renderer = Renderer::getInstance();
@@ -89,11 +102,11 @@ int main(int argc, char **argv)
 
     double last_time = timer.getSeconds();
 
-    auto world = std::make_shared<World>();
-//    menu = std::make_shared<Menu>();
+    world = std::make_shared<World>();
+    menu = std::make_shared<StartMenu>();
 
     // main loop
-    while (!(Input::getInstance().hasBeenPressedOnce(Input::escape) || Input::getInstance().hasBeenPressedOnce(Input::exit) || world->ended()))
+    while (!(Input::getInstance().hasBeenPressedOnce(Input::escape) || Input::getInstance().hasBeenPressedOnce(Input::exit) || shouldQuit))
     {
         auto now = timer.getSeconds();
         auto dt = now - last_time;
@@ -101,11 +114,11 @@ int main(int argc, char **argv)
         if (dt > Timer::getDeltaTime())
         {
             last_time = now;
-            tps(world);
+            tps();
         }
         else
         {
-            fps(world);
+            fps();
         }
 
         // std::string err = std::string(SDL_GetError());
