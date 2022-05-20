@@ -6,25 +6,48 @@
 #include "Room.h"
 #include "../Entities/DynamicEntity.h"
 #include "../World.h"
+#include "../Entities/Blood.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World &world) : _entities(entities), _walls(walls), _isCleared(false), _world(world)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World &world) : _entities(entities), _walls(walls), _blood(std::vector<std::shared_ptr<Blood>>()), _isCleared(false), _world(world)
 {
 }
 
 void Room::update()
 {
     auto it = _entities.begin();
-
     while (it != _entities.end())
     {
         auto dama = std::dynamic_pointer_cast<DamageableEntity>(*it);
         if (dama != nullptr && dama->isDead1())
         {
+            for(int i = 0; i < 50; i++){
+                int min = 2;
+                int max = 35;
+                double speed = min + (rand() % static_cast<int>(max*3 - min + 1));
+                double size = min*3 + (rand() % static_cast<int>(max/2 - min*3 + 1));
+                double randAngle = -1.2 + ((double)rand() / RAND_MAX) * (1.2 + 1.2);
+                double life = 0.7 + ((double)rand() / RAND_MAX) * (1.6 - 0.7);
+                std::cout << life << std::endl;
+                Vec2 dir =it->get()->getPos()+it->get()->getPos().lookAt(getPlayer()->getPos()).rotate(randAngle).normalize()*(-speed);
+                _blood.push_back(std::make_shared<Blood>(it->get()->getPos(), dir, size, life));
+            }
             it = _entities.erase(it);
             continue;
         }
         (*it)->update(*this);
         it++;
+    }
+
+    auto it2 = _blood.begin();
+    while (it2 != _blood.end())
+    {
+        if (it2->get() != nullptr && it2->get()->isDead1())
+        {
+            it2 = _blood.erase(it2);
+            continue;
+        }
+        (*it2)->update(*this);
+        it2++;
     }
 
     // check if the room is cleared
@@ -46,6 +69,8 @@ void Room::onClear()
 
 void Room::draw()
 {
+    for (auto &e : _blood)
+        e->draw();
     for (auto &w : _walls)
         w->draw();
     for (auto &e : _entities)
