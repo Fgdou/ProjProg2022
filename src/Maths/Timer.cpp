@@ -28,14 +28,7 @@ void Timer::update()
     count++;
 }
 
-uint64_t Timer::getNanoseconds() const
-{
-    uint64_t now = clock();
-
-    return (now - time_started);
-}
-
 double Timer::getSeconds() const
 {
-    return (double)getNanoseconds() / CLOCKS_PER_SEC;
+    return (double)SDL_GetTicks64() / 1000;
 }
