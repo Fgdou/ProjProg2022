@@ -41,6 +41,8 @@ public:
     void drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c = {255, 255, 255, 255});
     static Vec2 getSize();
 
+    void setWindowTitle(const std::string& name);
+
     void render();
 };
 

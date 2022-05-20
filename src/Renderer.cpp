@@ -135,3 +135,7 @@ void Renderer::drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c)
 SDL_Window *Renderer::getWin() const {
     return _win;
 }
+
+void Renderer::setWindowTitle(const std::string &name) {
+    SDL_SetWindowTitle(_win, name.c_str());
+}

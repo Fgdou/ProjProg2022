@@ -8,34 +8,39 @@
 #include "Input.h"
 #include "World.h"
 
+int ntps, nfps;
+
 void tps(const std::shared_ptr<World> &world)
 {
-    // static int cnt = 0;
-    // cnt++;
-    // static double lastTime = Timer::getInstance().getSeconds();
-    // double time = Timer::getInstance().getSeconds();
-    // if (time - lastTime > 1.0)
-    // {
-    //     lastTime = time;
-    //     std::cout << cnt << " tps" << std::endl;
-    //     cnt = 0;
-    // }
+     static int cnt = 0;
+     cnt++;
+     static double lastTime = Timer::getInstance().getSeconds();
+     double time = Timer::getInstance().getSeconds();
+     if (time - lastTime > 1.0)
+     {
+         lastTime = time;
+         ntps = cnt;
+         cnt = 0;
+
+         std::string title = "ProjProg " + std::to_string(ntps) + " tps / " + std::to_string(nfps) + " fps";
+         Renderer::getInstance().setWindowTitle(title);
+     }
 
     Input::getInstance().update();
     world->update();
 }
 void fps(const std::shared_ptr<World> &world)
 {
-    // static int cnt = 0;
-    // cnt++;
-    // static double lastTime = Timer::getInstance().getSeconds();
-    // double time = Timer::getInstance().getSeconds();
-    // if (time - lastTime > 1.0)
-    // {
-    //     lastTime = time;
-    //     std::cout << cnt << " fps" << std::endl;
-    //     cnt = 0;
-    // }
+     static int cnt = 0;
+     cnt++;
+     static double lastTime = Timer::getInstance().getSeconds();
+     double time = Timer::getInstance().getSeconds();
+     if (time - lastTime > 1.0)
+     {
+         lastTime = time;
+         nfps = cnt;
+         cnt = 0;
+     }
 
     Renderer &renderer = Renderer::getInstance();
     renderer.clear();
