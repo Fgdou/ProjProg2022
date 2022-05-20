@@ -2,6 +2,7 @@
 // Created by guill on 20/05/2022.
 //
 
+#include <iostream>
 #include "SillyEnemy.h"
 #include "../../Rooms/Room.h"
 #include "../../Maths/Timer.h"
@@ -10,7 +11,7 @@ void SillyEnemy::update(Room & room) {
     if(this->timerHitDamage > 0.0) this->timerHitDamage -= Timer::getDeltaTime();
     if(this->cooldownDamage > 0.0) this->cooldownDamage -= Timer::getDeltaTime();
     Vec2 vec_move = movement_vector*speed*Timer::getDeltaTime() ;
-    auto c = room.getCollisionAfterMove(this->position, vec_move);
+    auto c = room.getCollisionAfterMove(this->getPos(), vec_move);
     if(c.isColliding){
         this->setPos(c.newPos);
         this->movement_vector = c.newDir.normalize();
