@@ -20,3 +20,8 @@ void SillyEnemy::update(Room & room) {
         this->setPos(this->getPos() + this->movement_vector*speed);
     }
 }
+
+SillyEnemy::SillyEnemy(Vec2 &pos, double lifemax, double damage) : BaseEnemy(pos, lifemax, damage) {
+    this->movement_vector = Vec2(1, 1);
+    this->speed = 5;
+}

@@ -11,6 +11,8 @@
 class SillyEnemy : public BaseEnemy {
 public:
     void  update(Room & room);
+
+    SillyEnemy(Vec2 & pos, double lifemax, double damage);
 };
 
 
