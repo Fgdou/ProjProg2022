@@ -7,6 +7,7 @@
 #include "../Entities/DynamicEntity.h"
 #include "../World.h"
 #include "../Entities/Blood.h"
+#include "../Theme.h"
 
 Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World &world) : _entities(entities), _walls(walls), _blood(std::vector<std::shared_ptr<Blood>>()), _isCleared(false), _world(world)
 {
@@ -57,6 +58,23 @@ void Room::update()
             _isCleared = true;
             onClear();
         }
+    }
+
+    for (auto &w : _walls){
+        SDL_Color wallColor = Theme::wall;
+        if (Renderer::getInstance().funMeter < 0)
+        {
+            wallColor.r = Theme::wall.r * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.r * (- Renderer::getInstance().funMeter / 100);
+            wallColor.g = Theme::wall.g * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.g * (- Renderer::getInstance().funMeter / 100);
+            wallColor.b = Theme::wall.b * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.b * (- Renderer::getInstance().funMeter / 100);
+        }
+        else if (Renderer::getInstance().funMeter > 0)
+        {
+            wallColor.r = Theme::wall.r * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.r * (Renderer::getInstance().funMeter / 100);
+            wallColor.g = Theme::wall.g * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.g * (Renderer::getInstance().funMeter / 100);
+            wallColor.b = Theme::wall.b * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.b * (Renderer::getInstance().funMeter / 100);
+        }
+        w->setColor(wallColor);
     }
 }
 

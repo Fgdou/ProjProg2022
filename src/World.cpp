@@ -66,8 +66,6 @@ void World::draw()
         room2->draw();
     }
 
-    Renderer::getInstance().drawText(std::to_string((int)funMeter), (Renderer::getSize() / 2).screenToWorld(), 550, {255, 255, 255, (Uint8)(std::abs(funMeter) * 20.0 / 100)});
-
     auto room = rooms[selectedRoom.y][selectedRoom.x];
     if (room == nullptr)
         return;
@@ -119,25 +117,25 @@ void World::update()
 
     if (Input::getInstance().isPressed(Input::MouseLeft))
     {
-        funMeter = 50;
+        Renderer::getInstance().funMeter = 50;
     }
     else if (Input::getInstance().isPressed(Input::MouseRight))
     {
-        funMeter = -50;
+        Renderer::getInstance().funMeter = -50;
     }
-    funMeter *= 0.96;
+    Renderer::getInstance().funMeter *= 0.96;
 
-    if (funMeter < 0)
+    if (Renderer::getInstance().funMeter < 0)
     {
-        BG_color.r = Theme::background.r * (1 + (funMeter / 100)) + Theme::background_low.r * (- funMeter / 100);
-        BG_color.g = Theme::background.g * (1 + (funMeter / 100)) + Theme::background_low.g * (- funMeter / 100);
-        BG_color.b = Theme::background.b * (1 + (funMeter / 100)) + Theme::background_low.b * (- funMeter / 100);
+        BG_color.r = Theme::background.r * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::background_low.r * (- Renderer::getInstance().funMeter / 100);
+        BG_color.g = Theme::background.g * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::background_low.g * (- Renderer::getInstance().funMeter / 100);
+        BG_color.b = Theme::background.b * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::background_low.b * (- Renderer::getInstance().funMeter / 100);
     }
-    else if (funMeter > 0)
+    else if (Renderer::getInstance().funMeter > 0)
     {
-        BG_color.r = Theme::background.r * (1 - (funMeter / 100)) + Theme::background_high.r * (funMeter / 100);
-        BG_color.g = Theme::background.g * (1 - (funMeter / 100)) + Theme::background_high.g * (funMeter / 100);
-        BG_color.b = Theme::background.b * (1 - (funMeter / 100)) + Theme::background_high.b * (funMeter / 100);
+        BG_color.r = Theme::background.r * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::background_high.r * (Renderer::getInstance().funMeter / 100);
+        BG_color.g = Theme::background.g * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::background_high.g * (Renderer::getInstance().funMeter / 100);
+        BG_color.b = Theme::background.b * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::background_high.b * (Renderer::getInstance().funMeter / 100);
     }
 }
 
