@@ -16,9 +16,11 @@ private:
     Vec2 selectedRoom;
     Vec2 selectedRoomTransition;
     std::shared_ptr<Animation> roomAnimation;
+    SDL_Color BG_color;
 public:
     World();
     double funMeter = 0;
+
 
     void addRoom(const std::shared_ptr<Room>& room, Vec2 pos);
 
