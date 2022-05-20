@@ -18,6 +18,8 @@ public:
     void  update(Room & room);
 
     SillyEnemy(Vec2 & pos, double lifemax, double damage);
+
+    void draw() override;
 };
 
 
