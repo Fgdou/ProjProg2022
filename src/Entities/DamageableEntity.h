@@ -13,6 +13,8 @@ protected:
     double life_max;
     double life;
     bool isDead;
+    bool isBump;
+    double speedBump;
 
     virtual void dead();
 public:
@@ -27,6 +29,11 @@ public:
     bool isDead1() const;
 
     void heal(double life_amount);
+
+    virtual void bump(Vec2 dir);
+
+    bool getIsBump();
+
 };
 
 

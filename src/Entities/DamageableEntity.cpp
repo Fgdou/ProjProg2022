@@ -4,7 +4,7 @@
 
 #include "DamageableEntity.h"
 
-DamageableEntity::DamageableEntity(Vec2 &pos, double lifemax) : DynamicEntity(pos), life_max(lifemax), life(lifemax), isDead(false){
+DamageableEntity::DamageableEntity(Vec2 &pos, double lifemax) : DynamicEntity(pos), life_max(lifemax), life(lifemax), isDead(false), speedBump(0.0), isBump(false){
 
 }
 
@@ -32,4 +32,12 @@ double DamageableEntity::getLifeMax() const {
 
 double DamageableEntity::getLife() const {
     return life;
+}
+
+void DamageableEntity::bump(Vec2 dir) {
+
+}
+
+bool DamageableEntity::getIsBump() {
+    return this->isBump;
 }
