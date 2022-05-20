@@ -7,8 +7,12 @@
 #include <utility>
 #include "../Renderer.h"
 #include "../Theme.h"
+#include "../Maths/Timer.h"
 
 void Menu::update() {
+    time += Timer::getDeltaTime();
+    if(time < delay)
+        return;
     for(auto& b : buttons)
         b.update();
 }
@@ -29,8 +33,8 @@ std::string Menu::getSelected() {
     return "";
 }
 
-Menu::Menu()
-    : buttons()
+Menu::Menu(double delay)
+    : buttons(), time(0), delay(delay)
 {}
 
 void Menu::addButton(const Button &btn) {
