@@ -8,9 +8,9 @@
 #include "Theme.h"
 
 World::World()
-    : player(std::make_shared<Player>(Vec2{0, 0})), selectedRoom({0, 0}), BG_color(Theme::background)
+    : player(std::make_shared<Player>(Vec2{-500, 0})), selectedRoom({0, 0}), BG_color(Theme::background)
 {
-    Vec2 size = {2, 2};
+    Vec2 size = {3, 2};
     rooms.resize(size.y);
     for (auto &v : rooms)
     {
@@ -21,8 +21,10 @@ World::World()
 
     rooms[0][0] = RoomFromFile::getRoom("../assets/level/level1.txt", *this);
     rooms[0][1] = RoomFromFile::getRoom("../assets/level/level2.txt", *this);
-    rooms[1][1] = RoomFromFile::getRoom("../assets/level/level3.txt", *this);
-    rooms[1][0] = RoomFromFile::getRoom("../assets/level/level4.txt", *this);
+    rooms[0][2] = RoomFromFile::getRoom("../assets/level/level3.txt", *this);
+    rooms[1][2] = RoomFromFile::getRoom("../assets/level/level4.txt", *this);
+    rooms[1][1] = RoomFromFile::getRoom("../assets/level/level5.txt", *this);
+    rooms[1][0] = RoomFromFile::getRoom("../assets/level/level6.txt", *this);
     updateRoomPos();
 
 }
