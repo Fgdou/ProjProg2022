@@ -17,6 +17,8 @@ World::World()
         v.resize(size.x);
     }
 
+    setSelectedRoom({0, 0});
+
     rooms[0][0] = RoomFromFile::getRoom("../assets/level/level1.txt", *this);
     rooms[0][1] = RoomFromFile::getRoom("../assets/level/level2.txt", *this);
     rooms[1][1] = RoomFromFile::getRoom("../assets/level/level3.txt", *this);
