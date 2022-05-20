@@ -7,6 +7,7 @@
 
 #include "Wall.h"
 #include "Collision.h"
+#include "../Entities/Blood.h"
 #include <vector>
 #include <cstdio>
 
@@ -18,6 +19,7 @@ class Room
 {
 protected:
     std::vector<std::shared_ptr<DynamicEntity>> _entities;
+    std::vector<std::shared_ptr<Blood>> _blood;
     std::vector<std::shared_ptr<Wall>> _walls;
     std::vector<std::shared_ptr<Wall>> _doors;
     bool _isCleared;
