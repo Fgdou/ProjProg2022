@@ -26,6 +26,10 @@ Renderer::Renderer() : _camera({0, 0})
     // SDL_WINDOW_FULLSCREEN or SDL_WINDOW_FULLSCREEN_DESKTOP
     if (SDL_SetWindowFullscreen(_win, 0) != 0)
         throw std::runtime_error("Failed to set to fullscreen");
+
+    TTF_Init();
+
+    SDL_SetRenderDrawBlendMode(_renderer, SDL_BLENDMODE_BLEND);
 }
 
 Renderer::~Renderer()
@@ -89,7 +93,7 @@ void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, c
 {
     auto posScreen = pos.worldToScreen();
     SDL_Color color = {c.r, c.g, c.b, c.a};
-    TTF_Font *font = TTF_OpenFont("../assets/fonts/JosefinSans.ttf", size);
+    TTF_Font *font = TTF_OpenFont("../assets/fonts/roboto/Roboto-Bold.ttf", size);
     if (font == nullptr)
     {
         throw std::runtime_error("Failed to open font");
@@ -97,8 +101,8 @@ void Renderer::drawText(const std::string &text, const Vec2 &pos, double size, c
     SDL_Surface *surface = TTF_RenderText_Solid(font, text.c_str(), color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(_renderer, surface);
     SDL_Rect rect;
-    rect.x = posScreen.x;
-    rect.y = posScreen.y;
+    rect.x = posScreen.x-surface->w/2;
+    rect.y = posScreen.y-surface->h/2;
     rect.w = surface->w;
     rect.h = surface->h;
     SDL_RenderCopy(_renderer, texture, nullptr, &rect);

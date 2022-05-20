@@ -7,8 +7,10 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "World.h"
+#include "Menu/Menu.h"
 
 int ntps, nfps;
+std::shared_ptr<Menu> menu;
 
 void tps(const std::shared_ptr<World> &world)
 {
@@ -27,7 +29,11 @@ void tps(const std::shared_ptr<World> &world)
      }
 
     Input::getInstance().update();
-    world->update();
+
+     if(menu == nullptr)
+        world->update();
+     else
+         menu->update();
 }
 void fps(const std::shared_ptr<World> &world)
 {
@@ -47,6 +53,8 @@ void fps(const std::shared_ptr<World> &world)
 
     // DRAW CALLS BELLOW
     world->draw();
+    if(menu != nullptr)
+        menu->draw();
     
     // drawDebug(world);
 
@@ -82,6 +90,7 @@ int main(int argc, char **argv)
     double last_time = timer.getSeconds();
 
     auto world = std::make_shared<World>();
+//    menu = std::make_shared<Menu>();
 
     // main loop
     while (!(Input::getInstance().hasBeenPressedOnce(Input::escape) || Input::getInstance().hasBeenPressedOnce(Input::exit) || world->ended()))
