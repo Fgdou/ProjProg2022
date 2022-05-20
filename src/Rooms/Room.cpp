@@ -8,8 +8,11 @@
 #include "../World.h"
 #include "../Entities/Blood.h"
 #include "../Theme.h"
+#include "../Entities/Enemies/BaseEnemy.h"
 
-Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> walls, World &world) : _entities(entities), _walls(walls), _blood(std::vector<std::shared_ptr<Blood>>()), _isCleared(false), _world(world)
+Room::Room(std::vector<std::shared_ptr<DynamicEntity>> entities, std::vector<std::shared_ptr<Wall>> doors, std::vector<std::shared_ptr<Wall>> walls, World &world)
+    : _entities(entities), _walls(walls), _blood(std::vector<std::shared_ptr<Blood>>()),
+    _isCleared(false), _world(world), _doors(doors)
 {
 }
 
@@ -53,29 +56,29 @@ void Room::update()
     // check if the room is cleared
     if (!_isCleared)
     {
-        if (_entities.size() == 1)
+        if (cntMonsters() == 0)
         {
             _isCleared = true;
             onClear();
         }
     }
 
-    for (auto &w : _walls){
-        SDL_Color wallColor = Theme::wall;
-        if (Renderer::getInstance().funMeter < 0)
-        {
-            wallColor.r = Theme::wall.r * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.r * (- Renderer::getInstance().funMeter / 100);
-            wallColor.g = Theme::wall.g * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.g * (- Renderer::getInstance().funMeter / 100);
-            wallColor.b = Theme::wall.b * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.b * (- Renderer::getInstance().funMeter / 100);
-        }
-        else if (Renderer::getInstance().funMeter > 0)
-        {
-            wallColor.r = Theme::wall.r * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.r * (Renderer::getInstance().funMeter / 100);
-            wallColor.g = Theme::wall.g * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.g * (Renderer::getInstance().funMeter / 100);
-            wallColor.b = Theme::wall.b * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.b * (Renderer::getInstance().funMeter / 100);
-        }
-        w->setColor(wallColor);
-    }
+//    for (auto &w : _walls){
+//        SDL_Color wallColor = Theme::wall;
+//        if (Renderer::getInstance().funMeter < 0)
+//        {
+//            wallColor.r = Theme::wall.r * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.r * (- Renderer::getInstance().funMeter / 100);
+//            wallColor.g = Theme::wall.g * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.g * (- Renderer::getInstance().funMeter / 100);
+//            wallColor.b = Theme::wall.b * (1 + (Renderer::getInstance().funMeter / 100)) + Theme::wall_low.b * (- Renderer::getInstance().funMeter / 100);
+//        }
+//        else if (Renderer::getInstance().funMeter > 0)
+//        {
+//            wallColor.r = Theme::wall.r * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.r * (Renderer::getInstance().funMeter / 100);
+//            wallColor.g = Theme::wall.g * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.g * (Renderer::getInstance().funMeter / 100);
+//            wallColor.b = Theme::wall.b * (1 - (Renderer::getInstance().funMeter / 100)) + Theme::wall_high.b * (Renderer::getInstance().funMeter / 100);
+//        }
+//        w->setColor(wallColor);
+//    }
 }
 
 void Room::onClear()
@@ -91,6 +94,8 @@ void Room::draw()
     for (auto &w : _walls)
         w->draw();
     for (auto &e : _entities)
+        e->draw();
+    for (auto &e : _doors)
         e->draw();
 }
 
@@ -124,6 +129,21 @@ Collision Room::getCollisionAfterMove(Vec2 pos, Vec2 mov, unsigned int iter)
                     col = c;
             }
         }
+    for (std::shared_ptr<Wall> w : _doors)
+    {
+        if(!w->isEnabled())
+            continue;
+        Collision c = Collision::getLineRectCollision(
+                pos,
+                pos + mov,
+                w->getPos(),
+                w->getPos() + w->getSize());
+        if (c.isColliding)
+        {
+            if (!col.isColliding || pos.distance(c.impact) < pos.distance(col.impact))
+                col = c;
+        }
+    }
     //     pos = col.impact + Vec2(0.0001) * col.newDir;
     //     mov = col.newDir;
         
@@ -152,8 +172,15 @@ void Room::updatePos(const Vec2 &pos)
     {
         w->setPos(w->getPos() + pos);
     }
-    for (auto &w : _doors)
-    {
-        w->setPos(w->getPos() + pos);
+    for (auto &e : _doors)
+        e->setPos(e->getPos() + pos);
+}
+
+int Room::cntMonsters() {
+    int cnt = 0;
+    for(auto& m : _entities){
+        if(std::dynamic_pointer_cast<BaseEnemy>(m) != nullptr)
+            cnt++;
     }
+    return cnt;
 }
