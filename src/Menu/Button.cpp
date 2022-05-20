@@ -16,7 +16,7 @@ void Button::update() {
     if(!clickable)
         return;
 
-    auto mousePos = Input::getInstance().getMousePos();
+    auto mousePos = Input::getInstance().getMousePos().worldToScreen();
 
     auto res = Collision::getPointInsideRectCollision(mousePos, pos-size/2, pos+size/2);
     hovered = res.isColliding;
@@ -26,12 +26,15 @@ void Button::update() {
 }
 
 void Button::draw() {
+    auto p = pos.screenToWorld();
+    auto s = size.screenToWorldScale();
     if(!hovered) {
-        Renderer::getInstance().drawRect(pos, size, Theme::button);
-        Renderer::getInstance().drawText(name, pos, size.y/2, Theme::text);
+        if(clickable)
+            Renderer::getInstance().drawRect(p, s, Theme::button);
+        Renderer::getInstance().drawText(name, p, s.y/2, Theme::text);
     }else {
-        Renderer::getInstance().drawRect(pos, size * 1.2, Theme::button_hovered);
-        Renderer::getInstance().drawText(name, pos, size.y/2 * 1.2, Theme::text);
+        Renderer::getInstance().drawRect(p, s * 1.2, Theme::button_hovered);
+        Renderer::getInstance().drawText(name, p, s.y/2 * 1.1, Theme::text);
     }
 }
 

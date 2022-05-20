@@ -18,7 +18,9 @@ public:
     void update();
     void draw();
 
-    const std::string & getSelected();
+    std::string getSelected();
+
+    void addButton(const Button& btn);
 
 private:
     std::vector<Button> buttons;
