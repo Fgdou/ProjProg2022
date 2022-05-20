@@ -45,7 +45,6 @@ void BaseEnemy::draw() {
     } else {
         Renderer::getInstance().drawCircle(this->getPos(), 20.0, {0, 255, 0, 255});
     }
-    Renderer::getInstance().drawLine(this->getPos(), this->getPos()+this->movement_vector*300);
 }
 
 void BaseEnemy::takeDamage(double damage) {
