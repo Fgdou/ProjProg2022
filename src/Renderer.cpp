@@ -53,59 +53,6 @@ SDL_Renderer &Renderer::getSLDRenderer()
 }
 
 
-/**
- * Code fetched from https://gist.github.com/Gumichan01/332c26f6197a432db91cc4327fcabb1c
- * @param renderer
- * @param x
- * @param y
- * @param radius
- * @return
- */
-int
-SDL_RenderDrawCircle(SDL_Renderer * renderer, int x, int y, int radius)
-{
-    int offsetx, offsety, d;
-    int status;
-
-//    CHECK_RENDERER_MAGIC(renderer, -1);
-
-    offsetx = 0;
-    offsety = radius;
-    d = radius -1;
-    status = 0;
-
-    while (offsety >= offsetx) {
-        status += SDL_RenderDrawPoint(renderer, x + offsetx, y + offsety);
-        status += SDL_RenderDrawPoint(renderer, x + offsety, y + offsetx);
-        status += SDL_RenderDrawPoint(renderer, x - offsetx, y + offsety);
-        status += SDL_RenderDrawPoint(renderer, x - offsety, y + offsetx);
-        status += SDL_RenderDrawPoint(renderer, x + offsetx, y - offsety);
-        status += SDL_RenderDrawPoint(renderer, x + offsety, y - offsetx);
-        status += SDL_RenderDrawPoint(renderer, x - offsetx, y - offsety);
-        status += SDL_RenderDrawPoint(renderer, x - offsety, y - offsetx);
-
-        if (status < 0) {
-            status = -1;
-            break;
-        }
-
-        if (d >= 2*offsetx) {
-            d -= 2*offsetx + 1;
-            offsetx +=1;
-        }
-        else if (d < 2 * (radius - offsety)) {
-            d += 2 * offsety - 1;
-            offsety -= 1;
-        }
-        else {
-            d += 2 * (offsety - offsetx - 1);
-            offsety -= 1;
-            offsetx += 1;
-        }
-    }
-
-    return status;
-}
 
 /**
  * Code fetch from https://gist.github.com/Gumichan01/332c26f6197a432db91cc4327fcabb1c
@@ -237,16 +184,6 @@ Vec2 Renderer::getSize()
 void Renderer::render()
 {
     SDL_RenderPresent(_renderer);
-}
-
-void Renderer::drawLine(const Vec2 &start, const Vec2 &end, const SDL_Color &c)
-{
-    if(isnan(start.x) || isnan(end.x))
-        return;
-    auto startScreen = start.worldToScreen();
-    auto endScreen = end.worldToScreen();
-    SDL_SetRenderDrawColor(_renderer, c.r, c.g, c.b, c.a);
-    SDL_RenderDrawLine(_renderer, startScreen.x, startScreen.y, endScreen.x, endScreen.y);
 }
 
 SDL_Window *Renderer::getWin() const {

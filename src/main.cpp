@@ -85,25 +85,6 @@ void fps()
     renderer.render();
 }
 
-void drawDebug(){
-
-    //Collision debug with lineDraw
-    Renderer &renderer = Renderer::getInstance();
-    Vec2 mouse = Input::getInstance().getMousePos();
-    Vec2 pt(-500, 100);
-    renderer.drawLine(pt, mouse, {255, 0, 0});
-    Room &playerRoom = world->getPlayerRoom();
-    Collision col = playerRoom.getCollisionAfterMove(pt, mouse - pt);
-    if (col.isColliding)
-    {
-        // double insideRatio = 1- (col.impact - pt).norm()/(mouse-pt).norm() ;
-        renderer.drawRect(col.impact, Vec2(5), {0, 255, 0});
-        renderer.drawRect(col.newPos, Vec2(5), {0, 0, 250});
-        renderer.drawLine(col.newPos, col.newPos + Vec2(20) *col.newDir.normalize(), {255, 0, 0});
-        renderer.drawLine(col.impact, col.impact + col.newDir, {50, 50, 50,255});
-    }
-}
-
 int main(int argc, char **argv)
 {
     bool exit = false;
