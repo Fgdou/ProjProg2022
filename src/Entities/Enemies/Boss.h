@@ -19,6 +19,10 @@ protected:
     double speedJump;
     bool dealDamage;
 
+    Image imageBoss;
+    Image imageBossHurt;
+    Image imageBossAoe;
+
 public:
     Boss(Vec2 & pos, double lifemax, double damage);
 

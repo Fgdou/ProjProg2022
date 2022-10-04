@@ -14,6 +14,9 @@ private:
     double current_angle;
     bool forward;
 
+    Image image;
+    Image imageHurt;
+
 public:
     void  update(Room & room);
 

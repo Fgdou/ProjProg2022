@@ -20,6 +20,9 @@ protected:
     double cooldownDamage;
     int lastDamage;
 
+    Image imageEnemy;
+    Image imageEnemyHurt;
+
 public:
     BaseEnemy(Vec2 & pos, double lifemax, double damage);
 

@@ -6,7 +6,13 @@
 #include "../../Maths/Timer.h"
 #include "../../Theme.h"
 
-Boss::Boss(Vec2 & pos, double lifemax, double damage): BaseEnemy(pos, lifemax, damage), distance(0.0), distanceMax(350), inAttack(false), jump(0.0), inJump(false), speedJump(0.0), dealDamage(false){
+Boss::Boss(Vec2 & pos, double lifemax, double damage):
+BaseEnemy(pos, lifemax, damage), distance(0.0),
+distanceMax(350), inAttack(false), jump(0.0), inJump(false), speedJump(0.0), dealDamage(false),
+imageBossAoe("../assets/boss_aoe.png"),
+imageBossHurt("../assets/boss_hurt.png"),
+imageBoss("../assets/boss.png")
+{
 
 }
 
@@ -68,13 +74,13 @@ void Boss::update(Room & room){
 void Boss::draw() {
     printLife();
     if(this->inAttack){
-        Renderer::getInstance().drawImage({"../assets/boss_aoe.png"}, this->getPos(), Vec2(1.0,1.0)*(this->distance*2), 0.0);
+        Renderer::getInstance().drawImage(imageBossAoe, this->getPos(), Vec2(1.0, 1.0) * (this->distance * 2), 0.0);
     }
     if(this->timerHitDamage > 0.0){
         Renderer::getInstance().drawText(std::to_string(this->lastDamage), this->getPos()+Vec2(0.0, -80-70.0*this->timerHitDamage*2), 50, {255, 0, 0, 255});
-        Renderer::getInstance().drawImage({"../assets/boss_hurt.png"}, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
+        Renderer::getInstance().drawImage(imageBossHurt, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
     } else {
-        Renderer::getInstance().drawImage({"../assets/boss.png"}, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
+        Renderer::getInstance().drawImage(imageBoss, this->getPos()+Vec2(0.0, -this->jump), Vec2(200.0, 200.0), 0.0);
     }
 }
 

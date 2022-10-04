@@ -35,7 +35,12 @@ void SillyEnemy::update(Room & room) {
 
 }
 
-SillyEnemy::SillyEnemy(Vec2 &pos, double lifemax, double damage) : BaseEnemy(pos, lifemax, damage) , angle(0.6), current_angle(0.6), forward(false){
+SillyEnemy::SillyEnemy(Vec2 &pos, double lifemax, double damage)
+: BaseEnemy(pos, lifemax, damage) , angle(0.6),
+current_angle(0.6), forward(false),
+  imageHurt("../assets/enemy2_hurt.png"),
+  image("../assets/enemy2.png")
+{
     this->movement_vector = Vec2(1, 1);
     this->speed = 5;
 }
@@ -45,10 +50,10 @@ void SillyEnemy::draw() {
     double rota = Vec2::toDegrees(this->movement_vector.angle())-90;
     if(this->timerHitDamage > 0.0){
         //Renderer::getInstance().drawCircle(this->getPos(), 20.0, {255, 0, 0, 255});
-        Renderer::getInstance().drawImage({"../assets/enemy2_hurt.png"}, this->getPos(), Vec2(60.0, 60.0), rota);
+        Renderer::getInstance().drawImage(imageHurt, this->getPos(), Vec2(60.0, 60.0), rota);
         Renderer::getInstance().drawText(std::to_string(this->lastDamage), this->getPos()+Vec2(0.0, -30-70.0*this->timerHitDamage*2), 30, {255, 0, 0, 255});
     } else {
         //Renderer::getInstance().drawCircle(this->getPos(), 20.0, {0, 255, 0, 255});
-        Renderer::getInstance().drawImage({"../assets/enemy2.png"}, this->getPos(), Vec2(60.0, 60.0), rota);
+        Renderer::getInstance().drawImage(image, this->getPos(), Vec2(60.0, 60.0), rota);
     }
 }
